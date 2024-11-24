@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Farmers</title>
+    <link href="./../../static/css/dairyOwner/supply_sell_history.css", rel="stylesheet">
+</head>
+<body>
+    {% include 'commonFlashMessages.html' %}
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Product Name</th>
+                <th>Product</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in sell_data %}
+            <tr>
+                <td>{{ transaction.customer_name }}</td>
+                <td>{{ transaction.order_Id }}</td>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.quantity }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.product_name }}</td>
+                <td>{{ transaction.product_img }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

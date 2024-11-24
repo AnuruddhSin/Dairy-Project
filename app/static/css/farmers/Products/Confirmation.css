@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+}
+
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: #79C6C4;
+    /* background-color: yellow; */
+}
+
+header{
+    height: 10%;
+    width: 100%;
+    /* background-color: antiquewhite; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo{
+    height: 100%;
+    width: 30%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 5rem;
+    word-spacing: 2vw;
+}
+.back_button{
+    height: 100%;
+    width: 10%;
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.confirmation_box_container{
+    height: 70%;
+    width: 100%;
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmation_box{
+    height: 350px;
+    width: 400px;
+    /* background-color: white; */
+    border-radius: 30px;
+    background-color: white;
+}
+
+.tick_icon{
+    height: 25%;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    width: 100%;
+    border-radius: 30px;
+
+}
+.text1{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+.order_id{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+
+}
+
+.expected_delivery{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.send_detail{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    
+}
+.button_container{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.button_container button{
+    height: 50%;
+    width: 20vw;
+    background-color: #70BEA1;
+    border-radius: 10px;
+}
+
+.view_order{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    
+}
+
+.footer_img_div{
+    height: 20%;
+    width: 100%;
+    background-image: url("./../../../images/milkflow.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media (max-width:768px){
+    .logo{
+        height: 100%;
+        width: 30%;
+        /* background-color: red; */
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 2rem;
+        word-spacing: 0vw;
+    }
+    .back_button{
+        height: 100%;
+        width: 10%;
+        /* background-color: aqua; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .text1{
+        height: 10%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: bold;
+    }
+    
+}

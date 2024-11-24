@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Error - GauDhara</title>
+    <link rel="stylesheet" href="./../static/css/db_error.css">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-content">
+            <h1>Database Error</h1>
+            <h2>Oops! Something went wrong with the database</h2>
+            <p>It looks like we're having trouble accessing our database right now. Please try again later.</p>
+            <p>Error details: <strong>{{ error_message }}</strong></p>
+            <a href="{{ url_for('guest.guestLanding') }}" class="back-btn">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

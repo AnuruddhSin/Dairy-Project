@@ -1,0 +1,30 @@
+<span>Milk Collection history</span>
+<table class="transactions-table">
+    <thead>
+        <tr class="table-header">
+            <th class="header-cell">Time/Date</th>
+            <th class="header-cell">Quantity (in LTR)</th>
+            <th class="header-cell">Fat</th>
+            <th class="header-cell">Rate</th>
+            <th class="header-cell">Amount</th>
+        </tr>
+    </thead>
+    <tbody class="transactions-body">
+        {% for entry in milk_entries %}
+        <tr class="transaction-row">
+            <td class="transaction-cell">
+                <div class="avatar-name">
+                    <div class="name-details">
+                        <div class="time">{{ entry.time }}</div>
+                        <div class="date">{{ entry.date }}</div>
+                    </div>
+                </div>
+            </td>
+            <td class="transaction-cell">{{ entry.quantity }}</td>
+            <td class="transaction-cell">{{ entry.fat }}</td>
+            <td class="transaction-cell">{{ entry.rate }}</td>
+            <td class="transaction-cell">{{ entry.amount }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

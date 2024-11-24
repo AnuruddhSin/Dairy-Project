@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilkCollection</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/MilkCollectionYearly.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+</head>
+<body>
+    <div id="main">
+      {% include 'commonFlashMessages.html' %}
+        <div id="sidebar">
+            {% include '/dairyOwner/CommonSidebar.html' %}
+        </div> <!--sidebar ends here -->
+         
+
+        <section id="dashboard_container">
+          
+            <div class="header">
+              <div class="partone">MilK Collection</div>
+              <div class="parttwo">
+                <div class="header_notification"> <i class='bx bx-bell'></i></div>
+                <div class="header_time"> 10:40 pm </div>
+                <div class="header_date">29/10/2024</div>
+              </div>
+            </div>  <!--header ends here -->
+
+
+            <div class="chart_container">
+                
+                <button id="updateData">Update Data</button>
+                <canvas id="myChart"></canvas>
+
+                <div class="total_milk"> <div class="total_milk_text">Total Milk </div>     <div class="total_milk_value">60 L</div></div>
+
+               
+            
+
+
+            </div> <!--chart container ends here -->
+
+            <div class="date_container">
+                <div class="select_box">
+                    <select>
+                        <option value="daily">Yearly</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="yearly">Daily </option>
+                    </select>
+                </div>
+            </div>
+
+        
+
+
+        
+
+            <div class="yearly_container">
+                
+              <div class="yearly_table">
+
+               <div class="yearly_table_title">Yearly Collection</div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Milk Collection</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in months[:6] %}
+                        <tr {% if loop.index is odd %}style="background-color: #DFCCCC;"{% endif %}>
+                            <td>{{ entry.month }}</td>
+                            <td>{{ entry.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Milk Collection</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in months[6:] %}
+                        <tr {% if loop.index is odd %}style="background-color: #DFCCCC;"{% endif %}>
+                            <td>{{ entry.month }}</td>
+                            <td>{{ entry.total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+
+              </div>
+            </div>
+
+
+        </section> <!--dashboard container ends here-->
+
+
+
+         
+        
+  
+
+    </div>
+
+
+<script>
+
+document.querySelector('.date_container select').addEventListener('change', function() {
+    // Get the selected value
+    const selectedValue = this.value;
+
+    // Placeholder for the routes, modify these as needed
+    let route = '/';
+
+    // Assign the custom route based on the selected value
+    if (selectedValue === 'daily') {
+        route = '/dairyOwner/Dashboard/milk/collection';  // Replace with your route for "Daily"
+    } else if (selectedValue === 'Weekly') {
+        route = '/dairyOwner/Dashboard/milk/collection';  // Replace with your route for "Weekly"
+    } else if (selectedValue === 'Monthly') {
+        route = '/dairyOwner/Dashboard/milk/collection';  // Replace with your route for "Monthly"
+    }
+
+    // Redirect to the selected route
+    if (route) {
+        window.location.href = route;
+    }
+});
+
+</script>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{url_for('static', filename='js/dairyOwner/MilkCollectionYearly.js')}}"></script>
+</body>
+</html>

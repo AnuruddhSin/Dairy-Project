@@ -1,0 +1,310 @@
+
+/* General container setup for all sections */
+.holder, .query-table-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.holder {
+    background-color: #f1f7f6; /* Lighter background for the holder */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.query-table-holder {
+    background-color: white;
+    margin-top: 18px;
+    gap: 18px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Tab section styling */
+.tab-holder {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Xanh Mono', sans-serif;
+    font-weight: 400;
+    font-size: 2.6vw;
+    line-height: 38px;
+    color: #3e3e3e;
+    width: 32%;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #e0f2f1;
+    transform: translateY(-3px);
+}
+
+.active-tab {
+    background-color: #6dc48a;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Query form styling */
+.query-form-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 18px;
+}
+
+.query-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+}
+
+.query-row span {
+    font-size: 1.5rem;
+    line-height: 36px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.query-row button {
+    background-color: #6dc48a;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.query-row button:hover {
+    background-color: #5a9c6c;
+    transform: scale(1.05);
+}
+
+.query-form-fields {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.query-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 16px;
+    line-height: 24px;
+    gap: 8px;
+    width: 30%;
+}
+
+.query-field label {
+    font-weight: 500;
+    color: #4f4f4f;
+}
+
+.query-field input {
+    background-color: #fff;
+    color: #555;
+    font-weight: 400;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.query-field input::placeholder {
+    color: #bbb;
+}
+
+.query-field input:focus {
+    border-color: #6dc48a;
+    outline: none;
+}
+
+/* Table holder styling */
+.table-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Overlay styling */
+.dialog-box {
+    border: 3px solid #6dc48a;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 340px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.dialog-box p {
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    color: #333333;
+    font-family: 'Poppins', sans-serif;
+}
+
+.button-ok {
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.button-ok:hover {
+    background-color: #0056b3;
+}
+
+.dialog-box div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .tab {
+        font-size: 18px;
+        padding: 12px 0;
+    }
+
+    .query-form-holder {
+        padding: 0 10px;
+    }
+
+    .query-row span {
+        font-size: 18px;
+    }
+
+    .query-row button {
+        font-size: 14px;
+    }
+
+    .query-field label {
+        font-size: 14px;
+    }
+
+    .query-field input {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .holder {
+        padding: 12px;
+    }
+
+    .table-holder {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .holder {
+        padding: 10px;
+    }
+
+    .tab-holder {
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+    }
+
+    .tab {
+        font-size: 16px;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .query-form-fields {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .query-field {
+        width: 100%;
+    }
+
+    .query-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .query-row button {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+
+    .query-field input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .table-holder {
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 384px) {
+    .tab {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .query-row span {
+        font-size: 14px;
+    }
+
+    .query-row button {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .query-field label {
+        font-size: 12px;
+    }
+
+    .query-field input {
+        font-size: 10px;
+        padding: 5px;
+    }
+}

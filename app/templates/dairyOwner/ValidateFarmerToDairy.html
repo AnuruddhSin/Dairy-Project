@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/dairystafflogin.css')}}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo">
+                <h1>DAIRY <span >FARM</span></h1>
+                {% include 'commonFlashMessages.html' %}
+            </div>
+            <div class="block">
+            <nav>
+                <ul>
+                    <li><a href="/" class="active">HOME</a></li>
+                    <li><a href="/">DASHBOARD</a></li>
+                    <li><a href="/pricing">SCHEME</a></li>
+                    <li><a href="/contact_us">CONTACT US</a></li>
+                </ul>
+            </nav>
+        </div>
+        </header>
+
+        
+        <div id="flash-message" class="notification"></div>
+        <!-- Login Section -->
+        <section class="login-box">
+            <div class="milk-image">
+                <img src="{{url_for('static', filename='images/Milk3-removebg-preview-removebg-preview.png')}}" alt="Milk Splash">
+            </div>
+            <div class="login-form">
+                <h2><img src="{{url_for('static', filename='images/glass2-removebg-preview-removebg-preview.png')}}"
+                     
+                     alt="Glass Icon"> Diary staff login</h2>
+                <form action="{{ url_for('validate_farmer_to_dairy_bp.ValidateFarmerToDairy') }}" method="POST">
+                    <input type="hidden" name="csrf_token" value="asfguobsiadgabbnv"> 
+                    <label for="uid">Email OTP</label>
+                    <input type="number" id="uid" placeholder="Enter OTP received on Email" name="email_otp" style="background-color: #C1ECE7;  border-left: none; border-right: none; border-top: none;">
+                    
+                    <label for="password">Mobile OTP</label>
+                    <input type="number" id="password" placeholder="Enter OTP received on Mobile" name="mobile_otp" style="background-color: #C1ECE7;  border-left: none; border-right: none; border-top: none;">
+                    
+                    <button type="submit">Login</button>
+                </form>
+                <div class="extra-links">
+                    <p>New user? <a href="/dairyOwner/register" style="color: blue;">Register</a> here</p>
+                    <p><a href="/dairyOwner/reset_password">Forgot your password?</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Image -->
+        <div class="footer">
+            <img src="{{url_for('static', filename='images/milk2-removebg-preview-removebg-preview.png')}}" alt="Milk Splash" class="milk-splash">
+            </footer>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        // Get the flash message from Flask's flash
+        var flashMessages = JSON.parse('{{ get_flashed_messages(with_categories=true) | tojson | safe }}');
+        if (flashMessages.length > 0) {
+            flashMessages.forEach(function(message) {
+                // Show the message with appropriate style
+                var messageType = message[0];  // 'success' or 'error'
+                var messageText = message[1];  // The actual flash message text
+                
+                var flashDiv = document.getElementById('flash-message');
+                flashDiv.innerText = messageText;
+                flashDiv.classList.add(messageType, 'show');
+                
+                // Automatically hide the notification after 5 seconds
+                setTimeout(function() {
+                    flashDiv.classList.remove('show');
+                }, 5000);
+            });
+        }
+    };
+</script>
+</html>

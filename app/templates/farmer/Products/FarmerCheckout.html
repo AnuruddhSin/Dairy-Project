@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../../../static/css/farmers/Products/FarmerCheckout.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+
+    
+  
+
+    {% include "farmer/Sidebar/FarmerSidebar.html" %}
+    <div id="content">
+
+        <div class="sidebar_farmercheckout"></div>
+             
+        <div id="content_container">
+
+            <div class="header">
+                <div class="partone">Products </div>
+                <div class="parttwo">
+                  <div class="header_notification"> <i class='bx bx-bell'></i></div>
+                  <div class="header_time"> 10:40 pm </div>
+                  <div class="header_date">29/10/2024</div>
+                </div>
+              </div>  <!--header ends here -->
+
+
+              <div class="inner_content_container">
+                   
+                <div class="inner_content">
+                    <div class="inner_header">
+                        <div class="backbutton"> <i class='bx bxs-caret-left-square'></i> back</div>
+                        <div class="cart_text"><i class='bx bxs-cart' ></i> Cart</div>
+                    </div> <!--inner_header ends here -->
+
+                    <div class="inner_main_container">
+                        <div class="inner_main">
+                           
+                            <div class="inner_main_partone">
+                                <div class="inner_main_partone_text">Select Payment Method </div> <!--inner_main_partone_text ends here -->
+                                 
+                                <div class="select_box">
+
+                                     <div id="upi_container">
+                                        <input type="radio" name="payment" value="upi" id="upi_radio" class="upi_radio">
+                                        <label for="upi_radio">       UPI</label>
+                                    </div>
+                                    <div id="upi_provider">
+                                           <div class="paypal">   <input type="radio" id="ppal_radio" value="ppal" name="radio_value">  <div class="provider_img"><img src="https://cdn-icons-png.flaticon.com/128/196/196566.png" alt=""></div></div>
+                                           <div class="gpay">   <input type="radio" id="gpay_radio" value="gpay" name="radio_value">  <div class="provider_img"><img src="https://cdn-icons-png.flaticon.com/128/6124/6124998.png" alt=""></div></div>
+                                           <div class="amazon_pay">   <input type="radio" id="amazonpay_radio" value="amazonpay" name="radio_value">  <div class="provider_img"><img src="https://cdn-icons-png.flaticon.com/128/5968/5968269.png" alt=""></div></div>
+                                    </div> 
+
+
+                                    <div id="credit_card_container">
+                                        <input type="radio" name="payment" value="credit_card" id="credit_card_radio" class="upi_radio">
+                                        <label for="credit_card_radio">      Credit Card </label>
+                                    </div>
+                                    <div id="credit_card_content">
+                                        <input type="text" placeholder="Enter Card Number" id="credit_card_input">
+                                        <div class="credit_data_container">
+                                            <input type="text" id="credit-card_valid" placeholder="Enter Valid" class="credit_card_data_child">
+                                            <input type="text" id="credit_card_mm" placeholder="MM" class="credit_card_data_child">
+                                            <input type="text" id="credit_card_yy" placeholder="YY" class="credit_card_data_child">
+                                            <input type="text" id="credit_card_cvv" placeholder="CVV" class="credit_card_data_child">
+
+                                        </div><!--credit data container endss here -->
+                                    </div><!--credit_card_content ends here -->
+
+
+
+                                    <div id="debit_card_container">
+                                        <input type="radio" name="payment" value="debit_card" id="debit_card_radio" class="debit_radio">
+                                        <label for="debit_card_radio">      Credit Card </label>
+                                    </div>
+                                  
+                                    <div id="wallet_container">
+                                        <input type="radio" name="payment" value="wallet" id="wallet_radio" class="wallet_radio">
+                                        <label for="wallet_radio">      Wallet  </label>
+                                    </div>
+                                    <div id="cod_container">
+                                        <input type="radio" name="payment" value="cod" id="cod_radio" class="cod_radio">
+                                        <label for="cod_radio">      Cash On Delivery   </label>
+                                    </div>
+                                  
+                                   
+                                    
+
+
+
+                                </div><!--select box ends here -->
+                                
+                            </div>  <!--inner_main_partone ends here-->
+                            <div class="inner_main_parttwo">
+                                 
+                                
+
+                            </div>
+
+                        </div>
+                        
+                    </div> <!--inner main ends here -->
+                        
+                </div> <!--inner_content ends here-->
+
+              </div>  <!--inner_content_container  ends here -->
+
+        </div><!--content_container ends here -->
+
+
+        
+
+
+    </div>
+ 
+    
+
+
+    <script>
+
+
+// Get references to the radio buttons and their respective provider sections
+const upiRadio = document.getElementById('upi_radio');
+const upiProvider = document.getElementById('upi_provider');
+const creditCardRadio = document.getElementById('credit_card_radio');
+const creditCardContent = document.getElementById('credit_card_content');
+
+// Function to toggle visibility based on the selected radio button
+function toggleProviderVisibility() {
+    // Check if the UPI radio button is selected
+    if (upiRadio.checked) {
+        upiProvider.style.display = 'block'; // Show the UPI provider section
+        creditCardContent.style.display = 'none'; // Hide the Credit Card provider section
+    } 
+    // Check if the Credit Card radio button is selected
+    else if (creditCardRadio.checked) {
+        creditCardContent.style.display = 'block'; // Show the Credit Card provider section
+        upiProvider.style.display = 'none'; // Hide the UPI provider section
+    }
+}
+
+// Initially, hide both provider sections (in case no radio button is selected on page load)
+upiProvider.style.display = 'none';
+creditCardContent.style.display = 'none';
+
+// Add event listeners to the radio buttons
+upiRadio.addEventListener('change', toggleProviderVisibility);
+creditCardRadio.addEventListener('change', toggleProviderVisibility);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function updateDateTime() {
+      const now = new Date();
+  
+      
+      const hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const formattedTime = `${hours % 12 || 12}:${minutes}:${seconds} ${ampm}`;
+  
+      
+      const day = now.getDate().toString().padStart(2, '0');
+      const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+      const year = now.getFullYear();
+      const formattedDate = `${day}/${month}/${year}`;
+  
+      // Update the div content
+      document.querySelector('.header_time').textContent = formattedTime;
+      document.querySelector('.header_date').textContent = formattedDate;
+  }
+  
+  
+  setInterval(updateDateTime, 1000);
+  
+  updateDateTime();
+
+
+
+
+       </script>
+    
+</body>
+</html>

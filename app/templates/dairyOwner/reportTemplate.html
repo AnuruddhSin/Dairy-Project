@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milk Collection Record</title>
+
+<!-- <link rel="stylesheet" href="./../../static/css/reportTemplate.css"> -->
+     
+     <style>
+        body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+body {
+    background-color: #7FDFD0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    width: 100%;
+    padding: 20px 0;
+    text-align: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+.farm {
+    color: #2ECC71;
+}
+nav {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.content {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+.checkmark {
+    width: 80px;
+    height: 80px;
+    background-color: #2ECC71;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+.checkmark::after {
+    content: '\2714';
+    font-size: 50px;
+    color: white;
+}
+h2 {
+    margin: 0;
+    color: #333;
+}
+p {
+    color: #666;
+    margin: 10px 0 20px;
+}
+a {
+    color: #2ECC71;
+    text-decoration: none;
+}
+.button {
+    background-color: #7FDFD0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.milk-splash {
+    width: 100%;
+    height: 100px;
+    background-size: cover;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
+}
+     </style>
+</head>
+<body>
+    {% include 'commonFlashMessages.html' %}
+    <div class="header">
+        <h2>Milk Collection Record</h2>
+    </div>
+
+    <table>
+        <tr>
+            <th>Farmer Name</th>
+            <td>{{ data['farmer_name'] }}</td>
+        </tr>
+        <tr>
+            <th>Farmer ID</th>
+            <td>{{ data['farmer_id'] }}</td>
+        </tr>
+        <tr>
+            <th>Date of Collection</th>
+            <td>{{ data['date_of_collection'] }}</td>
+        </tr>
+        <tr>
+            <th>Quantity of Milk (Litres)</th>
+            <td>{{ data['quantity_of_milk'] }}</td>
+        </tr>
+        <tr>
+            <th>Milk Type</th>
+            <td>{{ data['milk_type'] }}</td>
+        </tr>
+        <tr>
+            <th>Fat Content (%)</th>
+            <td>{{ data['fat_content'] }}</td>
+        </tr>
+        <tr>
+            <th>Solid Not Fat (%)</th>
+            <td>{{ data['solid_not_fat'] }}</td>
+        </tr>
+        <tr>
+            <th>Density of Milk (g/cm³)</th>
+            <td>{{ data['density_of_milk'] }}</td>
+        </tr>
+        <tr>
+            <th>Rate of Milk per Litre (₹)</th>
+            <td>{{ data['rate_of_milk'] }}</td>
+        </tr>
+        <tr>
+            <th>Total Amount (₹)</th>
+            <td>{{ data['total_amount'] }}</td>
+        </tr>
+        <tr>
+            <th>Payment Status</th>
+            <td>{{ data['payment_status'] }}</td>
+        </tr>
+        <tr>
+            <th>Payment Method</th>
+            <td>{{ data['payment_method'] }}</td>
+        </tr>
+        <tr>
+            <th>Collected By</th>
+            <td>{{ data['collected_by'] }}</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>Generated on {{ data['current_date'] }}</p>
+    </div>
+</body>
+</html>

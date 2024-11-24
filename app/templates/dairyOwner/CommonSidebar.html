@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Farmer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/CommonSidebar.css') }}">
+</head>
+<body>
+    <!-- Sidebar toggle button for mobile screens -->
+    <button class="custom-sidebar-toggle" onclick="toggleCustomSidebar()">☰</button>
+
+    <div class="custom-container">
+        <div class="custom-sidebar"> 
+            <div class="custom-logo-section">
+                <img src="{{ url_for('static', filename='images/GauDhara.png') }}" alt="GauDhara Logo" class="custom-logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('dairy_owner_dashboard.dairyDashboard') }}" class="custom-nav-link">Dashboard</a></li>
+                    <li><a href="{{ url_for('dairy_owner_dashboard.dairyFarmerDetails') }}" class="custom-nav-link">Farmer Details</a></li>
+                    <li class="custom-active"><a href="{{ url_for('dairy_owner_dashboard.getMilkCollection') }}" class="custom-nav-link">Milk Collection</a></li>
+                    <li><a href="{{ url_for('products.viewProducts') }}" class="custom-nav-link">Products</a></li>
+                    <li><a href="{{ url_for('dairy_wallet.view_wallet') }}" class="custom-nav-link">Wallet</a></li>
+                    <li><a href="{{ url_for('dairy_report.view_reports') }}" class="custom-nav-link">Report</a></li>
+                    <li><a href="{{ url_for('dairy_owner_excel.excel') }}" class="custom-nav-link">Excel File</a></li>
+                    <li><a href="{{ url_for('dairy_settings.settings') }}" class="custom-nav-link">Settings</a></li>
+                    <li><a href="{{ url_for('guest.Logout') }}" class="custom-nav-link">Log Out</a></li>
+                </ul>
+            </nav>
+            <div class="custom-profile-section">
+                <img src="{{ url_for('static', filename='images/pro.png') }}" alt="Profile Picture" class="custom-profile-pic">
+                <div class="custom-profile-info">
+                    <p>Alex Nolan</p>
+                    <p>Busy Owner</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCustomSidebar() {
+            const sidebar = document.querySelector('.custom-sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

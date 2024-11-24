@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm Payment Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/payment_gateway.css')}}">
+    <style>
+        .vertical-line {
+            width: 2px; /* Width of the vertical line */
+            background-color: black; /* Color of the vertical line */
+            height: 100%; 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">DAIRY <span>FARM</span></div>
+        <a href="/pricing" class="back-btn">< Back</a>
+    </div>
+    <div class="container">
+       
+        <div class="content">
+            <div class="payment-methods">
+                <h2>SELECT PAYMENT METHOD</h2>
+                <hr style="height: 2px; width: 40rem; padding-right: 80px; background-color: gray;">
+            
+                <!-- UPI Payment Method -->
+                 <form action="{{url_for('payment_gateway_method.payments', plan_no = plan_no)}}" method="POST">
+                <div class="method" id="upi">
+                    <label id="upi_id">
+                        <input type="radio" name="payment" value="upi" checked onclick="showPaymentDetails('upi-details', 'upi')">
+                        UPI
+                    </label>
+                    <div class="upi-logos">
+                        <img src="https://logo.clearbit.com/paypal.com" alt="PayPal">
+                        <img src="https://logo.clearbit.com/google.com" alt="Google Pay">
+                        <img src="https://logo.clearbit.com/phonepe.com" alt="PhonePe">
+                    </div>
+                    <div id="upi-details" class="payment-details">
+                        Enter UPI ID
+                        <input type="text" class="upi-input">
+                    </div>
+                </div>
+
+                <!-- Credit Card Payment Method -->
+                <div class="method" id="credit">
+                    <label>
+                        <input type="radio" name="payment" value="credit" onclick="showPaymentDetails('credit-details', 'credit')">
+                        Credit Card
+                    </label>
+                    <div id="credit-details" class="payment-details">
+                        <input type="text" placeholder="Card Number" class="upi-input">
+                        <input type="text" placeholder="Expiry Date" class="upi-input">
+                        <input type="text" placeholder="CVV" class="upi-input">
+                    </div>
+                </div>
+
+                <!-- Debit Card Payment Method -->
+                <div class="method" id="debit">
+                    <label>
+                        <input type="radio" name="payment" value="debit" onclick="showPaymentDetails('debit-details', 'debit')">
+                        Debit Card
+                    </label>
+                    <div id="debit-details" class="payment-details">
+                        <input type="text" placeholder="Card Number" class="upi-input">
+                        <input type="text" placeholder="Expiry Date" class="upi-input">
+                        <input type="text" placeholder="CVV" class="upi-input">
+                    </div>
+                </div>
+            </div>
+            <hr style="height:40rem;">
+            <div class="plan-details">
+                <h2>Plus Plan</h2>
+            <hr style="width: 25rem; margin-left: -40px;">
+                <div class="price">₹ {{price}} <span class="per-month">/Month</span></div>
+                <ul class="features">
+                    {% for text in content %}
+                    <li>{{text}}</li>
+                    {% endfor %}
+                </ul>
+            <hr style="transform: translateX(-25px)">
+                <div class="total">Total Amount : ₹{{price}}/-</div>
+            </div>
+        </div>
+        <button class="pay-btn">Pay {{price}}</button>
+    </div>
+</form>
+    <script>
+        // Function to show the selected payment details section
+        function showPaymentDetails(selectedId, superdiv) {
+            // Hide all payment details
+            document.querySelectorAll('.payment-details').forEach(function (details) {
+                details.style.display = 'none';
+
+            });
+
+            document.querySelectorAll('.method').forEach(function (method)
+            {
+                method.style.backgroundColor = '#FFFFFF';
+            });
+            // Show the selected payment details
+            document.getElementById(selectedId).style.display = 'block';
+            document.getElementById(superdiv).style.backgroundColor = '#34A85340';    
+        }
+
+        // Initialize default display
+        document.addEventListener("DOMContentLoaded", function() {
+            showPaymentDetails('upi-details');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+from app.controllers.farmer.cattle_section.addCattle import add_cattle
+from app.controllers.farmer.cattle_section.displayCattle import display_cattle

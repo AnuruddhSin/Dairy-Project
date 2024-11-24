@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sells History</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/sellhistory.css')}}">
+  <script src="{{url_for('static', filename='js/commonUpdateTime.js')}}"></script>
+</head>
+<body>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  {% include 'commonFlashMessages.html' %}
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="logo-section">
+          <img src="{{ url_for('static', filename='images/GauDhara.png') }}" alt="GauDhara Logo" class="logo">
+      </div>
+      <ul class="nav">
+          <li><a href="{{url_for('dairy_owner_dashboard.dairyDashboard')}}" class="sidebar-link">Dashboard</a></li>
+         
+          <li><a href="#" class="sidebar-link">Milk Entry</a></li>
+       
+          <li><a href="{{url_for('dairy_owner_dashboard.dairyFarmerDetails')}}" class="sidebar-link">Farmer Details</a></li>
+          
+          <li class="active"><a href="dairyOwner/Dashboard/milk/collection" class="sidebar-link">Milk Collection</a></li>
+        
+          <li><a href="dairyOwner/dashboard/view/products" class="sidebar-link">Products</a></li>
+         
+          <li><a href="{{url_for('dairy_wallet.view_wallet')}}" class="sidebar-link">Wallet</a></li>
+      
+          <li><a href="dairyOwner/report" class="sidebar-link">Report</a></li>
+     
+          <li><a href="#" class="sidebar-link">Excel File</a></li>
+       
+          <li><a href="dairyOwner/settings" class="sidebar-link">Settings</a></li>
+       
+          <li><a href="{{url_for('guest.Logout')}}" class="sidebar-link">Log Out</a></li>
+       
+        </ul>
+    
+     
+      <div class="profile-section">
+          <img src="{{url_for('static', filename='images/pro.png')}}" alt="Profile Picture" class="profile-pic">
+          <div class="profile-info">
+              <p>Alex Nolan</p>
+              <p>Busy Owner</p>
+          </div>
+      </div>
+  </div>
+
+    
+    
+  
+    <!-- Main Content -->
+    <div class="main-content">
+      <header>
+        <h1>Sells History</h1>
+        <div class="header-info">
+          <div class="notification-icon">
+            <!-- Replace with notification icon -->
+            <img src="{{url_for('static', filename='images/icon-button.png' )}}" alt="Notifications">
+        </div>
+        <div class="date-time">
+            <span class="time" id="time">10:40 AM</span>
+            <span class="date" id="date">21/12/2022</span>
+        </div>
+      </header>
+<div class="upper">
+      <div class="selling-products-graph">
+        <div class="header">
+          <h2>Overall selling products graph</h2>
+          <div class="year-dropdown">
+            <span>2023 ▼</span>
+            
+          </div>
+          
+        </div>
+        <div class="legend">
+          <div class="legend-item">
+            <span class="color-box low-sells"></span> Low Sells
+          </div>
+          <br>
+          <div class="legend-item">
+            <span class="color-box high-sells"></span> High Sells
+          </div>
+          <br>
+          <div class="legend-item">
+            <span class="color-box average-sells"></span> Average Sells
+          </div>
+        </div>
+        <div class="chart-container">
+          <div class="adjust">
+          <div class="y-axis-label">No of products</div>
+          <div class="chart">
+              <!-- Bars with height classes instead of inline styles -->
+              <div class="bar height-30 average-sells" data-month="Jan"></div>
+              <div class="bar height-20 low-sells" data-month="Feb"></div>
+              <div class="bar height-28 average-sells" data-month="Mar"></div>
+              <div class="bar height-35 high-sells" data-month="Apr"></div>
+              <div class="bar height-10 low-sells" data-month="May"></div>
+              <div class="bar height-25 high-sells" data-month="Jun"></div>
+              <div class="bar height-22 average-sells" data-month="Jul"></div>
+              <div class="bar height-22 average-sells" data-month="Aug"></div>
+              <div class="bar height-28 average-sells" data-month="Sep"></div>
+              <div class="bar height-35 high-sells" data-month="Oct"></div>
+              <div class="bar height-28 average-sells" data-month="Nov"></div>
+              <div class="bar height-10 low-sells" data-month="Dec"></div>
+          </div>
+        </div>
+          <div class="below">
+              <span>Jan</span>
+              <span>Feb</span>
+              <span>Mar</span>
+              <span>Apr</span>
+              <span>May</span>
+              <span>June</span>
+              <span>July</span>
+              <span>Aug</span>
+              <span>Sept</span>
+              <span>Oct</span>
+              <span>Nov</span>
+              <span>Dec</span>
+          </div>
+            <div class="x-axis-label">Months </div>
+        </div>
+     
+      </div>
+      <div class="right">
+
+        <div class="top-selling">
+          <div class="line">
+          <h2>Top selling product</h2>
+          <div class="dropdown">
+            <button class="dropbtn">Months ▼</button>
+            <div class="dropdown-content">
+             
+              <a href="#">Year</a>
+              <a href="#">day</a>
+            </div>
+          </div></div>
+          <br>
+          <br>
+          <div class="space">
+            {% if most_sold_name %}
+          <p>{{most_sold_name}}</p>
+          <p>Product sold: <span class="low-quantity">{{most_sold[1]}} Units</span></p>
+          <p>Left Stock: <span class="low-quantity">{{most_sold_stock_left}} Units</span></p>
+          <p>Rating: <span class="low-quantity">4.6/5.0</span></p>
+          {% else %}
+          <p>No Product Sold</p>
+          <p>Product sold: <span class="low-quantity">0 Units</span></p>
+          <p>Left Stock: <span class="low-quantity">0 Units</span></p>
+          <p>Rating: <span class="low-quantity">0/5.0</span></p>
+          {% endif %}
+        </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="low-stock">
+          <br>
+          <div class="line">
+          <h2>Products on low Stock</h2>
+          <img class="icon2" src="{{url_for('static', filename='images/Group 1171275880.png' )}}"alt=""></div>
+          <br>
+          <br>
+       <div class="gap">
+        
+          <ul>
+            {% for item in low_stock %}    
+            <li>{{item.get('product_name')}} - <span class="low-quantity">{{item.get('quantity')}} Units</span></li>
+            {% endfor %}
+          </ul>
+          
+        </div>
+        </div>
+      </div>
+
+      </div>
+
+        <div class="sell-history">
+          <div class="arrange">
+          <h2>Product Sell History</h2></div>
+          <div class="table-wrapper">
+          <table>
+            
+            <tr>
+              <th>Date</th>
+              <th>Product name</th>
+              <th>Product no</th>
+              <th>Product Sold Quantity</th>
+            </tr>
+          
+            {% for entry in sellHistory %}
+            <tr>
+              <td>{{ entry.get("transaction_date") }}</td>
+              <td>{{entry.get("supply_name")}}</td>
+              <td>{{entry.get("supply_id")}}</td>
+              <td>{{entry.get("quantity")}}</td>
+            </tr>
+            {% endfor %}            
+
+            
+            <!-- Additional rows as needed -->
+          </table>
+        </div>
+          <a href="#" class="Next-button">← Next</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Fetch data from the Flask backend
+    fetch('/get_bar_heights')
+        .then(response => response.json())
+        .then(data => {
+            const bars = document.querySelectorAll(".bar");
+
+            // Set heights based on data from the backend
+            bars.forEach(bar => {
+                const month = bar.getAttribute("data-month"); // Get the month of the bar
+                const targetHeight = data[month]; // Get height from the backend data for the month
+                console.log(targetHeight, data[month])
+                // Ensure the targetHeight exists in data
+                if (targetHeight !== undefined) {
+                    
+                  if(targetHeight > 35)
+                {
+                  bar.style.backgroundColor = 'green';
+                }
+                if(targetHeight < 35 && targetHeight > 25)
+                {
+                  bar.style.backgroundColor = 'yellow';
+                }
+                if(targetHeight < 25)
+                {
+                  bar.style.backgroundColor = 'red';
+                }
+                    // Animate to the target height after a short delay
+                    setTimeout(() => {
+                        bar.style.height = `${targetHeight}%`;
+                    }, 100);
+                }
+                else
+                {
+                  bar.style.height = "0%"
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching bar heights:", error);
+        });
+});
+
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nextButton = document.getElementById("next-button");
+    const tableWrapper = document.querySelector(".table-wrapper");
+
+    nextButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        // Scroll down by 50 pixels or any other suitable amount
+        tableWrapper.scrollBy({
+            top: 50, // Change this value based on row height
+            behavior: "smooth"
+        });
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* General reset and body styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;  /* Centers content horizontally */
+    align-items: center;      /* Centers content vertically */
+    font-family: Arial, sans-serif;
+  }
+  
+  .commonConfirmPage .container {
+    background-color: #fff; /* White inner layer */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Inner shadow for layering */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px; /* Ensure max-width so it doesn't get too large */
+    min-height: 400px; /* Set the minimum height of the container */
+  }
+  
+  .commonConfirmPage .transaction-box {
+    background: #E5F0EF;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Ensure full width of container */
+  }
+  
+  .commonConfirmPage .status-icon img {
+    width: 150px; /* Set desired width for the image */
+    height: 150px; /* Set desired height for the image */
+    margin-bottom: 20px; /* Space between icon and text */
+  }
+  
+  .commonConfirmPage h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .commonConfirmPage h3 {
+    margin: 15px 0;
+    font-size: 18px;
+    white-space: normal;
+    
+  }
+  
+  .commonConfirmPage p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  .commonConfirmPage .buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%; /* Ensures buttons fit across the box */
+  }
+  
+  .commonConfirmPage .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    background: #70BEA1;
+    color: #fff;
+    width: 45%; /* Make buttons equal width */
+    text-align: center;
+  }
+  
+  .commonConfirmPage .btn:hover {
+    background: #5c9c8f;
+  }
+
+  a{
+    width: 25%;
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+    .commonConfirmPage .container {
+      padding: 20px; /* Reduced padding for mobile */
+      min-height: 400px; /* Reduced minimum height for mobile view */
+    }
+  
+    .commonConfirmPage .transaction-box {
+      padding: 20px; /* Reduced padding to make it more compact */
+      width: 90%; /* Adjusts to 90% of the screen width on mobile */
+    }
+  
+    .commonConfirmPage h2 {
+      font-size: 20px; /* Adjust heading size for smaller screens */
+    }
+  
+    .commonConfirmPage h3 {
+      font-size: 16px; /* Smaller font size for mobile view */
+      margin: 5px 0;
+    }
+  
+    .commonConfirmPage p {
+      font-size: 12px; /* Smaller font size for mobile view */
+      white-space: normal; /* Allows text to wrap on smaller screens */
+    }
+  
+    .commonConfirmPage .buttons {
+      flex-direction: row;
+      gap: 10px;
+    }
+  
+    .commonConfirmPage .btn {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+  

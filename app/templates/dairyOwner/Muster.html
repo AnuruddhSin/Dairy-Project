@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dairy Farm Muster</title>
+    <link
+      rel="stylesheet"
+      href="./../../static/css/dairyOwner/Muster.css"
+    />
+  </head>
+  <body>
+    <a href="#" class="back"
+      ><img src="./../../static/images/left.png" class="img-left" alt="left arrow" /> Back</a
+    >
+    <div class="main">
+      <div class="main-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Time Period</th>
+              <th>Milk Collection</th>
+              <th>Avg Fat</th>
+              <th>Avg Rate</th>
+              <th>Amount</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>20/10/2024 - 30/10/2024</td>
+              <td>600L</td>
+              <td>52</td>
+              <td>45</td>
+              <td>5000</td>
+              <!-- Down arrow img -->
+              <td class="arrow" onclick="toggleClass()">
+                <img id="arrow" src="./../../static/images/down.png" class="img" alt="down arrow" />
+              </td>
+              <td><button>Download Bill</button></td>
+            </tr>
+
+            <div class="moreInfo">
+              <table id="moreInfo" class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%">Order Id</th>
+                    <th style="width: 20%">Time/Date</th>
+                    <th style="width: 20%">Milk</th>
+                    <th style="width: 20%">Fat</th>
+                    <th style="width: 20%">Rate</th>
+                    <th style="width: 20%">Amount</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+                <tr>
+                  <td class="data">#15217</td>
+                  <td class="data">
+                    <span class="date">10.20AM </span><br />10/02/2024
+                  </td>
+                  <td class="data">110</td>
+                  <td class="data">98</td>
+                  <td class="data">45</td>
+                  <td class="data">1500</td>
+                </tr>
+              </table>
+            </div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function toggleClass() {
+        var elementId = "moreInfo";
+
+        var element = document.getElementById(elementId);
+
+        if (element.classList.contains("table")) {
+          element.classList.remove("table");
+          element.classList.add("table2");
+          <!-- up arrow img -->
+          document.getElementById("arrow").src = "./../../static/images/arrow-up.png";
+        } else {
+          element.classList.remove("table2");
+          element.classList.add("table");
+          document.getElementById("arrow").src = "./../../static/images/down.png";
+        }
+      }
+    </script>
+  </body>
+</html>

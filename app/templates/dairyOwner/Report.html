@@ -1,0 +1,98 @@
+{% extends "dairyOwner/basepage.html" %}
+
+{% block title %}Report{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/Report.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/tables.css') }}">
+{% endblock %}
+
+{% block header %}Report{% endblock %}
+
+{% block button_name %}<i class="fa-solid fa-arrow-up-from-bracket"></i>Export{% endblock %}
+
+{% block overlay %}
+    <div class="dialog-box">
+        <p>Download Successfully</p>
+        <div><button class="button-ok" onclick="off()">Ok</button></div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="holder">
+        <!-- Tabs for Navigation -->
+        <div class="tab-holder">
+            <div class="tab active-tab" onclick="loadContent('wallet')">
+                <span>Wallet</span>
+            </div>
+            <div class="tab" onclick="loadContent('milk_collection')">
+                <span>Milk Collection</span>
+            </div>
+            <div class="tab" onclick="loadContent('product_sales')">
+                <span>Product Sales</span>
+            </div>
+        </div>
+
+        <!-- Query Form and Table Area -->
+        <div class="query-table-holder">
+            <div class="query-form-holder">
+                <div class="query-row">
+                    <span id="query-header">Wallet Information</span>
+                    <button onclick="on()">Download</button>
+                </div>
+                <div class="query-form-fields">
+                    <div class="query-field">
+                        <label for="customer-name">Customer</label>
+                        <input type="text" id="customer-name" placeholder="Enter Customer Name">
+                    </div>
+                    <div class="query-field">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" id="start-date">
+                    </div>
+                    <div class="query-field">
+                        <label for="end-date">End Date</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Content -->
+            <div class="table-holder" id="table-holder">
+                <!-- Default content loaded on page load -->
+                {% include 'dairyOwner/wallet_table.html' %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadContent(tabName) {
+            // Update the active tab
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active-tab'));
+            document.querySelector(`.tab[onclick="loadContent('${tabName}')"]`).classList.add('active-tab');
+
+            // Fetch the content for the selected tab
+            fetch(`/dairyOwner/report/${tabName}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('table-holder').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading content:', error));
+
+            // Update the Query Form header based on the tab
+            const headers = {
+                "wallet": "Wallet Information",
+                "milk_collection": "Milk Collection Information",
+                "product_sales": "Product Sales Information"
+            };
+            document.getElementById("query-header").innerText = headers[tabName] || "Information";
+        }
+
+        function on() {
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function off() {
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+{% endblock %}

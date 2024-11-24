@@ -1,0 +1,361 @@
+*{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+}
+
+
+.sidebar_farmercheckout{
+    height: 100%;
+    width: 17%;
+    /* background-color: yellow; */
+}
+
+#content{
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+#content_container{
+    height: 100%;
+    width: 83%;
+    /* background-color: antiquewhite; */
+}
+.header{
+    height: 8%;
+    width: 100%;
+    background-color: #C1ECE76B;
+    /* margin: 0.5rem 0.7rem 0rem 2.5rem; */
+    display: flex;
+    flex-direction: row;
+    /* background-color: #C1ECE76B; */
+
+}
+.partone{
+    height: 100%;
+    width: 60%;
+    /* background-color: #C1ECE76B; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-left: 5%;
+    
+}
+.parttwo{
+    height: 100%;
+    width: 40%;
+    /* background-color: #C1ECE76B; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-right: 0.7vw;
+}
+.header_notification{
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 1s;
+
+
+
+}
+.header_notification:hover{
+    scale: 1.1;
+    transition: 1s;
+    cursor: pointer;
+    background-color: greenyellow;
+}
+.header_time{
+    height: 70%;
+    width: 28%;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+.header_time:hover{
+    background-color: greenyellow;
+}
+
+.header_date{
+    height: 70%;
+    width: 25%;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+.header_date:hover{
+    background-color: greenyellow;
+}
+.inner_content_container{
+    height: 92%;
+    width: 100%;
+    
+    /* background-color: pink; */
+}
+
+.inner_content{
+    height: 100%;
+    width: 100%;
+     background-color: grey; 
+}
+
+.inner_header{
+    height: 10%;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.4rem;
+}
+
+.backbutton,.cart_text{
+    height: 100%;
+    width: 20%;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner_main_container{
+    height: 70%;
+    width: 100%;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_main{
+    height: 100%;
+    width: 70%;
+    /* background-color: pink; */
+    border-radius: 20px;
+    background-color: yellowgreen;
+
+}
+
+.inner_main_partone{
+    height: 100%;
+    width: 70%;
+    /* background-color: red; */
+    border-radius: 20px;
+}
+.inner_main_partone_text{
+    height: 10%;
+    width: 100%;
+    background-color: #C1ECE76B;
+        display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 2vw;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.select_box{
+    height: 90%;
+    width: 100%;
+    /* background-color: rgb(188, 159, 159); */
+     background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+
+
+}
+
+#upi_container{
+    height: 10%;
+    width: 100%;
+    /* background-color: green; */
+    padding-left: 2vw;
+    
+}
+input[type="radio"]{
+    scale: 1.4;
+}
+
+label{
+    font-size: 1.5rem;
+
+}
+#upi_provider{
+    height: auto;
+    width: 100%;
+    padding-left: 2vw;
+    
+    
+}
+.paypal{
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+    gap: 3vw;
+    padding: 5px;
+}
+.provider_img{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+.provider_img img{
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+.gpay,.amazon_pay{
+    width: 100%;
+    /* background-color: yellow; */
+    display: flex;
+    gap: 3vw;
+    padding: 5px;
+}
+.provider_img{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+.provider_img img{
+    height: 100%;
+    width: 100%;
+}
+
+#credit_card_container{
+    height: 10%;
+    width: 100%;
+    /* background-color: green; */
+    padding-left: 2vw;
+    
+}
+
+#credit_card_content{
+    width: 100%;
+    /* background-color: wheat; */
+    display: flex;
+    align-items:center;
+    flex-direction: column;
+    background-color: #34A8532B;
+    
+   
+
+}
+#credit_card_content #credit_card_input{
+    padding: 10px;
+    border: 1px solid black;
+    
+}
+
+
+
+.credit_data_container{
+    width: 100%;
+    background-color: rgb(89, 81, 81);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #34A8532B;
+
+}
+.credit_card_data_child{
+    padding: 8px;
+    width: 20%;
+    border: 1px solid black;
+    
+
+}
+
+#debit_card_container{
+    height: 10%;
+    width: 100%;
+    /* background-color: green; */
+    padding-left: 2vw;
+}
+
+#wallet_container{
+    height: 10%;
+    width: 100%;
+    /* background-color: green; */
+    padding-left: 2vw;
+}
+
+#cod_container{
+    height: 10%;
+    width: 100%;
+    /* background-color: green; */
+    padding-left: 2vw;
+    
+}
+
+
+
+@media(max-width:768px){
+  .sidebar_farmercheckout{
+    display: none;
+  }
+  #content{
+    height: 100%;
+    width: 100%;
+    background-color: blue;
+}
+#content_container{
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite;
+}
+
+.partone{
+    display: none;
+}
+.parttwo{
+    height: 100%;
+    width: 100%;
+    background-color: #C1ECE76B;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-right: 0.7vw;
+    padding-left: 17vw;
+   
+}
+.header_notification{
+    font-size: 1rem;
+}
+.header_time{
+    font-size: 0.8rem;
+}
+.header_date{
+    font-size: 0.8rem;
+}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/confirmMorePayment.css') }}">
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <h2>Confirm Payment</h2>
+
+        <div class="amount-info">
+            <p><strong>Farmer Name:</strong> {{ farmer_name }}</p>
+            <p><strong>Pending Amount:</strong> ₹{{ pending_amount }}</p>
+            <p><strong>Additional Payment:</strong> ₹{{ more_amount }}</p>
+            <p><strong>Total Payment:</strong> ₹{{ amount }}</p>
+        </div>
+
+        <p>Are you sure you want to pay more than the pending amount?</p>
+
+        <div class="buttons-container">
+        
+                <a href="{{url_for('dairy_wallet.paymentSuccess')}}"><button class="confirm-btn" >Yes, Pay Now</button></a>
+            
+            <button class="cancel-btn" onclick="window.history.back()">Cancel</button>
+        </div>
+    </div>
+
+</body>
+</html>

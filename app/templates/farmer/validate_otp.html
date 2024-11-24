@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate OTP</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Validate OTP</h1>
+        <form method="POST" action="{{ url_for('farmer_validate.validate_otp') }}"> 
+            <input type="hidden" name="csrf_token" value="asfguobsiadgabbnv"> 
+            
+            <div class="form-group">
+                <label for="email_otp">Email OTP</label>
+                <input type="text" name="email_otp" class="form-control" id="email_otp" placeholder="Enter your email OTP" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobile_otp">Mobile OTP</label>
+                <input type="text" name="mobile_otp" class="form-control" id="mobile_otp" placeholder="Enter your mobile OTP" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Validate OTP</button>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

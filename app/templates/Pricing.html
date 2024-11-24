@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans</title>
+<link rel="stylesheet" href="./../static/css/Pricing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Keania+One:wght@400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+{% include 'common-header.html' %}
+<center>
+<div class="container">
+<h1 class="centered-heading">Plans that fulfill your needs</h1>
+<div class="pricing-table">
+<div class="pricing-section">
+<h3>Services</h3>
+<div class="divider"></div>
+<ul id="services">
+<li><i class="fas fa-hand-point-right"></i> Milk Sales Tracking</li>
+<li><i class="fas fa-hand-point-right"></i> Virtual Wallet Access</li>
+<li><i class="fas fa-hand-point-right"></i> Dairy Registration</li>
+<li><i class="fas fa-hand-point-right"></i> Device access</li>
+<li><i class="fas fa-hand-point-right"></i> Customer support</li>
+</ul>
+</div>
+<div class="pricing-section basic">
+<h3>Basic Plan</h3>
+<div class="divider"></div>
+<ul>
+<li>50 entries/ month</li>
+<li>Access last 10 transactions</li>
+<li>Can register up to 2 dairies</li>
+<li>Can access up to 2 devices</li>
+<li>Access to support via email</li>
+</ul>
+<p class="price">₹199/month</p>
+<a href="/payment/plan/1"><button class="pricing-btn">Select</button></a>
+</div>
+<div class="pricing-section plus">
+<h3>Plus Plan</h3>
+<div class="divider"></div>
+<ul>
+<li>100 entries/ month</li>
+<li>Access last 100 transactions</li>
+<li>Can register up to 10 dairies</li>
+<li>Can access up to 4 devices</li>
+<li>Faster support responses</li>
+</ul>
+<p class="price">₹399/month</p>
+<a href="/payment/plan/2"><button class="pricing-btn">Select</button></a>
+</div>
+<div class="pricing-section premium">
+<h3>Premium Plan</h3>
+<div class="divider"></div>
+<ul>
+<li>Unlimited entries/ month</li>
+<li>Access unlimited transactions</li>
+<li>Can register up to 50 dairies</li>
+<li>Can access up to 10 devices</li>
+<li>24/7 Premium support</li>
+</ul>
+<p class="price">₹799/month</p>
+<a href="/payment/plan/3"><button class="pricing-btn">Select</button></a>
+</div>
+</div>
+</div>
+</center>
+</body>
+</html>

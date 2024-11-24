@@ -1,0 +1,566 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    font-family: "Inria Sans";
+    background: #79C6C4;
+}
+
+#flash-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    background-color: #d1e7dd;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    transition: width 4s linear; /* Smooth transition */
+}
+
+#flash-progress::-webkit-progress-bar {
+    background-color: #f0bbb6;
+}
+
+#flash-progress::-webkit-progress-value {
+    background-color: #7d1717; 
+}
+
+#flash-progress::-moz-progress-bar {
+    background-color: #7d1717;
+}
+.main {
+    width: 100vw;
+    /* border: 1px solid red; */
+    /* background: url("./../../images/milkflow.png") no-repeat; */
+    background-position: bottom;
+    background-size: 100vw 25vh;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #44c767;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* Hidden by default */
+    z-index: 1000;
+}
+
+.alert {
+    position: fixed; /* Keeps the alert in place when scrolling */
+    top: 1rem; /* Adjust vertical position */
+    right: 1rem; /* Aligns the alert to the right side */
+    padding: 0.75rem 1.25rem;
+    background-color: rgb(226, 102, 102);
+    margin-bottom: 1rem;
+    display: flex;
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Hide element by default */
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+    transition: opacity 0.4s ease, visibility 0.4s ease; /* Smooth fade-in/out */
+    z-index: 9999; /* Ensure the flash message appears on top */
+}
+
+.alert-success {
+    color: black;
+    background-color: #f0bbb6;
+    border-color: red;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.notification.error {
+    background-color: #ff5b5b;
+}
+
+.notification.success {
+    background-color: #44c767;
+}
+
+.notification.show {
+    display: block;
+}
+
+.btn {
+    background-color: #4caf8c;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3b8a6c;
+}
+
+.heading {
+    /* border: 1px solid black; */
+    height: 60px;
+    width: 55vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 60px;
+}
+
+.heading .h1{
+    color: #04DE89;
+    font-weight: 600;
+    letter-spacing: 12%;
+    text-shadow: 7px 3px 8.2px 0 #00000040;
+}
+
+.heading .h1 span{
+    font-weight: 400;
+    letter-spacing: 8%;
+    color: white;
+   
+}
+
+
+.account {
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 400;
+    color: #8E9E5B;
+}
+
+
+.form-box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 70vw;
+    margin: auto;
+    margin-top: 90px !important;
+    border-radius: 54px;
+    padding: 0 2.5vw;
+    background-color: #E6F3F2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    /* width: 20vw; */
+    margin: auto;
+    border-radius: 27px;
+    
+    display: inline-flex;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+
+    height: 32px;
+    align-items: center;
+    padding: 5px 8px;
+    margin-top: -25px;
+    position: absolute;
+    z-index: 10;
+    left: 44vw;
+
+}
+a {
+    text-decoration: none;
+}
+.buttons h3 {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 27px;
+    /* border: 1px solid black; */
+    width: auto;
+}
+
+.buttons h3 a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.active {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 27px;
+    /* border: 1px solid black; */
+    width: auto;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.field1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    align-items: center;
+}
+
+
+
+
+.fieldset1 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    width: 50vw;
+    border: none;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgba(0, 255, 255, 0);
+    width: 15vw;
+    margin-right: 20px;
+}
+
+.profile-box {
+    height: 20vh;
+    width: 16vw;
+    /* border: 1px solid black; */
+    align-items: end;
+}
+
+/* this is to preview profile image */
+.profile-preview-frame{
+    margin-top: 10px; 
+    padding: 10px; 
+    justify-self: center;
+}
+
+#profile-preview{
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%;
+}
+
+.profile-input {
+    width: 13vw;
+    display: block;
+    margin: 15px auto;
+}
+
+.profile{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    display: block;
+    margin: auto;
+}
+
+.fieldset2 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    min-height: 10vh;
+    border: none;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+.fieldset3 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    height: 10vh;
+    border: none;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+
+.fieldset4 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    height: 10vh;
+    border: none;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+
+.address {
+    width: 48vw;
+}
+
+.dairy-address  {
+    width: 32vw;
+}
+
+
+legend {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.78px;
+    letter-spacing: 9%;
+}
+
+
+label {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28.58px;
+    letter-spacing: 9%;
+    color: #000000;
+}
+
+.input-field {
+    margin-top: 10px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.79px;
+    color: #00000057;
+}
+
+.modal-content {
+    width: 50%;
+    background-color: #f6f8f9;
+    padding: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header */
+.modal-content h2 {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+/* Form Labels */
+.modal-content label {
+    display: block;
+    font-size: 16px;
+    color: #4a7a8c;
+    text-align: left;
+    margin: 5px 0 5px 0;
+}
+
+/* Input Fields */
+.modal-content input[type="text"] {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d1dce5;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Focus on Input Fields */
+.modal-content input[type="text"]:focus {
+    border: 1px solid #4a7a8c;
+    box-shadow: 0px 0px 8px rgba(74, 122, 140, 0.3);
+}
+
+/* Button */
+.modal-content button {
+    align-self: center;
+    width: 25%;
+    padding: 10px 20px;
+    background-color: #91E0C3;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+.modal-content button:hover {
+    background-color: #479d7c;
+}
+
+/* Message Container */
+#otpMessageContainer {
+    margin-top: 20px;
+    color: #d9534f; /* Red for error messages */
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* General Modal Styling */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+.submit-button {
+    background-color: #91E0C3;
+    height: 50px;
+    color: #875E5E;
+    font-size: 28px;
+    padding: 5px 25px;
+    display: block;
+    margin: 40px auto;
+    font-weight: 700;
+    border: none;
+    transition: 0.5s;
+    line-height: 40px;
+    border-radius: 13px;
+    box-shadow: 10px 6px 13px 0px #1D0303CC;
+}
+.submit-button:hover{
+    background-color: #6cc4a5;
+    cursor: pointer;
+}
+.toggle-btn:hover{
+    background-color: rgba(158, 158, 158, 0.395);
+    /* padding: 0.5vh; */
+    /* padding: 1vh; */
+    transition: 1s;
+    color: black;
+    margin-left: 1vw;
+    /* position: absolute; */
+    border-radius: 2rem;
+}
+
+.toggle-btn {
+    transition: 1s;
+}
+
+
+.cattle-fields{
+    min-height: 1px;
+    margin: 10px 0;
+    /* border: 1px solid red; */
+}
+
+
+::-webkit-scrollbar{
+    background-color: transparent;
+}
+
+@media (max-width:1440px){
+    .fieldset1 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .heading {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+    .h1 {
+        margin-left: 20px;
+        align-self: start;
+    }
+
+    .form-box {
+        border-radius: 20px;
+        width: 90vw;
+    }
+
+    .input-field {
+        padding: 10px;
+    }
+
+    .cattle-fields{
+        padding: 20px;
+    }
+    
+    .field1 {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .field2 {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .field3 {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .fieldset1, .fieldset2, .fieldset3, .fieldset4 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+    }
+    
+    input, .address {
+    width: 100%;
+    margin-right: 0;
+    }
+
+    input, .dairy-address {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .profile-section {
+        order: -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5px;
+        margin-top: 20px;
+    }
+    
+    .profile-box {
+    width: 100%;
+    margin-bottom: 20px;
+    }
+    
+    .buttons {
+        top: 34%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .submit-button {
+    width: 100%;
+    max-width: 300px;
+    }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Owner Profile</title>
+</head>
+<body>
+    <h1>Profile Details</h1>
+    
+    <p><strong>Name:</strong> {{ dairy_owner.owner_name }}</p>
+    <!-- <p><strong>Dairy Name:</strong> {{ dairy_owner.dairy_name }}</p> -->
+    <p><strong>Mobile No:</strong> {{ dairy_owner.dairy_mobile_number }}</p>
+    <p><strong>Email:</strong> {{ dairy_owner.email }}</p>
+    <p><strong>Date of Birth:</strong> {{ dairy_owner.dob }}</p>
+    <p><strong>Food License No:</strong> {{ dairy_owner.food_license_no }}</p>
+    <p><strong>Udyam Aadhar No:</strong> {{ dairy_owner.udyam_aadhar_no }}</p>
+    <p><strong>Bank Name:</strong> {{ dairy_owner.bank_name }}</p>
+    <p><strong>Account No:</strong> {{ dairy_owner.account_no }}</p>
+    <p><strong>Branch Name:</strong> {{ dairy_owner.branch_name }}</p>
+    <p><strong>IFSC Code:</strong> {{ dairy_owner.ifsc_code }}</p>
+
+    <h3>Profile Picture:</h3>
+            <div>
+                <img id="current-profile-picture" src="{{ dairy_owner.image_url or 'default_image_url_here' }}" alt="Profile Picture" style="width: 100px; height: 100px;">
+            </div>
+
+    <!-- Add a button or link to navigate back to the settings page -->
+    <a href="{{ url_for('dairy_settings.settings') }}">Back to Settings</a>
+</body>
+</html>

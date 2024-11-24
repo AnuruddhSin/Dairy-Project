@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Supply</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/addSupply.css') }}">
+</head>
+<body>
+    {% include 'commonFlashMessages.html' %}
+    <div class="container">
+        
+        <h1>Add New Supply</h1>
+        <form action="{{ url_for('supplies_bp.add_supply') }}" method="POST">
+            <div class="form-group">
+                <label for="supply_name">Supply Name:</label>
+                <input type="text" id="supply_name" name="supply_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dairy_id">Dairy ID:</label>
+                <input type="number" id="dairy_id" name="dairy_id" required>
+            </div>
+
+            <button type="submit">Add Supply</button>
+        </form>
+        <!-- <button onclick="window.location.href='{{ url_for('supplies_bp.supply_list') }}'">Back to Supply List</button> -->
+        <button id="backToSupplyBtn" class="back-to-supply-btn" >Back to Supply</button>
+    <script>
+        document.getElementById('backToSupplyBtn').addEventListener('click', function() {
+            window.location.href = "{{ url_for('supplies_bp.supply_list') }}";
+        });
+        </script>
+    </div>
+</body>
+</html>
+
+<!-- 
+<button id="addSupplyBtn" class="add-supply-btn" >ADD SUPPLIES</button>
+    <script>
+        document.getElementById('addSupplyBtn').addEventListener('click', function() {
+            window.location.href = "{{ url_for('supplies_bp.add_supply') }}";
+        });
+        </script> -->

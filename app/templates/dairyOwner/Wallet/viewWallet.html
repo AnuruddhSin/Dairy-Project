@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet UI</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/new-wallet1.css')}}">
+</head>
+<body>
+  <!-- Sidebar Toggle Button for Mobile View -->
+   {% include 'commonFlashMessages.html'%}
+   {% include '/dairyOwner/CommonSidebar.html' %}
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+ 
+  <div class="container">
+      <!-- Sidebar -->
+       <!-- NOTE: comment  /* width: 100%; */ at .container in css  -->
+      
+    
+      <!-- Main Content -->
+      <div class="main-content">
+          <div class="top-bar">
+              <div class="notification">
+                  <img src="{{url_for('static', filename='images/notification@3x-1.png')}}" alt="Notification" class="notification-icon">
+              </div>
+              <div class="time-date">
+                  <div class="time" id="time">10:40 AM</div>
+                  <div class="date" id="date">21/12/2022</div>
+              </div>
+          </div>
+          
+          <h1>Wallet</h1>
+          <div class="wallet-sections">
+            <div class="form-container">
+                <div class="balance-section">
+                    <p>Current Balance</p>
+                    <h2>Rs.{{current_balance}}</h2>
+                </div>
+                <div class="payment-section">
+                    <p>Would you like to pay?</p>
+                    <div class="payment-options">
+                        <label><input type="radio" name="payment" value="online" checked > Pay online</label>
+                        <label><input type="radio" name="payment" value="cash"> Pay cash in-store</label>
+                    </div>
+                    <div class="buttons">
+                        <!-- <button class="upi">UPI</button>
+                        <button class="bank">Bank account</button> -->
+                        <a href="{{url_for('dairy_wallet.payFromUpi')}}"><img src="{{url_for('static', filename='images/Debit card.png')}}" alt="UPI" class="upi-image"></a>
+                       <a href="{{url_for('dairy_wallet.payFromWallet')}}"><img src="{{url_for('static', filename='images/Bank account.png')}}" alt="Bank Account" class="bank-image"></a>
+                    </div>
+                    <button class="continue" id="pay-next" onclick="goToPayment()">Continue</button>
+                </div> 
+            </div>
+          </div>
+              <!-- Wallet sections and payment options -->
+          <!-- </div> -->
+          <div class="form-container-2">
+              <!-- Transaction History -->
+              <div class="transaction-history">
+                <h3>Transaction History</h3>
+                <table>
+                    
+                    <tr>
+                        <th>Receiver</th>
+                        <th>Transaction ID</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                    </tr>
+                    {% for pay in payments %}
+                    <tr>
+                        <td><img src="{{url_for('static', filename='images/Group 99 (1).jpg')}}" alt="Tesco Logo">{{pay.farmer_name}} {{pay.farmer_id}}</td>
+                        <td>{{pay.payment_id}}</td>
+                        <td>Farmer</td>
+                        <td>13 Dec 2020</td>
+                        <td class="positive">{{pay.amount}}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </table>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      function toggleSidebar() {
+          const sidebar = document.querySelector('.sidebar');
+          sidebar.classList.toggle('active');
+      }
+
+      document.querySelector('#pay-next').addEventListener('click', () =>
+    {
+        const option = document.querySelector("input[name='payment']:checked");
+
+        if(option.value == 'online')
+    {
+        
+    }
+    else if(option.value == '')
+    {}
+    })
+    function goToPayment() {
+    const selectedOption = document.querySelector("input[name='payment']:checked");
+    
+    if (selectedOption && selectedOption.value === "online") {
+        window.location.href = '/dairyOwner/wallet/pay/farmer/upi';
+    } else {
+        window.location.href = '/dairyOwner/wallet/pay/farmer/cash/store';
+    }
+}
+
+
+function updateDateTime() {
+			var today = new Date();
+			var date = today.toLocaleDateString();
+			var time = today.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit"
+			});
+		document.getElementById("date").innerHTML = date;
+		document.getElementById("time").innerHTML = time;
+		}
+		// Update the date and time every second
+		setInterval(updateDateTime, 60);
+      
+  </script>
+</body>
+</html>

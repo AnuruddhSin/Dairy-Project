@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel File Upload</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/excel_import.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/exportModal.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        /* table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+        } */
+
+        /* Styling for the heading */
+#tableTitle {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Container for select elements */
+.select-container {
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Style for the select dropdowns */
+.select-dropdown {
+    font-size: 1rem;
+    padding: 12px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 200px;
+}
+
+.select-dropdown:focus {
+    border-color: #2980b9;
+}
+
+/* Table Wrapper to handle scrolling */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scroll */
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    margin-top: 20px;
+}
+
+/* Styling for the table */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background-color: #3498db;
+    color: #fff;
+    
+}
+
+.styled-table th {
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+.styled-table tbody td {
+    padding: 12px 15px;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+    border: 1px solid black;
+}
+
+.styled-table tbody td:hover {
+    background-color: #538093;
+    cursor: pointer;
+}
+
+/* Hover effect for table rows */
+.styled-table tbody tr:hover {
+    background-color: #dfe6e9;
+}
+
+.dataTables_filter {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 20px; 
+    padding: 10px;
+    width: 100%;
+    background-color: transparent; 
+}
+
+.dataTables_filter label {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #2c3e50; 
+    font-weight: 600; 
+}
+
+.dataTables_filter input {
+    width: 100%; 
+    padding: 10px; 
+    border: 2px solid #3498db; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    color: #555; 
+    background: white;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.dataTables_filter input::placeholder {
+    color: black;
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.dataTables_filter input:focus {
+    border-color: #2980b9; /* Focus border color */
+    box-shadow: 0 0 5px rgba(41, 128, 185, 0.5); 
+}
+
+.dataTables_length{
+    height: 5vh;
+    /* background-color: red; */
+    /* padding-left: 4vw; */
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    /* background-color: red; */
+}
+.dataTables_length label, .dataTables_length select {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    /* background-color: yellow; */
+}
+.dataTables_length select{
+    width: 10%;
+}
+
+.dataTables_info{
+    height: 5vh;
+    width: 100%;
+   /* background-color: red; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1.3rem;
+    font-weight: bold;
+    
+    text-transform: uppercase;
+}
+
+#dataTable_paginate{
+    height: 5vh;
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.export_container{
+    height: 5vh;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.export_container #export{
+    height: 100%;
+    width: 15%;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/* #dataTable_previous{
+    height: 100%;
+    width: 40%;
+    background-color: yellow;
+} */
+
+#dataTable {
+    width: 100%; /* The table container will take up the full width of its parent */
+    overflow-x: scroll; /* Enables horizontal scrolling when content overflows */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+    display: block; /* Ensure the element behaves as a block-level container */
+    border: 1px solid #ddd; /* Optional: Adds a border around the table */
+}
+
+
+/* General Modal Styling */
+.excel-modal {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    position: relative;
+    font-family: Arial, sans-serif;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header Styling */
+.excel-modal-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Body Styling */
+.excel-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+}
+
+.excel-modal-body label {
+    font-size: 1em;
+    color: #555;
+    font-weight: 500;
+}
+
+.excel-modal-body select,
+.excel-modal-body input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #444;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.excel-modal-body select:focus,
+.excel-modal-body input:focus {
+    border-color: #3da4ab;
+    box-shadow: 0 0 5px rgba(61, 164, 171, 0.5);
+}
+
+/* Footer Styling */
+.excel-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.excel-modal-footer button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 45%;
+}
+
+.excel-modal-footer .save {
+    background-color: #3da4ab;
+    color: white;
+}
+
+.excel-modal-footer .save:hover {
+    background-color: #319a9c;
+}
+
+.excel-modal-footer .cancel {
+    background-color: #f2f2f2;
+    color: #555;
+    border: 1px solid #ddd;
+}
+
+.excel-modal-footer .cancel:hover {
+    background-color: #e0e0e0;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Optional: For Centering Modal (if using full-screen overlay) */
+.excel-modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+
+@media (max-width: 1080px) {
+    .dataTables_filter label {
+        width: 50%;
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .dataTables_info{
+    height: 5vh;
+    width: 100%;
+   /* background-color: red; */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#export{
+    height: 100%;
+    width: 50%;
+    font-size: 0.9rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    
+}
+
+    .select-dropdown {
+        font-size: 0.9rem;
+        /* padding: 10px; */
+        width: 80px;
+    }
+
+    #tableTitle {
+        font-size: 2rem;
+    }
+
+    .styled-table {
+        font-size: 0.9rem;
+    }
+    .dataTables_filter label {
+        width: 75%;
+    }
+   
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="sidebar">
+            
+        </div>
+        
+        <div id="content">
+            <div class="top-product">
+                <div class="top-product-div">
+                    <h1 class="top-product-h1">  <a href="/dairyOwner/Dashboard" style="text-decoration: none;color: black;"><i class='bx bxs-chevron-left-circle'></i> back </a></h1>
+                </div>
+                
+                <div class="top-product-div2">
+                    <img src="{{url_for('static', filename='images/bell.png')}}" alt="" class="bell" />
+                    <p class="product-p" id="time"></p>
+                    <p class="product-p" id="date"></p>
+                </div>
+            </div>
+            
+            
+            <div id="file-history">
+                <div class="file-history-header">
+                    <h3>Excel File History</h3>
+                    <!-- <div class="search-container">
+                        <img src="{{ url_for('static', filename='images/search.png') }}" alt="search icon" class="search-icon">
+                        <input type="text" class="search-input" placeholder="Search">
+                    </div> -->
+                    <div style="display: flex;">
+                        <div class="circle" onclick="showPopup()">
+                            <span>i</span>
+                        </div>
+                        <button class="import-btn" onclick="openUploadModal()">
+                            <div class="upload-icon">
+                                <img src="{{ url_for('static', filename='images/Group-removebg-preview.png') }}" alt="Upload Icon" style="width: 25px; margin-right: 20px; rotate: 180deg;">
+                            </div>Import</button>
+                        </div>
+                    </div>
+                    <div class="file-list" id="fileList">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upload modal -->
+            <div id="upload-modal">
+                <div class="modal-content">
+                    <button class="close-button" onclick="closeUploadModal()">×</button>
+                    
+                    <!-- Logo and text container -->
+                    <div class="header-content">
+                        <img src="{{ url_for('static', filename='images/Group 3.jpg') }}" alt="Logo" class="upload-logo">
+                        <div>
+                            <h3>Upload files</h3>
+                            <p>Select and upload the files of your choice</p>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-box">
+                        <div class="upload-icon">
+                            <img src="{{ url_for('static', filename='images/Group 3.jpg') }}" alt="Upload Icon" style="width: 40px; margin-bottom: 10px;">
+                        </div>
+                        <p>Choose a file or drag & drop it here</p>
+                        <p style="color: grey; font-size: 0.9em;">Excel formats up to 50MB</p>
+                        <br>
+                        <br>
+                        <label class="browse-file-btn" for="fileInput">Browse File</label>
+                        <input type="file" id="fileInput" accept=".xlsx, .xls" style="display: none;">
+                        <br>
+                        <br>
+                        <span id="fileName" style="display: block; margin-top: 10px; color: #333;"></span>
+                    </div>
+                    
+                    <div class="upload-btn-container">
+                        <button id="upload-btn" class="btn" onclick="uploadFile()">Upload</button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <h1 id="tableTitle">Data Table</h1>
+
+        <div class="select-container">
+            <select id="dataType" class="select-dropdown" onchange="fetchData()">
+                <option value="muster">Muster</option>
+                <option value="bankdetails">Bank Details</option>
+                <option value="cattle">Cattle</option>
+                <option value="farmer">Farmer</option>
+            </select>
+            <select id="timeFrame" class="select-dropdown" onchange="fetchData()">
+                <option value="today">Today</option>
+                <option value="10days">Last 10 Days</option>
+                <option value="month">Last Month</option>
+                <option value="year">Last Year</option>
+            </select>
+            
+            <button id="export" onclick="openExcelModal()">Export current Data</button>
+        </div>
+
+       
+        <div class="table-wrapper">
+            <table id="dataTable" class="styled-table">
+                <thead>
+                    <tr id="tableHeaders">
+                        <!-- Table headers will be dynamically added here -->
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        <div>
+        <!-- Error modal -->
+        <div id="error-modal">
+            <div class="modal-content-error">
+                <h3>Error</h3>
+                <p id="errorMessage"></p>
+                <button class="btn" onclick="closeErrorModal()">OK</button>
+            </div>
+        </div>
+        <div id="info-modal">
+            <div class="modal-content-info">
+                <h3>Info</h3>
+                <p id="infoMessage"></p>
+                <button class="btn" onclick="closeInfoModal()">OK</button>
+            </div>
+        </div>
+        <div id="editModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; border:1px solid #ccc; z-index:1000; max-width: 400px; width: 100%; box-shadow: 0px 4px 6px rgba(0,0,0,0.1);">
+            <h2>Edit Entry</h2>
+            <form id="editForm">
+                <div id="formFieldsContainer" style="max-height: 400px; overflow-y: auto;">
+                    <!-- Dynamic form fields will be injected here -->
+                </div>
+                <div style="margin-top: 20px; text-align: right;">
+                    <button type="submit" style="padding: 8px 12px; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">Save Changes</button>
+                    <button type="button" style="padding: 8px 12px; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer;" onclick="closeModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <div id="modalBackdrop" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999;" onclick="closeModal()"></div>
+        
+        <!-- Export Button Modal to ask filename -->
+        <div class="excel-modal-overlay" id="excelModalOverlay">
+    <div class="excel-modal">
+        <div class="excel-modal-header">Export Data</div>
+        <div class="excel-modal-body">
+            <label for="modalDataType">Data Type:</label>
+            <select id="modalDataType">
+                <option value="">Select Data</option>
+                <option value="farmer">Farmer Data</option>
+                <option value="muster">Muster Data</option>
+                <option value="cattle">Cattle Data</option>
+                <option value="bankdetails">Farmer Bank Data</option>
+            </select>
+
+            <label for="modalTimeFrame">Time Frame:</label>
+            <select id="modalTimeFrame">
+                <option value="">Select TimeFrame</option>
+                <option value="today">Today</option>
+                <option value="10days">Last 10 Days</option>
+                <option value="month">Last 1 Month</option>
+                <option value="year">Last 1 Year</option>
+            </select>
+
+            <input type="text" name="filename" id="filename">
+        </div>
+        <div class="excel-modal-footer">
+            <button class="save" onclick="export_data()">Submit</button>
+            <button class="cancel" onclick="closeExcelModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+        <script>
+            function openExcelModal() {
+                document.getElementById('excelModalOverlay').style.display = 'block';
+            }
+
+            function closeExcelModal() {
+                document.getElementById('excelModalOverlay').style.display = 'none';
+            }
+
+            async function export_data()
+            {
+                const data_type = document.getElementById('dataType').value
+                const timeframe = document.getElementById('timeFrame').value
+                const filename = document.getElementById('filename').value
+                console.log(timeframe);
+                
+                if(! data_type || !timeframe){
+                    return ;
+                }
+                window.location.href = `/dairyOwner/export/${data_type}/${timeframe}/${filename}`;
+            }
+
+            function openUploadModal() {
+                document.getElementById('upload-modal').style.display = 'flex';
+            }
+            
+            function closeUploadModal() {
+                document.getElementById('upload-modal').style.display = 'none';
+            }
+            
+            function closeErrorModal() {
+                document.getElementById('error-modal').style.display = 'none';
+            }
+            function closeInfoModal() {
+                document.getElementById('info-modal').style.display = 'none';
+            }
+            
+            // Event listener to display selected file name
+            document.getElementById('fileInput').addEventListener('change', function () {
+                const file = this.files[0];
+                const fileNameSpan = document.getElementById('fileName');
+                if (file) {
+                    fileNameSpan.textContent = `Selected file: ${file.name}`;
+                } else {
+                    fileNameSpan.textContent = ''; // Clear if no file is selected
+                }
+            });
+            
+            async function uploadFile() {
+                const fileInput = document.getElementById('fileInput');
+                const file = fileInput.files[0];
+                if (!file) return;
+                
+                const button = document.getElementById("upload-btn");
+                button.textContent = "Uploading...";
+                
+                const formData = new FormData();
+                formData.append('file', file);
+                
+                try {
+                    const response = await fetch('/dairyOwner/upload-excel', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const data = await response.json();
+                    if (data.error) {
+                        document.getElementById('errorMessage').textContent = data.error;
+                        document.getElementById('error-modal').style.display = 'flex';
+                    } else {
+                        // Reload file history
+                        loadFileHistory()
+                        closeUploadModal();
+                        redirectToFileDataPage(data.file_id);
+                    }
+                } catch (error) {
+                    console.error('Error uploading file:', error);
+                }
+                
+                setTimeout(() => {
+                    button.textContent = "Upload";
+                }, 3000);
+                fileInput.value = "";
+                const fileInputName = document.getElementById('fileName');
+                fileInputName.textContent = "";
+            }
+            
+            // document.querySelector('.search-input').addEventListener('input', async function() {
+            //     const query = this.value.trim();
+                
+            //     if (query === '') {
+            //         loadFileHistory();
+            //         return;
+            //     }
+                
+            //     try {
+            //         const response = await fetch(`/dairyOwner/search-file?query=${encodeURIComponent(query)}`);
+            //         const files = await response.json();
+            //         displayFileList(files);
+            //     } catch (error) {
+            //         console.error('Error fetching search results:', error);
+            //     }
+            // });
+            
+            function displayFileList(files) {
+                const fileList = document.getElementById('fileList');
+                fileList.innerHTML = '';  // Clear the current list
+                
+                files.forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.classList.add('file-item');
+                    fileItem.innerHTML = `
+                    <div class="file-content" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="left" style="display: flex; align-items: center;">
+                            <img src="{{ url_for('static', filename='images/excel-icon-16670.png') }}" alt="Excel icon" style="margin-right: 8px;">
+                            <span>${file.name} - ${file.size} KB</span>
+                        </div>
+                        <div class="right">
+                            <button class="query-btn" onclick="redirectToFileDataPage(${file.id})">View Data</button>
+                            <button class="delete-btn" onclick="deleteFile(${file.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                    fileList.appendChild(fileItem);
+                });
+            }
+            const searchInput = document.getElementsByClassName("search-input");
+            
+            async function loadFileHistory() {
+                const response = await fetch('/dairyOwner/file-history');
+                const files = await response.json();
+                
+                const fileList = document.getElementById('fileList');
+                fileList.innerHTML = '';  // Clear previous list
+                
+                files.forEach(file => {
+                    const fileItem = document.createElement('div');
+                    fileItem.classList.add('file-item');
+                    fileItem.innerHTML = `
+                    <div class="file-content" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+                        <div class="left" style="display: flex; align-items: center;">
+                        <img src="{{ url_for('static', filename='images/excel-icon-16670.png') }}" alt="Excel icon" style="margin-right: 8px;">
+                        <span style="display: inline-block; vertical-align: middle;">${file.name} - ${file.size} KB</span>
+                        </div>
+                        <div class="right">
+                        <button class="query-btn" onclick="redirectToFileDataPage(${file.id})">View Data</button>
+                        <button class="delete-btn" onclick="deleteFile(${file.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                    fileList.appendChild(fileItem);
+                });
+            }
+            
+            async function deleteFile(fileId) {
+                const confirmation = confirm("Are you sure you want to delete this file?");
+                if (!confirmation) return;  // Exit if the user cancels the deletion
+                
+                try {
+                    const response = await fetch(`/dairyOwner/delete-file/${fileId}`, {
+                        method: 'DELETE',
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        alert("File deleted successfully!");
+                        loadFileHistory();  // Reload the file list after deletion
+                    } else {
+                        alert("Failed to delete file: " + data.error);
+                    }
+                } catch (error) {
+                    console.error("Error deleting file:", error);
+                    alert("An error occurred while deleting the file.");
+                }
+            }
+            
+            
+            function redirectToFileDataPage(fileId) {
+                window.location.href = `/dairyOwner/show_file/${fileId}`;
+            }
+            
+            function showPopup(event) {
+                document.getElementById('infoMessage').innerHTML = `
+                Your Excel Sheet must contain the following columns:<br>
+                1. Farmer Name<br>
+                2. Farmer Unique ID<br>
+                3. State<br>
+                4. District<br>
+                5. Taluka<br>
+                6. Village<br>
+                7. Animal Unique ID<br>
+                8. Animal Type<br>
+                9. Cow Type<br>
+                10. Gender<br>
+                11. Is Milking<br>
+                12. Uploaded On<br>
+                13. Online Verified<br>
+                14. Online Verification Remark<br>
+                <br>
+                Make sure all the spelling is correct or it will be rejected.
+                <br>
+                <br>
+                Make sure all farmers are registered otherwise they will be ignored.
+            `;
+                document.getElementById('info-modal').style.display = 'flex';
+            }
+            
+            function updateDateTime() {
+                const now = new Date();
+                
+                // Extract the current date
+                const currentDate = now.toLocaleDateString(); // Get local date
+                
+                // Extract the current time
+                const currentTime = now.toLocaleTimeString(); // Get local time
+                
+                // Update the HTML elements with the current date and time
+                document.getElementById('date').textContent = currentDate;
+                document.getElementById('time').textContent = currentTime;
+            }
+            
+            // Load file history on page load
+            window.onload = loadFileHistory;
+            // // Update the date and time when the page loads
+            // window.onload = updateDateTime;
+            
+            // Optionally, keep the time updated every second (for real-time display)
+            setInterval(updateDateTime, 1000); // Updates every second
+
+
+
+
+            let table;
+
+function fetchData() {
+    const dataType = document.getElementById('dataType').value;
+    const timeFrame = document.getElementById('timeFrame').value;
+
+    // Fetch data from the backend
+    fetch(`/dairyOwner/excel/${dataType}/${timeFrame}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderTable(data);
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            renderNoDataMessage();
+        });
+}
+
+function renderTable(data) {
+
+    if (table) {
+        table.destroy(); // Destroy the existing table instance
+    }
+
+    const tableHeaders = document.getElementById("tableHeaders");
+    const tableBody = document.getElementById("tableBody");
+
+    // Clear any existing headers or rows
+    tableHeaders.innerHTML = "";
+    tableBody.innerHTML = "";
+
+    if (data.length === 0) {
+        renderNoDataMessage();
+        return;
+    }
+
+    // Generate table headers dynamically
+    const headers = Object.keys(data[0]);
+    headers.forEach(header => {
+        const th = document.createElement("th");
+        th.textContent = header;
+        tableHeaders.appendChild(th);
+    });
+
+    // Add "Actions" column header
+    const thActions = document.createElement("th");
+    thActions.textContent = "Actions";
+    tableHeaders.appendChild(thActions);
+
+    // Generate table rows dynamically
+    data.forEach(row => {
+        const tr = document.createElement("tr");
+        headers.forEach(header => {
+            const td = document.createElement("td");
+            td.textContent = row[header];
+            tr.appendChild(td);
+        });
+
+        // Add edit button
+        const editCell = document.createElement("td");
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.onclick = () => openEditModal(row);
+        editCell.appendChild(editButton);
+        tr.appendChild(editCell);
+
+        tableBody.appendChild(tr);
+    });
+
+    // Initialize DataTable
+    table = $('#dataTable').DataTable({
+        searching: true,
+        paging: true,
+        info: true,
+        lengthChange : true
+    });
+
+    $('#dataTable_filter input').attr('placeholder', '');
+}
+
+function renderNoDataMessage() {
+    const tableBody = document.getElementById("tableBody");
+    tableBody.innerHTML = ""; // Clear existing rows
+
+    const noDataRow = document.createElement("tr");
+    const noDataCell = document.createElement("td");
+    noDataCell.colSpan = 100;
+    noDataCell.textContent = "No data available for the selected timeframe.";
+    noDataRow.appendChild(noDataCell);
+    tableBody.appendChild(noDataRow);
+}
+
+function openEditModal(row) {
+    const dataType = document.getElementById('dataType').value;
+    const entryId = row['Entry ID'] || row['Farmer ID'] || row['Animal Unique ID'];
+
+    // Populate form fields with row data
+    const form = document.getElementById("editForm");
+    Object.keys(row).forEach(key => {
+        const input = form.querySelector(`[name="${key}"]`);
+        if (input) input.value = row[key];
+    });
+
+    // Show the modal
+    const modal = document.getElementById("editModal");
+    modal.style.display = "block";
+
+    // Handle form submission
+    form.onsubmit = function (e) {
+        e.preventDefault();
+
+        const updatedData = {};
+        new FormData(form).forEach((value, key) => {
+            updatedData[key] = value;
+        });
+
+        // Send updated data to the backend
+        fetch(`/dairyOwner/edit/${dataType}/${entryId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to update entry");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message || "Entry updated successfully");
+                fetchData(); // Refresh table
+                modal.style.display = "none"; // Close modal
+            })
+            .catch(error => {
+                console.error("Error updating entry:", error);
+            });
+    };
+}
+
+function closeModal() {
+    document.getElementById("editModal").style.display = "none";
+}
+
+// Fetch initial data on page load
+document.addEventListener("DOMContentLoaded", fetchData);
+function openEditModal(row) {
+    const modal = document.getElementById("editModal");
+    const formFieldsContainer = document.getElementById("formFieldsContainer");
+    const form = document.getElementById("editForm");
+
+    // Clear previous form fields
+    formFieldsContainer.innerHTML = "";
+
+    // Dynamically create form fields from row data
+    Object.keys(row).forEach(key => {
+        const fieldDiv = document.createElement("div");
+        fieldDiv.style.marginBottom = "15px";
+
+        const label = document.createElement("label");
+        label.textContent = key;
+        label.style.display = "block";
+        label.style.fontSize = "14px";
+        label.style.marginBottom = "5px";
+     
+        
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.name = key;
+        input.value = row[key];
+        input.style.width = "100%";
+        input.style.padding = "8px";
+        input.style.border = "1px solid #ccc";
+        input.style.borderRadius = "4px";
+        
+
+        fieldDiv.appendChild(label);
+        fieldDiv.appendChild(input);
+        formFieldsContainer.appendChild(fieldDiv);
+    });
+
+    // Show the modal
+    modal.style.display = "block";
+    document.getElementById("modalBackdrop").style.display = "block";
+
+    // Handle form submission
+    form.onsubmit = function (e) {
+        e.preventDefault();
+
+        const dataType = document.getElementById('dataType').value;
+        console.log(row['farmer_id']);
+        
+        let entryId = row['Entry ID']|| row['animal_id'] || row['farmer_id'] ;
+        console.log(row['animal_id']);
+        if(row['animal_id'] > 0)
+        {
+            entryId = row['animal_id'];
+        }
+        // Collect updated data from the form
+        const updatedData = {};
+        new FormData(form).forEach((value, key) => {
+            updatedData[key] = value;
+        });
+
+        // Send updated data to the backend
+        fetch(`/dairyOwner/edit/${dataType}/${entryId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to update entry");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message || "Entry updated successfully");
+                fetchData(); // Refresh table
+                closeModal();
+            })
+            .catch(error => {
+                console.error("Error updating entry:", error);
+            });
+    };
+}
+
+function closeModal() {
+    document.getElementById("editModal").style.display = "none";
+    document.getElementById("modalBackdrop").style.display = "none";
+}
+
+        </script>
+    </body>
+    </html>
+    

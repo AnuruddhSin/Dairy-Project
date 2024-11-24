@@ -1,0 +1,215 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #A8DFE7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A8DFE7;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+}
+
+.logo .highlight {
+    color: #00FFA3;
+    font-weight: bold;
+}
+
+/* .navbar a {
+    margin: 0 15px;
+    color: #4C4C4C;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #B7ECD1;
+    border-radius: 15px;
+} */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    background-color: rgba(206, 248, 225, 1);
+    width: 888px;
+    height: 76px;
+    margin-top: 39px;
+    margin-left: 70px;
+    gap: 0px;
+    border-radius: 20px ;
+    opacity: 0px;
+    border: 2px solid rgba(230, 206, 206, 1);
+    align-items: center;
+    
+    
+    }
+    
+    nav ul li a {
+    text-decoration: none;
+    color:rgba(80, 85, 61, 1);
+    font-family: Inria Sans;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.78px;
+    letter-spacing: 0.09em;
+    text-align:left;
+    /* letter-spacing: 15%; */
+    padding: 10px 20px;
+    width: 150px;
+    height: 27px;
+    margin-left:32px;
+    gap: 2px;
+    opacity: 0px;
+    justify-content: space-between;
+    margin-top: 64px;
+    }
+    
+    nav ul li a.active {
+        color:rgba(80, 85, 61, 1);
+    }
+/* .back-button {
+    background: none;
+    border: none;
+    color:black;
+    font-size: 1em;
+    cursor: pointer;
+} */
+.back-button {
+    position: absolute;
+    top: 20px;  /* Adjust the distance from the top */
+    right: 20px; /* Adjust the distance from the left */
+    background: none;
+    border: none;
+    color: black;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+
+.main-content {
+    background-color: #D5F2F9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+.notification-date-time {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification-icon {
+    width: 24px;
+    height: 22px;
+}
+
+.time-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.time, .date {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.farmer-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #E4F5FA;
+}
+
+.farmer-table th, .farmer-table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.farmer-table th {
+    background-color: #A8DFE7;
+    color: #4C4C4C;
+}
+
+.farmer-table tbody tr:nth-child(even) {
+    background-color: #C8EDF5;
+}
+
+.select-button {
+    background-color: #B7ECD1;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #4C4C4C;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.footer{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color:rgba(121, 198,196,1); /* A shade of green */
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.milk-splash {
+    position: absolute;
+    bottom: -20px; /* Adjust to overlap the image slightly */
+    left: 0;
+    width: 100%;
+    height: 200px; /* Adjust based on your image size */
+    background: url('milk-splash.png') no-repeat bottom center;
+    background-size: contain;
+    pointer-events: none; /* Prevents the image from affecting layout interactions */
+}

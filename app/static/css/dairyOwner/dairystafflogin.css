@@ -1,0 +1,305 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #73C8C0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    margin-top: 30px;
+    margin-left: 47px;
+    border: 1px;
+    justify-content: space-between;
+   
+}
+h1{
+    display: flex;
+}
+
+body{
+    background-color: #73C8C0;
+    display: flex;
+}
+.logo span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 61px;
+    letter-spacing: 0.12em;
+    color: #04DE89;
+    text-shadow: 7px 3px 8.2px rgba(0, 0, 0, 0.25);
+    display: flex;
+}
+
+.png{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 61px;
+    letter-spacing: 0.08em;
+color: rgba(255, 255, 255, 1);
+text-shadow:rgba(0, 0, 0, 0.25);
+border-color: rgba(78, 230, 171, 1);
+margin-right: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; 
+    z-index: 1000;
+}
+
+.notification.error {
+    background-color: #ff5b5b;
+}
+
+.notification.success {
+    background-color: #44c767;
+}
+
+.notification.show {
+    display: block;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+  background-color: rgba(206, 248, 225, 1);
+    width: 888px;
+height: 76px;
+margin-top: 0px;
+margin-left: 150px;
+gap: 0px;
+border-radius: 20px ;
+
+opacity: 0px;
+border: 2px solid rgba(230, 206, 206, 1);
+align-items: center;
+
+
+}
+
+nav ul li a {
+text-decoration: none;
+color:rgba(80, 85, 61, 1);
+padding: 10px 20px;
+width: 150px;
+height: 27px;
+left: 682px;
+gap: 2px;
+opacity: 0px;
+font-family: Inria Sans;
+font-size: 24px;
+font-weight: 400;
+line-height: 28.78px;
+letter-spacing: 0.09em;
+text-align: left;
+justify-content: space-between;
+margin-top: 20px;
+margin-left: 25px;
+
+  
+}
+
+nav ul li a.active {
+  margin-top: 20px;
+    color: #000;
+    width: 150px;
+height: 27px;
+
+left: 682px;
+gap: 0px;
+opacity: 0px;
+
+}
+
+
+.align{
+    margin-top: 40px;
+}
+.login-box {
+    background-color: #C1ECE7;
+    border-radius: 54px;
+    box-shadow: 0 4px 17.5px rgba(0, 0, 0, 0.25);
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+    margin-left: -160px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    z-index: 1;
+    margin-right: 25vh;
+    height: 580px;
+    max-width:1350px;
+
+}
+
+.milk-image img {
+    position: absolute;
+    top: 0px;
+    right: -50px;
+    width:600px;
+    height: 580px;
+    margin-right: 50px;
+
+
+
+}
+
+
+    .login-form {
+        width: 50%; 
+        z-index: 1;
+        text-align: left;
+        padding-left: 20px; 
+        padding-right: 40px; 
+        
+    }
+
+.login-form h2 {
+
+    color: #A6A374;
+    display: flex;
+font-family: Inria Sans;
+font-size: 50.85px;
+font-weight: 400;
+line-height: 60.97px;
+text-align: left;
+margin-bottom: 2px;
+
+}
+
+ .login-form img {
+    margin-bottom: 30px
+    px;
+    margin-top: 0%;
+   
+ }
+
+.login-form h2 img {
+
+    width: 103px;
+                    height: 105px;
+                    top: 249px;
+                    left: 337px;
+                    gap: 20px;
+                    opacity: 0px;
+                    
+           
+}
+
+.login-form label {
+    font-size: 16px;
+    color: #0e0d0d;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10%;
+    height: 32.03px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #191818;
+    border-radius: 4px;
+    margin-left: 10%;
+}
+
+.login-form button {
+    margin-top: 25px;
+    margin-left: 80px;
+    width: 207px;
+    height: 57px;
+    background-color: #91E0C3;
+    font-family: "Inria Sans";
+    font-style: normal;
+    font-size: x-large;
+    color: #A97C7C;
+    border: none;
+    padding: 10px;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+
+}
+
+
+
+
+
+
+.login-form button:hover {
+    background-color: #89CBAE;
+
+}
+
+.extra-links {
+  margin-left: 100px;
+  margin-top: 20px;
+   
+}
+
+.extra-links a {
+    text-decoration: none;
+    color: #050606;
+    width: 192px;
+height: 19.44px;
+top: 800px;
+left: 444px;
+gap: 0px;
+opacity: 0px;
+
+}
+
+.extra-links a:hover {
+    text-decoration: underline;
+}
+
+.milk-splash {
+    position: absolute;
+    left: 0;
+    bottom: 0%;
+    width: 100%;
+    height: 200px;
+    background: url('milk-splash.png') no-repeat bottom center;
+    background-size: contain;
+    pointer-events: none; 
+}
+

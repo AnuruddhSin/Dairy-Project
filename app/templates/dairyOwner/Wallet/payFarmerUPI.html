@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GauDhara Wallet</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/new-wallet6.css')}}">
+</head>
+<body>
+    {% include 'commonFlashMessages.html'%}
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <div class="container">
+    <div class="sidebar">
+        <div class="logo-section">
+            <img src="{{url_for('static', filename='images/gaudhara-removebg-preview.png')}}" alt="GauDhara Logo" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li > <a href="{{url_for('dairy_owner_dashboard.dairyDashboard')}}" style="color: black; text-decoration: none;">Dashboard </a></li>
+           
+                <li > <a href="{{url_for('dairy_owner_dashboard.dairyFarmerDetails')}}" style="color: black; text-decoration: none;">Farmer Details </a></li>
+          
+                <li class="active" > <a href="{{url_for('dairy_owner_dashboard.getMilkCollection')}}" style="color: black; text-decoration: none;">Milk Collection</a></li>
+                
+                <li><a href="dairyOwner/dashboard/view/products" style="color: black; text-decoration: none;">Products </a></li>
+              
+                <li ><a href="{{url_for('dairy_wallet.view_wallet')}}" style="color: black; text-decoration: none;">Wallet </a></li>
+                
+                <li > <a href="dairyOwner/report" style="color: black; text-decoration: none;">Report </a></li>
+                
+                <li > <a href="/dairyOwner/excel-import" style="color: black; text-decoration: none;">Excel File </a></li>
+                
+                <li ><a href="dairyOwner/settings" style="color: black; text-decoration: none;">Settings </a></li>
+                
+                <li > <a href="{{url_for('guest.Logout')}}" style="color: black; text-decoration: none;">Log Out</a></li>
+            
+            </ul>
+        </nav>
+        <div class="profile-section">
+            <img src="pro.png" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <p>Alex Nolan</p>
+                <p>Busy Owner</p>
+            </div>
+        </div>
+    </div>
+      <!-- Main Content -->
+      <div class="main-content">
+          <div class="top-bar">
+              <div class="notification">
+                  <img src="{{url_for('static', filename='images/notification@3x-1.png')}}" alt="Notification" class="notification-icon">
+              </div>
+              <div class="time-date">
+                  <div class="time" id="time">10:40 AM</div>
+                  <div class="date" id="date">21/12/2022</div>
+              </div>
+          </div>
+          
+          <h1>Wallet</h1>
+ <!-- <div class="header">
+   
+    <button class="back-button">< Back</button>
+</div> -->
+
+
+
+    <!-- <div class="main-content">
+        <div class="header">
+            <button class="back-button">← Back</button>
+            <div class="time-date">
+                <span>10:40 AM</span>
+                <span>21/12/2022</span>
+            </div>
+        </div> -->
+        <div class="form-container">
+            
+            <form action="{{url_for('dairy_wallet.payFromUpi')}}" method="POST">
+                <!-- <div class="ccc">
+                <h1>Enter Recipient Details</h1>
+            </div> -->
+            <h1 class="bottom-text">Enter Recipient Details</h1>
+            <div class="vvv">
+                <label for="Farmer Name">Enter Farmer Name or ID:</label>
+                <input type="text" name="farmer_id" id="" placeholder="Enter name or id">
+                <label for="account-number">Enter UPI Id of Farmer</label>
+                <input type="text" id="account-number" name="upi" placeholder="Enter UPI">
+                <div class="payment-option">
+                <label for="ifsc">Enter Amount</label>
+                <input type="text" id="ifsc" name="amount" placeholder="Enter Amount">
+                <div class="payment">
+                
+                <div class="parent-container">
+                <button type="submit" class="continue-button">Confirm Payment</button>
+                
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  function toggleSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('active');
+  }
+  function updateDateTime() {
+			var today = new Date();
+			var date = today.toLocaleDateString();
+			var time = today.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit"
+			});
+		document.getElementById("date").innerHTML = date;
+		document.getElementById("time").innerHTML = time;
+		}
+		// Update the date and time every second
+		setInterval(updateDateTime, 60);
+</script>
+  
+
+</body>
+</html>

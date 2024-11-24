@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/farmers/cattle_section/AddCattle.css')}}">
+</head>
+<body>
+  <!-- Sidebar -->
+   {% include 'commonFlashMessages.html' %}
+  <body>
+    <button class="menu-btn" onclick="ShowSidebar()">☰</button>
+
+    <div class="sidebar" id="Sidebar">
+
+
+        <img src="{{farmer.farmer_image_url}}" alt="" class="logo">
+        <p class="farmer-uid-p"><span class="farmer-uid-span">Farmer UID:</span>{{farmer.farmer_name}}</p>
+
+
+        <div class="sidebar-text-box">
+            <a href="{{url_for('farmer_dashboard_bp.farmerDashboard')}}" class="sidebar-text-box-a">Dashboard</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="{{url_for('display_cattle.showCattles')}}" class="sidebar-text-box-a">Cattle List</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="/farmer/milk-transactions/10-days" class="sidebar-text-box-a">Milk History</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="/farmer/products" class="sidebar-text-box-a">Products</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Wallet</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Settings</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Log Out <img src="./../images/logout.png" alt="" class="logout"></a>
+        </div>
+
+
+        <div class="profile-box">
+            <img src="{{farmer.farmer_image_url}}" alt="" class="profile-box-img">
+
+            <div class="profile-box-name">
+                
+                    <p class="profile-box-name-p">{{farmer.farmer_name}} </p>
+               
+            </div>
+
+        </div>
+
+    </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Cattle List</h1>
+      <div class="header-actions">
+        <div class="notification">
+          <img src="{{url_for('static', filename='notification@3x-1.png')}}" alt="Notification" class="notification-icon">
+      </div>
+        <div class="date-time">
+          <span>10:40 AM</span>
+          <span>21/12/2022</span>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="form-container">
+            
+        
+<div class="form-header">
+    <h2>New Cattle</h2>
+  </div>
+  <form class="form" method="POST" action="{{url_for('add_cattle.addCattle')}}">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cattleNo">Cattle No</label>
+        <input type="text" id="" placeholder="{{cattle_no}}" disabled>
+      </div>
+      <div class="form-group">
+        <label for="cattleID">Cattle ID <span>*</span></label>
+        <input type="text" id="cattleID" name="cattle_id" placeholder="Enter Cattle ID/ Animal ID">
+      </div>
+    </div>
+    <div class="form-group full-width">
+      <label for="animalType">Animal Type <span>*</span></label>
+      <select id="animalType" name="animal_type" required>
+        <option value="" disabled selected>Select Type</option>
+        <option value="cow">Cow</option>
+        <option value="buffalo">Buffalo</option>
+      </select>
+    </div>
+    <div class="form-group full-width">
+      <label for="cattleType">Cattle Type <span>*</span></label>
+      <select id="cattleType" name="cattle_type" required>
+        <option value="" disabled selected>Select Type</option>
+        <option value="HFCB">HFCB</option>
+        <option value="Gir">Gir</option>
+        <option value="Jersey">Jersey</option>
+      </select>
+    </div>
+    
+    </div>
+    <div class="form-btn">
+      <button type="submit">ADD</button>
+    </div>
+  </form>
+
+  <script>
+    const menuBtn = document.querySelector('.menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<span>Transaction history</span>
+<table class="transactions-table">
+	<thead>
+		<tr class="table-header">
+			<th class="header-cell">Transaction</th>
+			<th class="header-cell">Transaction ID</th>
+			<th class="header-cell">Type</th>
+			<th class="header-cell">Date</th>
+			<th class="header-cell">Amount</th>
+		</tr>
+	</thead>
+	<tbody class="transactions-body">
+		<!-- Data rows will be populated dynamically -->
+		{% for payment in payments %}
+		<tr class="transaction-row">
+			<td class="transaction-cell">
+				<div class="avatar-name"> <img src="{{url_for('static', filename='images/pro.png')}}" alt="Avatar" class="avatar">
+					<div class="name-details">
+						<div>{{ payment.farmer_name }}</div>
+					</div>
+				</div>
+			</td>
+			<td class="transaction-cell">{{ payment.payment_id }}</td>
+			<td class="transaction-cell">Bank-Transfer</td>
+			<td class="transaction-cell">{{ payment.created_at }}</td>
+			<td class="transaction-cell amount-cell">{{ payment.amount }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>

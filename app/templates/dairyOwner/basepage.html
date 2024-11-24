@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+	<!-- Main stylesheet for common styles -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Karla:wght@400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Alice:wght@400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Aleo:wght@400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/basepage.css">
+	<!-- Block for page-specific stylesheets -->
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+	<div id="overlay">
+		{% block overlay %}{% endblock %}
+	</div>
+	<div class="container">
+		<!-- Sidebar -->
+		<button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+		<div class="sidebar">
+			<div class="logo-section">
+				<img src="./../static/images/2-removebg-preview.png" alt="GauDhara Logo" class="logo">
+			</div>
+			<nav>
+				<ul>
+					<!-- Please make sure to replace the rote endpoints with actual name -->
+					<li class="{% if request.endpoint == 'dashboard' %}active{% endif %}"><a href="{{ url_for('dairy_owner_dashboard.dairyDashboard') }}">Dashboard</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'farmer-route' %}active{% endif %}"><a href="{{url_for('dairy_owner_dashboard.dairyFarmerDetails')}}">Farmer Details</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'milk-collection-route' %}active{% endif %}"><a href="{{url_for('dairy_owner_dashboard.getMilkCollection')}}">Milk Collection</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'products-route' %}active{% endif %}"><a href="{{url_for('products.viewProducts')}}">Products</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'wallets-route' %}active{% endif %}"><a href="{{url_for('dairy_wallet.view_wallet')}}">Wallet</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'report-route' %}active{% endif %}"><a href="{{url_for('dairy_report.view_reports')}}">Report</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'excel-route' %}active{% endif %}"><a href="/dairyOwner/excel-import">Excel File</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'settings-route' %}active{% endif %}"><a href="{{url_for('dairy_settings.settings')}}">Settings</a></li>
+					<hr>
+					<li class="{% if request.endpoint == 'logout-route' %}active{% endif %}"><a href="{{url_for('guest.Logout')}}">Log Out</a></li>
+					<hr>
+				</ul>
+			</nav>
+			<div class="profile-section">
+                <img src="{{url_for('static', filename='images/pro.png')}}" alt="Profile Picture" class="profile-pic">
+                <div class="profile-info">
+                    <p>{{dairy_owner.owner_name}}</p>
+                    <p>Dairy Owner</p>
+                </div>
+            </div>
+		</div>
+		<!-- Main content area -->
+		<div class="main-content">
+			<!-- Header -->
+			<div class="header">
+				<div class="left-header">
+					<h3>{% block header %}{% endblock %}</h3>
+				</div>
+				<div class="right-header">
+					<!-- Bell Icon -->
+					<a href="{{url_for('dairy_owner_notification.viewNotifications')}}"><button class="header-item bell-icon"><i class="fas fa-bell"></i><span class="badge"><!--{% block notification_count %}0{% endblock %}-->{{notification_count}}</span></button></a>
+					<!-- Date -->
+					<div class="header-item date-box"><div id="date"></div></div>
+					<!-- Time -->
+					<div class="header-item time-box"><div id="time"></div></div>
+					<!-- Import Button -->
+					<div class="header-item import-button" onclick="on()">{% block button_name %}{% endblock %}</div>
+				</div>
+			</div>
+			<!-- Page-specific content -->
+			<main>
+				{% block content %}{% endblock %}
+			</main>
+		</div>
+    </div>
+
+    <!-- JavaScript files -->
+    <script>
+		function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+		// Script to update date and time in the header
+		function updateDateTime() {
+			var today = new Date();
+			var date = today.toLocaleDateString();
+			var time = today.toLocaleTimeString([], {
+				hour: "2-digit",
+				minute: "2-digit"
+			});
+		document.getElementById("date").innerHTML = date;
+		document.getElementById("time").innerHTML = time;
+		}
+		// Update the date and time every second
+		setInterval(updateDateTime, 60);
+
+		// Script to trigger the overlay
+		function on() {
+			document.getElementById("overlay").style.display = "block";
+		};
+
+		function off() {
+			document.getElementById("overlay").style.display = "none";
+		};
+	</script>
+</body>
+</html>

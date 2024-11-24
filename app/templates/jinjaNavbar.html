@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm</title>
+        <link rel="stylesheet" href="./../static/css/jinjaNavbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    
+    
+    <div id="nav_container">
+    <nav> 
+        <div class="partone">
+       <div class="nav_content"> <i class="fas fa-home"></i> <a href="/farmer/Dashboard">Home</a> </div>
+       <div class="nav_content"><a href="{{url_for('guest.guestPricingandPlans')}}"> <i class="fa-solid fa-book"></i> &nbsp; Service </a></div>
+       <div class="nav_content"> <i class="fa-solid fa-indian-rupee-sign"></i> &nbsp; <a href="/pricing">Pricing</a></div>
+       <div class="nav_content"><i class="fas fa-envelope"></i> &nbsp;Contact us</div>
+    </div>
+       
+        <div class="parttwo">
+       <div class="login"> <i class="fas fa-sign-in-alt"></i> &nbsp; Login</div>
+       <div class="register"> <i class="fas fa-user-plus"></i> Register</div>
+    </div>
+    </nav>
+    </div>
+    <div id="page_content">
+        {% block content %}
+        <!-- Child template content will go here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

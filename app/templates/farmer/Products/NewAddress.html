@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Address</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/farmers/Products/NewAddress.css')}}">
+</head>
+
+<body>
+    {% include 'commonFlashMessages.html' %}
+    <div class="main">
+
+        <div class="sidebar-box">
+            {% include "farmer/Sidebar/FarmerSidebar.html" %}
+        </div>
+
+
+        <div class="main-content">
+            <div class="top-product">
+                <div class="top-product-div">
+                    <h1 class="top-product-h1">Products</h1>
+                </div>
+
+
+                <div class="top-product-div2">
+                    <img src="{{url_for('static', filename='images/bell.png')}}" alt="" class="bell">
+                    <p class="product-p">10.40 AM</p>
+                    <p class="product-p">21/12/2024</p>
+                    <!-- <button class="product-p product-p-btn"> <img src="./export.png" alt="" class="bell"> Export</button> -->
+                    <div class="export">
+                        <img src="{{url_for('static', filename='images/export.png')}}" alt="" class="bell">
+                        <p class="product-p-export">Export</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right-side-box">
+
+                <div class="head-box">
+                    <p class="head">Your Cart</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img src="{{url_for('static', filename='images/shopping-cart.png')}}" alt="cart" class="cart">
+                </div>
+
+                <div class="cart-box">
+
+                    <div class="address-head-box">
+                        <p class="address-head-box-p">Add New Address</p>
+                    </div>
+
+                    <div class="form-box">
+                        <form action="{{url_for('add_delivery_address.addAddress')}}" method="POST" id="new-address-form">
+                            <div class="form-div">
+                                <div class="input-div">
+                                    <label for="">Name</label><br>
+                                    <input type="text" name="name" placeholder="Enter Name">
+                                </div>
+                                <div class="input-div">
+                                    <label for="">Mobile no</label><br>
+                                    <input type="text" name="mobile_no" placeholder="Enter Mobile no">
+                                </div>
+                                <div class="input-div">
+                                    <label for="">Alternate mobile no</label><br>
+                                    <input type="text" name="alternate_no" placeholder="Enter Alternate mobile no">
+                                </div>
+                            </div>
+    
+    
+                            <div class="form-div">
+                                <div class="input-div">
+                                    <label for="">State</label><br>
+                                    <input type="text" name="state" placeholder="Enter State">
+                                </div>
+                                <div class="input-div">
+                                    <label for="">District</label><br>
+                                    <input type="text" name="district" placeholder="Enter District">
+                                </div>
+                                <div class="input-div">
+                                    <label for="">Taluka</label><br>
+                                    <input type="text" name="taluka" placeholder="Enter Taluka">
+                                </div>
+                            </div>
+    
+    
+                            <div class="form-div">
+                                <div class="input-div">
+                                    <label for="">Village</label><br>
+                                    <input type="text" name="village" placeholder="Enter Village">
+                                </div>
+                                <div class="input-div">
+                                    <label for="">PIN code</label><br>
+                                    <input type="number" name="pincode" placeholder="Enter PIN code">
+                                </div>
+                            </div>
+    
+                            <div class="form-div">
+                                <label for="">Near by Landmark (Optional)</label>
+                                <textarea name="landmark"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+
+                <button class="next" type="submit" id="submitButton">Save</button>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+<script>
+    document.getElementById('submitButton').addEventListener('click', function() {
+        // Get the form element
+        var form = document.getElementById('new-address-form');
+    
+        // Submit the form
+        form.submit();
+    });
+    
+</script>
+</html>

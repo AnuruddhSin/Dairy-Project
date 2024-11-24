@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us</title>
+  <link rel="stylesheet" href="./../static/css/contact.css">
+</head>
+
+<body>
+{% include 'common-header.html' %}
+  <div class="container">
+    <div class="inner_container">
+      <div class="inner_container_part1">
+        <h1><img src="{{ url_for('static', filename='images/glass.png') }}" style="width: 50px; height:50px;">Contact Us</h1>
+        <!-- Display flash messages -->
+        <div id="flash-message" class="notification"></div>
+        <form method="POST" action="#" class="form">
+          <div class="full_name">
+            <label for="firstname">Your Full Name</label>
+            <input type="text" name="full_name" size="32" class="form-control" required placeholder="Your Full Name">
+          </div>
+          <div class="email">
+            <label for="firstname">Email</label>
+            <input type="text" name="email" size="32" class="form-control" required placeholder="Enter Your Email Address">
+          </div>
+          <div class="message">
+            <label for="firstname">Enter your message</label>
+            <textarea name="message" size="128" class="form-control form-text-area" required placeholder="Enter Your Message" style="background-color: rgb(230,230,230);"></textarea>
+          </div>
+          <div class="submit_button">
+            <input type="submit" value="Submit" class="btn">
+          </div>
+        </form>
+      </div>
+      <div class="inner_container_part2"></div>
+    </div>
+  </div>
+</body>
+<script>
+  window.onload = function() {
+    // Get the flash message from Flask's flash
+    var flashMessages = JSON.parse('{{ get_flashed_messages(with_categories=true) | tojson | safe }}');
+    if (flashMessages.length > 0) {
+      flashMessages.forEach(function(message) {
+        // Show the message with appropriate style
+        var messageType = message[0]; // 'success' or 'error'
+        var messageText = message[1]; // The actual flash message text
+        var flashDiv = document.getElementById('flash-message');
+        flashDiv.innerText = messageText;
+        flashDiv.classList.add(messageType, 'show');
+        // Automatically hide the notification after 5 seconds
+        setTimeout(function() {
+          flashDiv.classList.remove('show');
+        }, 5000);
+      });
+    }
+  };
+</script>
+
+</html>

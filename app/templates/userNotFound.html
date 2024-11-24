@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Error - GauDhara</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/db_error.css')}}">
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-content">
+            <h1>Database Error</h1>
+            <h2>Oops! You are not Registered with Us</h2>
+            <p>Please create your account on our site to access and view our features</p>
+            <p>Error details: <strong>{{ error_message }}</strong></p>
+            <a href="{{ url_for('farmer_register.farmer_register') }}" class="back-btn">Create Account</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #C1ECE76B;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    border: 2px solid black;
+}
+
+.sidebar {
+    height: 100%;
+    width: 17vw;
+    position: sticky;
+    top: 0;
+    background-color: #79C6C4;
+}
+
+.sidebar-img {
+    height: 25vh;
+    width: 15vw;
+    margin: 5px auto;
+    align-items: center;
+}
+
+.logo {
+    height: 25vh;
+    width: 15vw;
+}
+
+.product-sidebar {
+    border-bottom: 2px solid black;
+}
+
+.product-sidebar-a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 40px;
+    display: block;
+    font-family: Lexend, sans-serif;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.product-sidebar-a:hover {
+    background-color: #C1ECE76B;
+    opacity: 0.4;
+}
+
+.profile-box {
+    background-color: white;
+    height: 7vh;
+    max-width: 12vw;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.profile-box-img {
+    height: 4vh;
+    width: 2vw;
+    border-radius: 50%;
+    display: block;
+    margin: 0 3px;
+}
+
+.profile-box-name {
+    height: 6vh;
+    display: flex;
+    align-items: center;
+}
+
+.profile-box-name-p {
+    line-height: 0.3vh;
+}
+
+.profile-back {
+    height: 15px;
+    margin: 0 5px;
+}
+
+.right-side {
+    height: 100%;
+    width: 83vw;
+    background-color: #FFFFFF;
+    padding: 20px;
+    overflow-y: auto;
+}

@@ -1,0 +1,263 @@
+{% extends "dairyOwner/basepage.html" %}
+
+{% block title %}Setting{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/settings.css') }}">
+{% endblock %}
+
+{% block header %}Setting{% endblock %}
+
+{% block content %}
+	<div class="settings-holder">
+		<div class="settings-section">
+			<h3>Settings</h3>
+			<hr>
+			<table>
+				<tr>
+					<td><i class="fas fa-bell"></i></td>
+					<td colspan=2>
+						<div class="toggle-container">
+							Notification
+							<label class="switch">
+								<input type="checkbox" id="notification-toggle" onchange="toggleNotification()" checked>
+								<span class="slider"></span>
+							</label>
+						</div>
+					</td>
+				</tr>
+
+
+                <!-- NOTE: dark theme toggle temporary removed  -->
+				<!-- <tr>
+					<td><i class="fa-solid fa-sun"></i></td>
+					<td> 
+						<label for="theme-select">Theme:</label>
+					</td>
+					<td>
+						<select id="theme-select" onchange="toggleTheme()" class="custom-select">
+							<option value="light">light <i class="fas fa-caret-down"></i></option>
+							<option value="dark">Dark <i class="fas fa-caret-down"></i></option>
+						</select>
+					</td>
+				</tr> -->
+
+				<tr>
+					<td><i class="fa-regular fa-file"></i></td>
+					<td>
+						<span>Language</span>
+					</td>
+					<td>
+						<select class="custom-select">
+							<option>Eng <i class="fas fa-caret-down"></i></option>
+							<option>Mar <i class="fas fa-caret-down"></i></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fa-regular fa-user"></i></td>
+					<td onclick="showEditProfileDialog()" class="clickable">
+						<span>Edit Profile</span>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-lock"></i></td>
+					<td class="clickable">
+						<span>Privacy Policy</span>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><i class="fa-regular fa-file"></i></td>
+					<td class="clickable">
+						<span>Terms and Conditions</span>
+					</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="edit-profile-dialog" class="dialog" style="display:none;">
+        <div class="dialog-content">
+            <span class="close" onclick="closeEditProfileDialog()">&times;</span>
+            <h2>Edit Profile</h2>
+            
+            <!-- Basic Information -->
+            <h3>Basic Information:</h3>
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="fullname" placeholder="Enter your full name">
+            
+            <label for="mobile-no">Mobile no.:</label>
+            <input type="text" id="mobile-no" placeholder="Enter your mobile no">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="abc@xyz.com">
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" placeholder="Day/Month/Year">
+            
+            <label for="food-license-no">Food License no.:</label>
+            <input type="text" id="food-license-no" placeholder="Enter Food License no">
+            
+            <label for="udyam-aadhar-no">Udyam Aadhaar no.:</label>
+            <input type="text" id="udyam-aadhar-no" placeholder="Udyam Aadhaar no">
+            
+            <!-- Dairy Information -->
+            <h3>Dairy Information:</h3>
+            <label for="dairy-name">Dairy Name:</label>
+            <input type="text" id="dairy-name" placeholder="Name of your farm">
+            
+            <label for="address">Location/Address:</label>
+            <input type="text" id="address" placeholder="Enter full address">
+            
+            <!-- Account Information -->
+            <h3>Account Information:</h3>
+            <label for="bank-name">Bank Name:</label>
+            <input type="text" id="bank-name" placeholder="Enter bank name">
+            
+            <label for="account-number">Account Number:</label>
+            <input type="text" id="account-number" placeholder="Enter account number">
+            
+            <label for="branch-name">Branch Name:</label>
+            <input type="text" id="branch-name" placeholder="Enter branch name">
+            
+            <label for="ifsc-code">IFSC Code:</label>
+            <input type="text" id="ifsc-code" placeholder="Enter IFSC code">
+            
+            <!-- Profile Picture Upload -->
+            <h3>Profile Picture:</h3>
+            <div>
+                <p>Current Profile Image:</p>
+                <img id="current-profile-picture" src="{{ dairy_owner.image_url or 'default_image_url_here' }}" alt="Profile Picture" style="width: 100px; height: 100px;">
+            </div>
+            <input type="file" id="profile-picture" accept="image/*" onchange="previewImage(event)">
+            
+            <!-- Preview Image -->
+            <div>
+                <p>New Profile Image Preview:</p>
+                <img id="new-profile-preview" src="" alt="New Profile Preview" style="width: 100px; height: 100px; display: none;">
+            </div>
+            
+            
+            <!-- <input type="file" id="profile-picture" accept="image/*"> -->
+            
+            <!-- Save Button -->
+            <button onclick="saveProfile()">Save</button>
+        </div>
+    </div>
+	<script>
+        function toggleNotification() {
+            const isChecked = document.getElementById("notification-toggle").checked;
+            console.log("Notifications " + (isChecked ? "enabled" : "disabled"));
+        }
+        
+        function showEditProfileDialog() {
+            document.getElementById("fullname").value = "{{ dairy_owner.owner_name or '' }}";
+            document.getElementById("mobile-no").value = "{{ dairy_owner.dairy_mobile_number or '' }}";
+            document.getElementById("email").value = "{{ dairy_owner.email or '' }}";
+            document.getElementById("dob").value = "{{ dairy_owner.dob or '' }}";
+            document.getElementById("food-license-no").value = "{{ dairy_owner.food_license_no or '' }}";
+            document.getElementById("udyam-aadhar-no").value = "{{ dairy_owner.udyam_aadhar_no or '' }}";
+            document.getElementById("dairy-name").value = "{{ dairy_owner.dairy_name or '' }}";
+            document.getElementById("address").value = "{{ dairy_owner.address or '' }}";
+            document.getElementById("bank-name").value = "{{ dairy_owner.bank_name or '' }}";
+            document.getElementById("account-number").value = "{{ dairy_owner.account_no or '' }}";
+            document.getElementById("branch-name").value = "{{ dairy_owner.branch_name or '' }}";
+            document.getElementById("ifsc-code").value = "{{ dairy_owner.ifsc_code or '' }}";
+            document.getElementById("edit-profile-dialog").style.display = "block";
+        }
+        
+        function closeEditProfileDialog() {
+            document.getElementById("edit-profile-dialog").style.display = "none";
+        }
+        
+        function saveProfile() {
+            const profileData = {
+                fullName: document.getElementById("fullname").value,
+                mobileNo: document.getElementById("mobile-no").value,
+                email: document.getElementById("email").value,
+                dob: document.getElementById("dob").value,
+                foodLicenseNo: document.getElementById("food-license-no").value,
+                udyamAadharNo: document.getElementById("udyam-aadhar-no").value,
+                dairyName: document.getElementById("dairy-name").value,
+                address: document.getElementById("address").value,
+                bankName: document.getElementById("bank-name").value,
+                accountNumber: document.getElementById("account-number").value,
+                branchName: document.getElementById("branch-name").value,
+                ifscCode: document.getElementById("ifsc-code").value
+            };
+            
+            const profilePicture = document.getElementById("profile-picture").files[0];
+            if (profilePicture) {
+                // Upload to Cloudinary
+                const formData = new FormData();
+                formData.append('file', profilePicture);
+                formData.append('upload_preset', 'your_cloudinary_preset'); // Replace with your Cloudinary preset
+                
+                fetch('https://api.cloudinary.com/v1_1/dqefh4bld/image/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    profileData.profileImageUrl = data.secure_url;
+                    // Proceed with updating profile data in backend
+                    updateProfile(profileData);
+                })
+                .catch(error => {
+                    console.error("Error uploading image:", error);
+                    alert("Image upload failed. Please try again.");
+                });
+            } else {
+                // No new image selected, update other profile data only
+                updateProfile(profileData);
+            }
+        }
+        
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('new-profile-preview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result; // Set the preview image source
+                    preview.style.display = 'block'; // Show the preview
+                };
+                reader.readAsDataURL(file); // Convert the image file to base64 string
+            } else {
+                preview.src = ''; // Clear the preview if no file is selected
+                preview.style.display = 'none'; // Hide the preview
+            }
+        }
+        
+        function updateProfile(profileData) {
+            fetch('/dairyOwner/update_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(profileData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Profile updated successfully!");
+                    closeEditProfileDialog();
+                    // Update the displayed profile picture if it was changed
+                    if (profileData.profileImageUrl) {
+                        document.getElementById("current-profile-picture").src = profileData.profileImageUrl;
+                    }
+                } else {
+                    alert("Error updating profile: " + (data.error || "Unknown error"));
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            });
+        }  
+    </script>
+{% endblock %}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Profile</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/FarmerProfile.css')}}">
+</head>
+
+<body>
+
+    <p class="back"><a href="{{ url_for('dairy_owner_dashboard.dairyFarmerDetails') }}">< Back</a></p>
+
+            <div class="main">
+
+                <div class="profile-box">
+                    <img src="{{farmer.farmer_image_url}}" alt="" class="profile-pic">
+
+                    <div class="profile-info">
+
+                        <div class="profile-info2">
+                            <p class="profile-info-p"><span class="profile-info-span">Farm Name: </span>{{farmer.farm_name}}</p>
+                            <p class="profile-info-p"><span class="profile-info-span">Name: </span>{{farmer.farmer_name}}</p>
+                            <p class="profile-info-p"><span class="profile-info-span">Date Of Birth: </span>{{farmer.farmer_dob}}
+                            </p>
+                            <p class="profile-info-p"><span class="profile-info-span">Phone: </span>(+91) {{farmer.farmer_mobile_number}}</p>
+                            <p class="profile-info-p"><span class="profile-info-span">Farmer UID: </span>{{farmer.farmer_id}}</p>
+                        </div>
+                        <div class="profile-info2">
+                            <p class="profile-info-p"><span class="profile-info-span">Email: </span>{{farmer.farmer_email}}</p>
+                            <p class="profile-info-p"><span class="profile-info-span">Address: </span>{{farmer.state}} {{farmer.district}} {{farmer.taluka}} {{farmer.village}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="total-box">
+                    <div class="total-box1">
+                        <p>
+                        <p class="p1">Total registered cattle</p>
+                        <span class="p2">{{farmer.farmer_cows}}</span> <br>
+                        <span class="p3">View</span>
+                        </p>
+
+                    </div>
+
+                    <div class="total-box1">
+                        <p>
+                        <p class="p1">Total Earning</p>
+                        <span class="p2">₹ {{farmer.total_earnings}}</span> <br>
+                        <span class="p3">as of 1-December 2022</span>
+                        </p>
+                    </div>
+
+                    <div class="total-box2">
+                        <p>
+                        <p class="p1">Pending Payments</p>
+                        <span class="p4">₹ {{farmer.pending_payments}}</span> <br>
+                        <span class="p3">before 1-December 2022</span>
+                        </p>
+                    </div>
+
+                    <div class="total-box2">
+                        <p class="p1">Withdrawal Method</p>
+                        <span class="p4">{{farmer.withdrawal_method}}</span> <br>
+                    </div>
+                </div>
+
+                <div class="History">
+                    <h3>History</h3>
+
+                    <div class="History-box"> 
+                        <table class="History-box-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Time/Date</th>
+                                    <th>Milk</th>
+                                    <th>Fat</th>
+                                    <th>Rate</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+
+                            {% for entry in milk_entries %}
+                            <tr>
+                                <td>{{ entry.id }}</td>
+                                <td> {{entry.collection_date}} {{entry.collection_time}} </td>
+                                <td> {{entry.quantity_milk }} </td>
+                                <td> {{ entry.fat_content }} </td>
+                                <td> {{ entry.rate_per_l }} </td>
+                                <td> {{ entry.total_amount }} </td>
+                            </tr>
+                            {% endfor %}
+                            <!-- <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr>
+                            <tr>
+                                <td>#1524</td>
+                                <td><span class="time">10:20 AM</span> <br><span class="date">21/12/2024</span></td>
+                                <td>110</td>
+                                <td>98</td>
+                                <td>45</td>
+                                <td>1500</td>
+                            </tr> -->
+                            
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+</body>
+
+</html>

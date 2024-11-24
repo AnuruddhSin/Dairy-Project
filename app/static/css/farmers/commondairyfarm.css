@@ -1,0 +1,33 @@
+.logo {
+    margin-top: 47px;
+    margin-left: 47px;
+    border: 1px;
+    justify-content: space-between;
+}
+h1{
+    display: flex;
+}
+.logo span {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 61px;
+    letter-spacing: 0.12em;
+    color: #04DE89;
+    text-shadow: 7px 3px 8.2px rgba(0, 0, 0, 0.25);
+    display: flex;
+}
+
+.png{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 61px;
+    letter-spacing: 0.08em;
+color: rgba(255, 255, 255, 1);
+text-shadow:rgba(0, 0, 0, 0.25);
+border-color: rgba(78, 230, 171, 1);
+margin-right: 20px;
+}

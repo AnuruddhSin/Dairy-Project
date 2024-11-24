@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GauDhara Receipt</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/milkEntryReceipt.css')}}">
+</head>
+<body>
+    <div class="container">
+        <a href="/dairyOwner/successmilkentry" class="back-link">← Back</a>
+        <div id="content">
+        <div class="logo">
+            
+            <img src="../../static/images/Gaudhara.png" alt="GauDhara Logo">
+        </div>
+        <div class="uid">UID : {{farmer.farmer_id}}</div>
+        <div class="details">
+            <div>
+                <p><strong>Farmer Name:</strong> {{farmer.farmer_name}}</p>
+                <p><strong>Address:</strong> {{farmer.farm_address}}</p>
+            </div>
+            <div>
+                <p><strong>Contact No:</strong> {{farmer.farmer_mobile_number}}</p>
+                <p><strong>Date:</strong> {{date}}</p>
+                <p><strong>Time:</strong> {{time}}</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cattle</th>
+                    <th>Milk Collection</th>
+                    <th>Avg Fat</th>
+                    <th>Avg SNF</th>
+                    <th>Avg Rate</th>
+                    <!-- <th>Total Deduction If Any</th> -->
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{milk_type}}</td>
+                    <td>{{quantity}}</td>
+                    <td>{{avg_fat}}</td>
+                    <td>{{avg_snf}}</td>
+                    <td>{{avg_rate}}</td>
+                    
+                    <td>{{total_amount}}</td>
+                </tr>
+                <!-- <tr>
+                    <td>Buffalo</td>
+                    <td>{{buffalo_milk}}</td>
+                    <td>{{buffalo_fat}}</td>
+                    <td>{{buffalo_snf}}</td>
+                    <td>{{buffalo_rate}}</td>
+                    <td>{{buffalo_deductions}}</td>
+                    <td>{{buffalo_amount}}</td>
+                </tr> -->
+                <tr class="total">
+                    <td colspan="5">Total Amount</td>
+                    <td>{{total_amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div style="text-align: center;">
+            <button class="download-btn" onclick="generatePDF()">Download PDF</button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+        function generatePDF() {
+            // Select the HTML content to convert
+            const element = document.getElementById('content');
+    
+            // Set options for the PDF export
+            const options = {
+                margin: 1,
+                filename: 'my_document.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+    
+            // Convert to PDF
+            html2pdf().set(options).from(element).save();
+        }
+    </script>
+</body>
+</html>

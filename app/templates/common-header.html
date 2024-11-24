@@ -1,0 +1,33 @@
+﻿<link rel="stylesheet" href="./../static/css/common-header.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<div class="header">
+	<div class="logo">DAIRY <span>FARM</span></div>
+	<nav>
+		<ul>
+			<li><a href="{{ url_for('guest.guestLanding') }}">Home</a></li>
+            <li><a href="{{ url_for('guest.guestPricingandPlans') }}">Scheme</a></li>
+            <li><a href="{{ url_for('dairy_owner_dashboard.dairyDashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('guest.contact_us') }}">Contact Us</a></li>
+		</ul>
+	</nav>
+	<div id="myNav" class="overlay">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<div class="overlay-content">
+			<a href="{{ url_for('guest.guestLanding') }}">Home</a>
+			<a href="{{ url_for('guest.guestPricingandPlans') }}">Scheme</a>
+			<a href="{{ url_for('dairy_owner_dashboard.dairyDashboard') }}">Dashoard</a>
+			<a href="{{ url_for('guest.contact_us') }}">Contact Us</a>
+		</div>
+	</div>
+	<span onclick="openNav()" class="menu-toggle">&#9776;</span>
+</div>
+<script>
+	/* Open */
+	function openNav() {
+		document.getElementById("myNav").style.height = "100%";
+	}
+	/* Close */
+	function closeNav() {
+		document.getElementById("myNav").style.height = "0%";
+	} 
+</script>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Confirmation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #c5d6d6;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logout-text {
+            font-size: 1rem;
+        }
+
+        .time-date {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .time, .date {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .dialog {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 400px;
+            margin: 2rem auto;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button {
+            position: absolute;
+            margin-top: -1rem;
+            margin-left: -1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #333;
+        }
+
+        .back-button::before {
+            content: "←";
+            font-size: 1.2rem;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #f1f1f1;
+            border-radius: 50%;
+            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: #666;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E") no-repeat center center;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E") no-repeat center center;
+        }
+
+        .user-greeting {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .confirmation-text {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 0.5rem 2rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .button-no {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        .button-no:hover {
+            background-color: #e1e1e1;
+        }
+
+        .button-yes {
+            background-color: #4F46E5;
+            color: white;
+        }
+
+        .button-yes:hover {
+            background-color: #4338CA;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logout-text">LogOut</div>
+        <div class="time-date">
+            <div class="time" id="header_time">10:40 pm</div>
+            <div class="date" id="header_date">29/10/2024</div>
+        </div>
+    </header>
+
+    <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+        <a href="{{url_for('guest.redirectToDashboard')}}"></a><button class="back-button">Back</button>
+        
+        <div class="avatar" role="img" aria-label="User avatar"></div>
+        
+        <h2 id="dialog-title" class="user-greeting">Hi User {{user_id}}</h2>
+        <p id="dialog-description" class="confirmation-text">Are You Sure You Want To LogOut</p>
+        
+        <div class="button-group">
+            <a href="{{url_for('guest.redirectToDashboard')}}"><button class="button button-no">No</button></a>
+            <a href="{{url_for('guest.confirmLogout')}}"><button class="button button-yes">Yes</button></a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.button-no').addEventListener('click', () => {
+            console.log('Cancelled logout');
+        });
+
+        document.querySelector('.button-yes').addEventListener('click', () => {
+            console.log('Confirming logout');
+        });
+
+        document.querySelector('.back-button').addEventListener('click', () => {
+            console.log('Going back');
+        });
+        function updateDateTime() {
+    const now = new Date();
+
+    
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedTime = `${hours % 12 || 12}:${minutes} ${ampm}`;
+
+    
+    const day = now.getDate().toString().padStart(2, '0');
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = now.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+
+    // Update the div content
+    document.getElementById('header_time').innerHTML = formattedTime;
+    document.getElementById('header_date').innerHTML = formattedDate;
+}
+setInterval(updateDateTime, 1000);
+
+updateDateTime();
+
+
+
+    </script>
+</body>
+</html>

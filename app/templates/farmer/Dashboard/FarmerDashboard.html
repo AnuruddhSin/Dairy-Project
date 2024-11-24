@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/farmers/Dashboard/FarmerDashboard.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+{% include 'commonFlashMessages.html' %}
+
+<div id="main">
+
+  {% include "farmer/Sidebar/FarmerSidebar.html" %}
+
+  <div id="main_content">
+     
+    <div class="content_sidebar"></div>   <!--content_sidebar ends here -->
+
+    <div class="content_main_content">
+          
+      <div class="header">
+        <div class="partone">Notification</div>
+        <div class="parttwo">
+          <div class="header_notification"> <i class='bx bx-bell'></i></div>
+          <div class="header_time" id="time"> 10:40 pm </div>
+          <div class="header_date" id="date">29/10/2024</div>
+        </div>
+      </div>  <!--header ends here -->
+
+
+
+      <div class="dashboard_container">
+                
+        <div class="dashboard_inner_container">
+
+            <div class="dashboard_row1">
+                
+              <div class="dashboard_total_earning">
+                 <div class="row1">Total Earning</div>
+                 <div class="row2">&#8377 {{farmer.total_earnings}}</div>
+                 <div class="row3">as of {{current_date}}</div>
+
+              </div> <!--total earning ends here -->
+
+
+              <div class="withdraw_method">
+
+                <div class="row1">Withdraw Method </div>
+                 <div class="row2"></div>
+                 <div class="row3">{{account_no}}</div>
+
+              </div> <!--withdarw method ends here -->
+
+            </div> <!--row1 ends here -->
+
+
+
+
+
+
+
+
+
+
+
+            <div class="dashboard_row2">
+                
+              <div class="total_registered_cattel">
+                 <div class="row1">Total Registered Cattle </div>
+                 <div class="row2">{{farmer.farmer_cows}}</div>
+                 <div class="row3">view</div>
+
+              </div> <!--registered cattel ends here -->
+
+
+              <div class="pending_payments">
+
+                <div class="row1">Pending Payments </div>
+                 <div class="row2">{{farmer.pending_payments}}</div>
+                 <div class="row3">before  {{current_date}}</div>
+
+              </div> <!--pending method ends here -->
+
+            </div> <!--row2 ends here -->
+
+
+
+                
+
+            <table cellspacing="40">
+              <th>Order Id </th>
+              <th >Time / date </th>
+              <th>Milk </th>
+              <th>Fat</th>
+              <th>Rate</th>
+              <th>Amount </th>
+
+              {% for item in milk_entry %}
+              <tr>
+                <td>#{{item.id}}</td>
+                <td>{{item.collection_time}}</td>
+                <td>{{item.quantity_milk}}</td>
+                <td>{{item.fat_content}}</td>
+                <td>{{item.snf_content}}</td>
+                <td>{{item.total_amount}}</td>
+                
+              </tr>
+              {% endfor %}
+            </table>
+
+
+
+
+            
+
+        </div> <!--inner_contiainer ends here -->
+
+      </div>
+
+
+ 
+    </div> <!--content_main_content ends here -->
+    
+   
+  </div> <!--main-content ends here -->
+    
+   
+</div>
+        
+
+    
+
+
+
+   
+     <script>
+      function updateDateTime() {
+        const now = new Date();
+
+        // Extract the current date
+        const currentDate = now.toLocaleDateString(); // Get local date
+
+        // Extract the current time
+        const currentTime = now.toLocaleTimeString(); // Get local time
+
+        // Update the HTML elements with the current date and time
+        document.getElementById("date").textContent = currentDate;
+        document.getElementById("time").textContent = currentTime;
+      }
+
+      // Update the date and time when the page loads
+      window.onload = updateDateTime;
+
+      // Optionally, keep the time updated every second (for real-time display)
+      setInterval(updateDateTime, 1000); // Updates every second
+     </script>
+    
+    
+</body>
+</html>

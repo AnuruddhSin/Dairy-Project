@@ -1,0 +1,321 @@
+/* General Body and Background */
+body {
+    background: linear-gradient(135deg, rgba(199, 229, 222, 0.8), rgba(0, 150, 136, 0.3));
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: background 0.3s ease-in-out;
+    overflow-x: hidden;
+}
+
+/* Link Styles */
+a {
+    text-decoration: none;
+    color: #004D40;
+    font-weight: 600;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: #00B8A9;
+    transform: translateY(-3px);
+}
+
+/* Back Button */
+.back {
+    font-size: 16px;
+    color: #004D40;
+    margin-top: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.back:hover {
+    color: #00B8A9;
+    /* transform: scale(1.05); */
+}
+
+/* Main Section */
+.main {
+    min-height: 88vh;
+    width: 90vw;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.main:hover {
+    transform: scale(1.02);
+}
+
+/* Profile Section */
+.profile-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-box:hover {
+    background-color: rgba(0, 150, 136, 0.1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.profile-pic {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    border: 4px solid #00B8A9;
+    margin-right: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.profile-info2 {
+    width: 48%;
+    margin-bottom: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f4f4f4;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-info2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info-span {
+    color: #004D40;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-info-span:hover {
+    color: #00B8A9;
+    transform: translateX(5px);
+}
+
+.profile-info-span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(45deg, #00B8A9, #004D40);
+    border-radius: 2px;
+}
+
+.profile-info-p {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #444444;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-info-p:hover {
+    color: #333333;
+    transform: translateX(5px);
+}
+
+/* Total Info Section */
+.total-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.total-box1,
+.total-box2 {
+    background: #eaf4f0;
+    padding: 20px;
+    border-radius: 15px;
+    width: 22%;
+    margin: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.total-box1:hover,
+.total-box2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.p1 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #444444;
+}
+
+.p2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #00B8A9;
+    line-height: 32px;
+}
+
+.p3 {
+    font-size: 14px;
+    font-weight: 400;
+    color: #49454F;
+}
+
+.p4 {
+    font-size: 28px;
+    font-weight: 600;
+    color: transparent;
+    background: linear-gradient(180deg, #00B8A9 0%, #004D40 100%);
+    -webkit-background-clip: text;
+    line-height: 36px;
+}
+
+/* History Section */
+.History h3 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #004D40;
+    margin-bottom: 20px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.History h3:hover {
+    color: #00B8A9;
+    transform: translateX(5px);
+}
+
+.History-box {
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 15px;
+    overflow-x: auto;
+    transition: box-shadow 0.3s ease;
+}
+
+.History-box:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 2;
+    border-bottom: 2px solid #DDD;
+}
+
+th {
+    padding: 18px;
+    font-size: 16px;
+    color: #004D40;
+    border-bottom: 2px solid #DDD;
+    transition: background 0.3s ease;
+}
+
+th:hover {
+    background: rgba(0, 150, 136, 0.1);
+}
+
+td {
+    padding: 15px;
+    font-size: 14px;
+    color: #3C3C3C;
+    border-bottom: 1px solid #EEE;
+    transition: background-color 0.3s ease;
+}
+
+td:hover {
+    background: rgba(243, 244, 246, 1);
+    cursor: pointer;
+}
+
+.time {
+    font-weight: 600;
+    color: #004D40;
+}
+
+.date {
+    font-size: 12px;
+    color: #464E5F;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .main {
+        width: 90vw;
+        padding: 20px;
+    }
+
+    .profile-box {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .profile-pic {
+        height: 140px;
+        width: 140px;
+        margin: 10px 0;
+    }
+
+    .profile-info {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .profile-info2 {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .total-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .total-box1,
+    .total-box2 {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .History-box {
+        height: auto;
+        padding: 20px;
+    }
+}

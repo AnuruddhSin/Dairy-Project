@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Products </title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/addproduct.css')}}">
+</head>
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    {% include 'commonFlashMessages.html'%}
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='images/GauDhara.png') }}" alt="GauDhara Logo" class="logo">
+            </div>
+            <ul class="nav">
+                <li><a href="{{url_for('dairy_owner_dashboard.dairyDashboard')}}" class="sidebar-link">Dashboard</a></li>
+               
+                <li><a href="#" class="sidebar-link">Milk Entry</a></li>
+             
+                <li><a href="{{url_for('dairy_owner_dashboard.dairyFarmerDetails')}}" class="sidebar-link">Farmer Details</a></li>
+                
+                <li class="active"><a href="dairyOwner/Dashboard/milk/collection" class="sidebar-link">Milk Collection</a></li>
+              
+                <li><a href="dairyOwner/dashboard/view/products" class="sidebar-link">Products</a></li>
+               
+                <li><a href="{{url_for('dairy_wallet.view_wallet')}}" class="sidebar-link">Wallet</a></li>
+            
+                <li><a href="dairyOwner/report" class="sidebar-link">Report</a></li>
+           
+                <li><a href="#" class="sidebar-link">Excel File</a></li>
+             
+                <li><a href="dairyOwner/settings" class="sidebar-link">Settings</a></li>
+             
+                <li><a href="{{url_for('guest.Logout')}}" class="sidebar-link">Log Out</a></li>
+             
+              </ul>
+          
+           
+            <div class="profile-section">
+                <img src="{{url_for('static', filename='images/pro.png')}}" alt="Profile Picture" class="profile-pic">
+                <div class="profile-info">
+                    <p>Alex Nolan</p>
+                    <p>Busy Owner</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header Section -->
+            <header class="header">
+                <div class="header-left">
+                   <h1>Products</h1>
+                </div>
+                <div class="header-right">
+                    <img src="{{url_for('static', filename='images/icon-button.png')}}" alt="Notification">
+                    <div class="date-time">
+                        <span class="time" id="time">10:40 AM</span>
+                        <span class="date" id="date">21/12/2022</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Add Product Form -->
+            <section class="add-product-form">
+                <div class="a3">
+                <button class="back-btn">← Back</button>
+                <h2>Add Products</h2>
+            </div>
+            <br>
+            <br>
+            <br>
+                <div class="form-container">
+                    <form action="{{url_for('products.addProducts')}}" method="POST" enctype="multipart/form-data">
+                      
+                            <div class="a1">
+
+                                <div class="form-row">
+                                    <label>Product Name:</label>
+                                    <input type="text" name="product_name" placeholder="Enter product no">
+                                </div>
+                        <div class="form-row">
+                            <label>Product No:</label>
+                            <input type="number" name="product_no" placeholder="Enter product no">
+                        </div>
+                    
+                  
+                        <div class="form-row">
+                            <label>Price:</label>
+                            <input type="number" name="price" placeholder="Enter price">
+                        </div>
+                
+                    </div>
+                    
+                        <div class="form-row">
+                            <label>Product Description:</label>
+                            <textarea name="description" placeholder="Product description"></textarea>
+                        </div>
+                       <div class="a2">
+                        <div class="form-row">
+                            <label for="birthdate">Available</label>
+                            <input type="date"  id="birthdate" name="availabe_till">
+                        </div>
+                        <div class="form-row">
+                          
+                            <label for="exampleSelect">Choose Quantity</label>
+                            <select id="exampleSelect">
+                              <option value="5">5</option>
+                              <option value="10">10</option>
+                              <option value="20">15</option>
+                              
+                            </select>
+                        </div>
+                    </div>
+                    <div class="upload-row" onclick="document.getElementById('fileInput').click()">
+                        <img src="{{url_for('static', filename='images/Group 15.png')}}" alt="Upload Icon" class="upload-icon">
+                        <div class="upload-text">
+                            <p>Upload Image</p>
+                            <span>Select and upload the files of your choice</span>
+                        </div>
+                        <!-- Hidden file input -->
+                        <input type="file" id="fileInput" name="product_image" style="display: none;">
+                    </div>
+                    
+                        <BR>
+                            <br>
+                            <br>
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
+    <script>
+        function triggerFileInput() {
+    document.getElementById('fileInput').click();
+}
+function updateDateTime() {
+        const now = new Date();
+
+        // Extract the current date
+        const currentDate = now.toLocaleDateString(); // Get local date
+
+        // Extract the current time
+        const currentTime = now.toLocaleTimeString(); // Get local time
+
+        // Update the HTML elements with the current date and time
+        document.getElementById("date").textContent = currentDate;
+        document.getElementById("time").textContent = currentTime;
+      }
+      window.onload = updateDateTime()
+      setInterval(updateDateTime, 1000);
+// Optional: Display selected file name
+document.getElementById('fileInput').addEventListener('change', function () {
+    if (this.files && this.files[0]) {
+        const fileName = this.files[0].name;
+        document.querySelector('.upload-text span').innerText = `Selected: ${fileName}`;
+    }
+});
+
+    </script>
+</body>
+</html>

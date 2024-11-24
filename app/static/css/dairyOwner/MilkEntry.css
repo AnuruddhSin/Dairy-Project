@@ -1,0 +1,262 @@
+main .container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	/*! margin: 5vh 0; */
+	margin-top: 5vh;
+}
+
+.form-container {
+	background-color: #ffffff;
+	border-radius: 14px;
+	padding: 0 6.5vw;
+	/*! width: 80%; */
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: 1px black;
+	padding-bottom: 5vh;
+}
+
+.form-container h2 {
+	justify-content: center;
+	display: flex;
+	color: #9ca77b;
+	font-size: 3.2vw;
+	/*! padding: 50px; */
+}
+
+.form{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/*! font-size: ; */
+}
+
+.form-row-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.form-row-0 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.form-row-col{
+	display: flex;
+	flex-direction: column;
+	padding-right: 50px;
+}
+
+.form-image{
+	height: 150px;
+	width: 150px;
+}
+
+label, input{
+	/*! padding: inherit; */
+	margin-bottom: 4vh;
+	width: 150px;
+}
+
+.form-col{
+	display: flex;
+	flex-direction: column;
+}
+
+div.form-row-row:nth-child(2) {
+	width: 70%;
+}
+
+.form-section-col{
+	display: flex;
+	flex-direction: column;
+}
+
+.section-header-row{
+	font-weight: bold;
+	margin: 6.5vh 0;
+	font-size: 2vw;
+	background-color: lightgrey;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.form-row-3{
+	display: flex;
+	flex-direction: row;
+	/*! justify-content: space-between; */
+	gap: 13vw;
+}
+
+div.form-section-col:nth-child(3) > div:nth-child(3) {
+  /*! width: 80%; */
+}
+
+div.form-section-col:nth-child(4) > div:nth-child(3) {
+  /*! width: 80%; */
+}
+
+div.form-section-col:nth-child(3) > div:nth-child(2) > div:nth-child(2) {
+  /*! transform: translateX(-6px); */
+}
+
+label, input {
+  /*! width: 150px; */
+}
+
+div.form-section-col:nth-child(4) > div:nth-child(2) > div:nth-child(2) {
+  transition: translateX();
+  /*! transform: translateX(-6px); */
+}
+
+.submit-btn {
+	display: block;
+	margin: 30px auto;
+	background-color: #58c99d;
+	padding: 10px 30px;
+	border: 1px #3B8F57;
+	border-radius: 10px;
+	color: white;
+	font-size: 1rem;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	font-size: larger;
+}
+
+input {
+	border: 1px solid #ccc;
+  border-radius: 5px;
+	height: 25px;
+}
+
+select{
+	height: 25px;
+}
+
+label{
+	font-size:medium;
+}
+
+div.form-row-col:nth-child(2) > input:nth-child(1),
+div.form-row-col:nth-child(2) > input:nth-child(3)  {
+ background-color: lightgrey;
+ /*! padding-left: 10px; */
+}
+
+@media (max-width: 1200px) {
+	.form-row-3{
+		gap: 11vw;
+	}
+}
+
+@media (max-width: 1100px) {
+	.form-row-3{
+		gap: 10vw;
+	}
+	label{
+		/*! font-size: medium; */
+	}
+	input, select{
+		width: 15vw;
+	}
+	.section-header-row{
+		margin: 3vh 0;
+		font-size: 2vh;
+	}
+	input, select{
+		margin-bottom: 3vh;
+	}
+	label{
+		margin-bottom: 2vh;
+	}
+}
+
+@media (max-width: 1000px) {
+	.form-row-3{
+		gap: 13vw;
+	}
+	.form-container{
+		width: 90%
+	}
+}
+
+@media (max-width: 900px) {
+	.form-row-3{
+		gap: 11vw;
+	}
+}
+
+@media (max-width: 850px) {
+	.form-container{
+		padding-bottom: 20px;
+	}
+	.form-container h2 {
+	font-size: 36px;
+	}
+	.form-row-col{
+		padding-right: 0;
+	}
+	.form-image{
+		display: none;
+	}
+	label{
+		font-size: ;
+	}
+	
+	div.form-row-col:nth-child(2) > input:nth-child(1), div.form-row-col:nth-child(2) > input:nth-child(3){
+		margin-bottom: 2vh;
+		width: auto;
+	}
+	div.form-row-row:nth-child(2),
+	div.form-row-row:nth-child(2) > div:nth-child(1) > input:nth-child(2),
+	div.form-row-row:nth-child(2) > div:nth-child(2) > input:nth-child(2) {
+    width: auto;
+		margin-bottom:1vh;
+}
+ {
+ width: auto;
+}
+{
+		width: auto;
+	}
+	
+}
+
+@media (max-width: 800px) {
+	.form-row-3{
+		gap: 8vw;
+	}
+}
+
+@media (max-width: 700px) {
+	.form-row-3{
+		gap: 5vw;
+	}
+}
+
+@media (max-width: 600px) {
+	.form-row-3{
+		gap: 1vw;
+	}
+}
+
+@media (max-width: 500px) {
+	div.form-row-row:nth-child(2){
+		flex-direction: column;
+	}
+	.form-row-3{
+		flex-direction: column;
+		gap: normal;
+	}
+	input, select{
+		width: 90%;
+		height: 30px;
+	}
+}

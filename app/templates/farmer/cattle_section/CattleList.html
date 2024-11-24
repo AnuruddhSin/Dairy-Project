@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/farmers/cattle_section/CattleList.css')}}">
+</head>
+<body>
+  <!-- Sidebar -->
+  <body>
+    <button class="menu-btn" onclick="ShowSidebar()">☰</button>
+
+    <div class="sidebar" id="Sidebar">
+
+
+        <img src="{{farmer.farmer_image_url}}" alt="" class="logo">
+        <p class="farmer-uid-p"><span class="farmer-uid-span">Farmer UID:</span>{{farmer.farmer_id}}</p>
+
+
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Dashboard</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Cattle List</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Milk History</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Products</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Wallet</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Settings</a>
+        </div>
+        <div class="sidebar-text-box">
+            <a href="#" class="sidebar-text-box-a">Log Out <img src="./../images/logout.png" alt="" class="logout"></a>
+        </div>
+
+
+        <div class="profile-box">
+            <img src="{{farmer.farmer_image_url}}" alt="" class="profile-box-img">
+
+            <div class="profile-box-name">
+                
+                    <p class="profile-box-name-p">{{farmer.farmer_name}}</p>
+               
+            </div>
+
+        </div>
+
+    </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Cattle List</h1>
+      <div class="header-actions">
+        <div class="notification">
+          <img src="{{url_for('static', filename='images/notification@3x-1.png')}}" alt="Notification" class="notification-icon">
+      </div>
+        <div class="date-time">
+          <span>10:40 AM</span>
+          <span>21/12/2022</span>
+        </div>
+        <button class="export-button">Export</button>
+      </div>
+    </div>
+    <div class="form container">
+      <div class="search-add">
+  
+          <input type="text" class="search-input" id="searchInput" placeholder="Search">
+          <a href="{{url_for('add_cattle.addCattle')}}"><button class="add-button">+ Add Cattle</button></a>
+      </div>
+      <div class="table-container">
+          <table id="cattleTable">
+              <thead>
+                  <tr>
+                      <th>NO</th>
+                      <th>UID</th>
+                      <th>Breed</th>
+                      <th>Type</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Example rows -->
+                   {% for cattle in cattles %}
+                  <tr>
+                      <td>{{loop.index}}</td>
+                      <td>{{cattle.animal_id}}</td>
+                      <td>{{cattle.animal_type}}</td>
+                      <td>{{cattle.cow_type}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+              </tbody>
+          </table>
+      </div>
+  </div>
+  
+    
+  <script>
+    // Mobile Sidebar Toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get the search input and table elements
+      const searchInput = document.getElementById('searchInput');
+      const cattleTable = document.getElementById('cattleTable');
+  
+      // Add an event listener to the search input
+      searchInput.addEventListener('keyup', function () {
+          // Get the search query (case insensitive)
+          const filter = searchInput.value.toLowerCase();
+  
+          // Get all rows in the table body
+          const rows = cattleTable.querySelectorAll('tbody tr');
+  
+          // Loop through the rows and filter based on the query
+          rows.forEach(row => {
+              const cells = row.querySelectorAll('td');
+              const rowText = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(' ');
+  
+              if (rowText.includes(filter)) {
+                  row.style.display = ''; // Show the row
+              } else {
+                  row.style.display = 'none'; // Hide the row
+              }
+          });
+      });
+  });
+  
+  </script>
+</body>
+</html>

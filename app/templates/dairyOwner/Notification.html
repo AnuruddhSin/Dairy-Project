@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./../../static/css/dairyOwner/notification.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ 
+</head>
+<body>
+
+    {% include 'commonFlashMessages.html' %}
+    <div id="main">
+        {% include '/dairyOwner/CommonSidebar.html' %}
+     
+
+
+     <div id="content">
+        <div class="header">
+            <div class="partone">Notification</div>
+            <div class="parttwo">
+              <div class="header_notification"> <i class='bx bx-bell'></i></div>
+              <div class="header_time"> 10:40 pm </div>
+              <div class="header_date">29/10/2024</div>
+            </div>
+          </div>  <!--header ends here -->
+
+          
+          <div class="notification_container">
+            <div class="notification_card">
+              <div class="card_header">
+                <div class="back_button">  <i class='bx bxs-left-arrow'></i> back</div>
+                <div class="text">Notification</div> <!--text ends here -->
+              </div>
+              <div class="notification_actual_container">
+                
+              {% for item in request_list %}
+              
+                    <div class="notification_actual">
+                      <div class="text1"> <ul><li style="color: rgb(15, 212, 212);">Gaudhara <span>now</span> </li></ul></div>
+                      <div class="text2">Hello Dairy Owner</div>
+                      <div class="text2">Farmer: {{item.get('farmer_name')}} Farmer ID:{{item.get('farmer_id')}}  Has requested to join your dairy</div>
+                      <div class="text2">Please confirm if you want to add farmer to your dairy</div>
+                      <div class="yes_no_button_container">
+                      <a href="{{url_for('dairy_owner_notification.confirmAcceptFarmer', farmer_id = item.get('farmer_id'))}}"><button>Yes</button></a>
+                      <a href="{{url_for('dairy_owner_notification.rejectFarmer', farmer_id = item.get('farmer_id'))}}"><button>No</button></a>
+                      <a href="{{url_for('view_farmer.viewFarmer', farmer_id = item.get('farmer_id'))}}"><button>View Profile</button></a>
+                    </div>
+                    </div>
+              {% endfor %}
+                   
+            </div>
+              
+            </div>
+          </div>
+
+
+     </div>
+
+
+     
+     </div>
+        
+
+   
+
+
+     <script>
+      function updateDateTime() {
+    const now = new Date();
+
+    
+    const hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedTime = `${hours % 12 || 12}:${minutes}:${seconds} ${ampm}`;
+
+    
+    const day = now.getDate().toString().padStart(2, '0');
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = now.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+
+    // Update the div content
+    document.querySelector('.header_time').textContent = formattedTime;
+    document.querySelector('.header_date').textContent = formattedDate;
+}
+
+
+setInterval(updateDateTime, 1000);
+
+updateDateTime();
+     </script>
+    
+</body>
+</html>

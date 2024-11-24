@@ -1,0 +1,221 @@
+{% extends "dairyOwner/basepage.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/dairyDashboard.css') }}">
+{% endblock %}
+
+{% block header %}Dashboard{% endblock %}
+
+{% block button_name %}<i class="fa-solid fa-file-export"></i>Import{% endblock %}
+
+{% block overlay %}
+	<div>
+		<div class="upload-header">
+			<div class="upload-info">
+				<div class="cloud-icon">&#9729;</div>
+				<div class="upload-text">
+					<h2>Upload files</h2>
+					<p>Select and upload the files of your choice</p>
+				</div>
+			</div>
+			<div class="close-btn" id ="close-btn" onclick="off()">&times;</div>
+		</div>
+		<div class="upload-box">
+			<div class="dash">
+				<center>
+					<div class="cloud-icon-2">&#9729;</div>
+				</center>
+				<div class="upload-title">Choose a file or drag & drop it here</div>
+				<div class="upload-description">Excel formats up to 50MB</div>
+				<a href="{{url_for('dairy_owner_excel.excel')}}" class="browse-button" >Browse File</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+{% include 'commonFlashMessages.html' %}
+    <div class="widgets">
+		<table id="desktop-widget-table">
+			<tr>
+				<td rowspan="2" class="chart-cell">
+					<div class ="chart-holder">
+						<center><h3>Total Milk Collection</h3></center>
+						<div class="progress-semicircle">
+							<div class="progress-label">
+								<div class="progress-label__percentage" id="percentage">{{milk_percent}}%</div>
+								<div class="progress-label__text">Completed</div>
+							</div>
+						</div>
+						<div class="stats">
+							<div class="stat-item">
+								<div class="stat-value" id="total">{{total_milk_collection}}</div>
+								<div class="stat-label">Total Milk</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" style="color: #4CAF50;" id="complete">{{complete_collection}}</div>
+								<div class="stat-label">Completed</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" style="color: #FFC107;" id="incomplete">{{incomplete_collection}}</div>
+								<div class="stat-label">Incomplete</div>
+							</div>
+						</div>
+					</div>
+				</td>
+				<td><img src="{{ url_for('static', filename='images/rupee-icon.png') }}">
+					<div class="details">
+						<p>Today's Rate</p>
+						<p>
+							&#8377 45
+						</p>
+					</div>
+				</td>
+				<td><img src="{{ url_for('static', filename='images/graph-icon.png') }}">
+					<div class="details">
+						<p>Total revenue</p>
+						<p>
+							&#8377 {{total_revenue}}
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="{{ url_for('static', filename='images/clock-icon.png') }}">
+					<div class="details">
+						<p>Avg milk collection</p>
+						<p>
+							{{total_milk}}<span> LTR</span>
+						</p>
+					</div>
+				</td>
+				<td><img src="{{ url_for('static', filename='images/user-icon.png') }}">
+					<div class="details">
+						<p>Total farmers</p>
+						<p>
+							{{dairy_owner.total_farmers}}<span> /{{dairy_owner.total_farmers}}</span>
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<table id="mobile-widget-table">
+			<tr>
+				<td colspan="2">
+					<div class ="chart-holder">
+						<center><h3>Total Milk Collection</h3></center>
+						<div class="progress-semicircle">
+							<div class="progress-label">
+								<div class="progress-label__percentage"><!--var-->72%<!--var--></div>
+								<div class="progress-label__text">Completed</div>
+							</div>
+						</div>
+						<div class="stats">
+							<div class="stat-item">
+								<div class="stat-value"><!--var-->{{total_milk_collection}}<!--var--></div>
+								<div class="stat-label">Total Milk</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" style="color: #4CAF50;"><!--var-->{{complete_collection}}<!--var--></div>
+								<div class="stat-label">Completed</div>
+							</div>
+							<div class="stat-item">
+								<div class="stat-value" style="color: #FFC107;"><!--var-->{{incomplete_collection}}<!--var--></div>
+								<div class="stat-label">Incomplete</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="{{ url_for('static', filename='images/rupee-icon.png') }}">
+					<div class="details">
+						<p>Today's Rate</p>
+						<p>
+							&#8377 <!--var-->45<!--var-->
+						</p>
+					</div>
+				</td>
+				<td><img src="{{ url_for('static', filename='images/graph-icon.png') }}">
+					<div class="details">
+						<p>Total revenue</p>
+						<p>
+							&#8377 {{dairy_owner.total_revenue}}
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="{{ url_for('static', filename='images/clock-icon.png') }}">
+					<div class="details">
+						<p>Avg milk collection</p>
+						<p>
+							{{total_milk}}<span> LTR</span>
+						</p>
+					</div>
+				</td>
+				<td><img src="{{ url_for('static', filename='images/user-icon.png') }}">
+					<div class="details">
+						<p>Total farmers</p>
+						<p>
+							{{dairy_owner.total_farmers}}<span> /{{dairy_owner.total_farmers}}</span>
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="transactions-holder">
+		<h2>List of Recent Transactions</h2>
+		<div class="table-container">
+		<table class="transactions-table" id="transactions-table">
+			<thead>
+				<tr class="table-header">
+					<th class="header-cell">Name</th>
+					<th class="header-cell">ID</th>
+					<th class="header-cell">Phone Number</th>
+					<th class="header-cell">Time Added</th>
+					<th class="header-cell">Milk in Ltr</th>
+					<th class="header-cell">Fat (%)</th>
+					<th class="header-cell">Rate in ₹</th>
+					<th class="header-cell">Amount in ₹</th>
+				</tr>
+			</thead>
+			<tbody class="transactions-body" id="transactions-body">
+				<!-- Data rows will be populated dynamically-->
+				{% for transaction in transactions %}
+				<tr class="transaction-row">
+					<td class="transaction-cell">
+						<div class="avatar-name"> <img src="{{url_for('static', filename='images/pro.png')}}" alt="Avatar" class="avatar">
+							<div class="name-details">
+								<div class="name">{{transaction.farmer_name}} </div>
+								<div class="location">Location</div>
+							</div>
+						</div>
+					</td>
+					<td class="transaction-cell">{{transaction.farmer_id}}</td>
+					<td class="transaction-cell">{{transaction.farmer_mobile_number}}</td>
+					<td class="transaction-cell">{{transaction.time_added}} </td>
+					<td class="transaction-cell">{{transaction.milk_qty}}</td>
+					<td class="transaction-cell">{{transaction.fat}}</td>
+					<td class="transaction-cell">{{transaction.rate}}</td>
+					<td class="transaction-cell">{{transaction.total_amount}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
+    </div>
+	<script>
+		// script to update deg of rotation of the donut chart
+		const percentageText = document.querySelector('.progress-label__percentage').textContent;
+		const percentage = parseInt(percentageText, 10);
+		const rotationValue = percentage * 1.8 -  45; // Calculate the rotation
+
+		// Apply the rotation to the ::after pseudo-element
+		document.querySelector('#desktop-widget-table .progress-semicircle').style.setProperty('--rotation', `${rotationValue}deg`);
+		document.querySelector('#mobile-widget-table .progress-semicircle').style.setProperty('--rotation', `${rotationValue}deg`);
+	</script>
+{% endblock %}

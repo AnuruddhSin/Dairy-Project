@@ -1,0 +1,144 @@
+.table-holder * {
+	font-family: 'Alice';
+	font-weight: 400;
+	color: black;
+}
+
+.table-holder span {
+	font-size: 20px;
+	line-height: 23px;
+}
+
+.table-header {
+	background-color: #D9D9D9;
+	line-height: 23px;
+	font-family: 'Outfit';
+}
+
+.header-cell {
+	padding: 10px;
+	text-align: center;
+}
+
+.transactions-table .table-header th:first-child {
+	text-align: left;
+}
+
+.transaction-row {
+	border-bottom: 0.5px solid #ececec;
+}
+
+.transaction-cell {
+	padding: 10px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.transaction-cell:first-child {
+	text-align: left;
+}
+
+.transactions-table,
+.transactions-table th,
+.transactions-table td {
+	border: none;
+}
+
+.avatar-name {
+	display: flex;
+	align-items: center;
+}
+
+.avatar {
+	height: 40px;
+	width: 40px;
+	border-radius: 10px;
+	margin: 0 10px;
+}
+
+.name-details {
+	display: flex;
+	flex-direction: column;
+}
+
+.date {
+	font-size: 12px;
+	color: grey;
+}
+
+td.transaction-cell:nth-child(5) {
+	font-family: 'Lato' !important;
+	font-weight: 700 !important;
+	color: #1A932E;
+}
+
+.transactions-table td:nth-child(odd) {
+  font-family:'Aleo';
+}
+
+/*scrollable*/
+
+/* Set the max height for the table body to show only 4 rows and enable scrolling */
+.transactions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transactions-table tbody {
+  display: block;
+  max-height: 350px; /* Adjust this height to fit 4 rows */
+  overflow-y: auto; /* Enable vertical scrolling */
+  width: 100%;
+}
+
+.transactions-table thead,
+.transactions-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Optional: To ensure the scroll bar does not overlap the content */
+.transactions-table tbody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transactions-table tbody::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* Style for smooth scrolling and a clear scrollbar */
+.transactions-table tbody {
+  scrollbar-color: #ccc transparent;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 1024px) {
+	.avatar {
+		display: none;
+	}
+}
+
+@media (max-width: 576px) {
+	.table-holder span {
+		display: none;
+	}
+	.table-header {
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: 0.01em;
+	}
+	.transaction-cell {
+		font-size: 10px;
+		line-height: 12px;
+	}
+}
+
+@media (max-width:384px) {
+	.table-header {
+		font-size: 12px;
+	}
+}

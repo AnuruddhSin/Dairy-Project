@@ -1,0 +1,522 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #d4e7e6;
+    color: #333;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 99.8vh;
+    width: 17vw;
+    background: rgba(121, 198, 196, 1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar.active {
+    transform: translateX(-100%);
+}
+
+.logo {
+    height: 25vh;
+    width: 14vw;
+    border-radius: 50%;
+    display: block;
+    margin: 10px auto;
+    background: #000;
+}
+
+.farmer-uid-p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.farmer-uid-span {
+    color: rgba(219, 70, 70, 1);
+}
+
+.sidebar-text-box {
+    border-bottom: 1px solid black;
+}
+
+.sidebar-text-box-a {
+    text-decoration: none;
+    color: black;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+    display: block;
+    font-family: Lexend, sans-serif;
+    text-align: center;
+    padding: 8px 0;
+}
+
+.sidebar-text-box-a:hover {
+    background-color: #C1ECE76B;
+    opacity: 0.4;
+}
+
+.logout {
+    text-align: center;
+    font-size: 20px;
+    color: rgba(219, 70, 70, 1);
+    font-weight: bold;
+    padding: 8px;
+}
+
+.profile-box {
+    background-color: white;
+    height: 7vh;
+    max-width: 8vw;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-box-img {
+    height: 4vh;
+    width: 2vw;
+    border-radius: 50%;
+    display: block;
+    margin: 0 3px;
+}
+
+.profile-box-name {
+    height: 6vh;
+    display: flex;
+    align-items: center;
+}
+
+.profile-box-name-p {
+    line-height: 23px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Mobile Styles */
+@media screen and (max-width: 576px) {
+    .menu-btn {
+        display: block !important;
+        padding: 5px 20px;
+        font-weight: 800;
+        font-size: 24px;
+        background: rgba(121, 198, 196, 1);
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+    }
+
+    .sidebar {
+        width: 60vw;
+        transform: translateX(-100%);
+        overflow-y: auto;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .logo {
+        height: 20vh;
+        width: 33vw;
+    }
+
+    .profile-box {
+        max-width: 25vw;
+    }
+
+    .profile-box-img {
+        width: 6vw;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 17vw;
+    width: calc(100% - 17vw);
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.notification {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification-icon {
+    width: 24px;
+    height: 22px;
+}
+
+.date-time span {
+    /* display: block;
+    font-size: 14px; */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+.export-button {
+    background-color: #fff;
+    color:black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* .form container{
+    background-color: #d9d9d9;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(150, 150, 150, 0.5); 
+    width: 100%;
+    max-width: 5000px;
+    margin: 0 auto;
+    text-align: left;
+    min-height: 10vh;
+} */
+.form-container {
+    background-color: #FFFFFF57;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(150, 150, 150, 0.5); 
+    width: 100%;
+    max-width: 5000px;
+    margin: 0 auto;
+    text-align: left;
+    min-height: 10vh;
+    }
+    
+   /* Form Header */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+  }
+  
+  .form-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color:rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+    color: #333;
+    top:-20px;
+    padding: 20px 20px ;
+    border-radius: 5px;
+    padding-left: 350px;
+    padding-right: 300px;
+    display: inline;
+    gap: 40px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin: 0 auto 30px auto;
+    font-style: 
+    Aleo;
+  }
+  
+  /* .add-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  } */
+  /* .add-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    top: -60px;
+  } */
+  
+  /* Form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    margin: 50px auto 0 auto; /* Add top margin and center horizontally */
+    padding-top: 20px; /* Optional additional padding */
+
+  }
+  
+  .full-width {
+    width: 50%;
+    margin-left: 290px;
+    
+    
+    
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #3cb371;
+  }
+  
+  /* Button */
+  .form-btn {
+    text-align: center;
+  }
+  
+  button[type="submit"] {
+    background-color: #91E0C3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  button[type="submit"]:hover {
+    background-color:#91E0C3;
+  }
+
+  
+  @media screen and (max-width: 576px){
+    /* Form Container */
+    .form-container {
+        width: 90%;
+        padding: 15px;
+        margin-top: 40px;
+        
+    }
+    @media (min-width: 768px) {
+        .form-container {
+            width: 60%; /* Adjust width for larger screens */
+            margin-top: 40px; /* Increase top margin if needed */
+        }
+    }
+
+    .form-header h2 {
+        font-size: 1.2rem;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+  
+@media screen and (max-width: 768px) {
+    /* General Body Layout */
+    body {
+        flex-direction: column; /* Stacks elements vertically */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    /* Sidebar Adjustments */
+    .menu-btn {
+        display: block;
+        padding: 10px 15px;
+        font-weight: bold;
+        font-size: 20px;
+        background: rgba(121, 198, 196, 1);
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .sidebar {
+        width: 60vw; /* Adjust width for smaller screens */
+        transform: translateX(-100%); /* Hidden by default */
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+        transform: translateX(0); /* Slide-in when active */
+    }
+
+    .logo {
+        height: 20vh;
+        width: 50%; /* Adjust width for smaller screens */
+        margin: 20px auto;
+    }
+
+    .farmer-uid-p {
+        font-size: 16px;
+    }
+
+    .sidebar-text-box-a {
+        font-size: 20px;
+        padding: 10px 0;
+    }
+
+    .logout {
+        font-size: 16px;
+    }
+
+    /* Profile Box */
+    .profile-box {
+        max-width: 70%; /* Adjust width */
+        height: auto; /* Let height adjust naturally */
+        margin-top: 20px;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .profile-box-img {
+        width: 15%;
+    }
+
+    .profile-box-name-p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Main Content */
+    .main-content {
+        margin-left: 0; /* Remove sidebar margin */
+        width: 100%; /* Full width */
+        padding: 10px;
+        margin-top: 60px;
+    }
+
+    .header {
+        flex-direction: column; /* Stack header items vertically */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-actions {
+        flex-wrap: wrap; /* Allow wrapping of actions */
+        gap: 10px;
+    }
+
+    .notification {
+        width: 40px;
+        height: 40px;
+    }
+
+    .notification-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .date-time span {
+        font-size: 12px;
+        padding: 5px;
+        margin-left: 0;
+    }
+
+    .export-button {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+        
+    
+}
+
+    .form-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    .full-width {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    input, select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+  

@@ -1,0 +1,268 @@
+*{
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+
+#main{
+  height: 100vh;
+  width: 100vw;
+ background-color: #79C6C4;
+}
+
+header{
+  height: 10vh;
+
+  width: 100vw;
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  
+}
+.logo{
+  height: 100%;
+  width: 50%;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  padding-left: 6vw;
+  font-size: 4rem;
+  color: white;
+  
+}
+.logo span{
+  color: greenyellow;
+}
+.back_button{
+  height: 100%;
+  width: 50%;
+  /* background-color: yellow; */
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-left: 14vw;
+  font-size: 1.7rem;
+}
+
+#card_container{
+    height: 75vh;
+    width: 100vw;
+    /* background-color: gold; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.card{
+  height: 90%;
+  width: 60%;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.partone{
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  border-radius: 20px;
+
+}
+.parttwo{
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  border-radius: 20px;
+  background-image: url("./../../images/Milk3-removebg-preview.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.navigations_container{
+  height: 10vh;
+  width: 100vw;
+  background-color: #79C6C4;
+  
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.navigation{
+  height: 65%;
+  width: 15%;
+  background-color: #F0F7F6;
+  display: flex;
+  border-radius: 30px;
+  transition: 2s;
+
+}
+.navone , .navtwo{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 2s;
+}
+.navtwo{
+  background-color: greenyellow;
+  transition: 2s;
+}
+.navone:hover{
+  color: #79C6C4;
+}
+
+
+form{
+  height: 80%;
+  width: 100%;
+  background-color: white;
+  border-radius: 30px;
+  border-left: 10px;
+}
+
+.login_text{
+  height: 10%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 2rem;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+
+.uid_container{
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 6vh;
+}
+
+.text{
+  font-size: 1.3rem;
+  
+}
+.uid_container input{
+  width: 80%;
+  height: 60%;
+  padding: 1vw;
+  border-bottom: 2px solid black;
+  background-color: white;
+  margin-top: 2vh;
+ 
+}
+.password_container{
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 6vh;
+}
+
+.text{
+  font-size: 1.2rem;
+  
+}
+.password_container input{
+  width: 80%;
+  height: 60%;
+  padding: 1vw;
+  border-bottom: 2px solid black;
+  background-color: white;
+  margin-top: 2vh;
+}
+.submit_container{
+  height: 15%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6vh;
+}
+.submit_container input {
+  height: 65%;
+  border-radius: 10px;
+  width: 30%;
+  background-color: #91E0C3;
+  
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.new_container{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 4vh;
+  font-size: 1.2rem;
+}
+
+.bottomimage{
+  height: 15%;
+  width: 100%;
+  background-image: url('./../../images/milkflow.png');
+  background-position: center;
+}
+
+
+@media (max-width:800px){
+ .logo{font-size: 2rem;}
+
+ .card{
+  width: 100%;
+ }
+ .parttwo{
+  display: none;
+ 
+}
+.partone{
+  width: 100%;
+}
+.partone input{
+  width: 90%;
+}
+.navigation{
+  width: 70%;
+}
+}
+
+@media (min-width: 800px) and (max-width: 1050px) {
+  
+  .parttwo{
+    display: none;
+   
+  }
+  .partone{
+    width: 100%;
+  }
+  .navigation{
+    width: 30%;
+  }
+}
+@media (min-width: 1050px) and (max-width: 1290px) {
+  
+ .card{
+  width: 75%;
+ }
+ .navigation{
+  width: 31%;
+}
+}

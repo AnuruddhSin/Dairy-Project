@@ -1,0 +1,73 @@
+/* Custom modal styles */
+.custom-modal {
+    position: fixed;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.custom-modal-dialog {
+    position: relative;
+    margin: 10% auto;
+    max-width: 500px;
+    width: 90%;
+}
+
+.custom-modal-content {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.custom-modal-header,
+.custom-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.custom-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.custom-modal-body {
+    padding: 15px 0;
+}
+
+.custom-btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.custom-btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.custom-btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.custom-btn:hover {
+    opacity: 0.9;
+}

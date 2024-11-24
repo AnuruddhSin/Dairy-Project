@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="./../../../static/css/farmers/Products/Orders.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="sidebar-box">
+            {% include "farmer/Sidebar/FarmerSidebar.html" %}
+        </div>
+
+
+        <div class="main-content">
+            <div class="top-product">
+                <div class="top-product-div">
+                    <h1 class="top-product-h1">Products</h1>
+                </div>
+
+
+                <div class="top-product-div2">
+                    <img src="{{url_for('static', filename='images/bell.png')}}" alt="" class="bell">
+                    <p class="product-p">10.40 AM</p>
+                    <p class="product-p">21/12/2024</p>
+
+                </div>
+            </div>
+
+
+            <div class="right-side-box">
+                <div class="right-side-box-heading">
+                    <p class="back"> <a href="#">&nbsp;&nbsp;&nbsp;
+                            < Back</a>
+                    </p>
+
+                    <div class="head-box">
+                        <p class="head">Your Orders</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="{{url_for('static', filename='images/shopping-bag.png')}}" alt="bag" class="cart">
+                    </div>
+
+                </div>
+
+
+                <div class="cart-box">
+
+
+                    <!-- new order card -->
+                    <div class="product-card">
+                        <img src="{{url_for('static', filename='images/can2.jpg')}}" alt="" class="product-img">
+
+                        <div class="product-info">
+                            <p class="product-name">Stainless steel jug <br>
+                                <span class="product-name-span">10L, white grey</span>
+                            </p>
+
+                            <p class="delivery">Expected Delivery on 2 oct, Friday</p>
+                        </div>
+
+                        <div class="product-price">
+                            <p class="price">₹ 1099 /-</p>
+                        </div>
+
+                        <div class="product-buttons">
+                            <button class="buyOrcancel" onclick="toggleVisibility('toggleBlock')">Cancel Order</button>
+                            <p class="delivery">Tracking number : 3654634634</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- past order card -->
+                    <div class="product-card">
+                        <img src="{{url_for('static', filename='images/can2.jpg')}}" alt="" class="product-img">
+
+                        <div class="product-info">
+                            <p class="product-name">Stainless steel jug <br>
+                                <span class="product-name-span">10L, white grey</span>
+                            </p>
+
+                            <p class="delivery">Delivered on 2 oct, Friday</p>
+                        </div>
+
+                        <div class="product-price">
+                            <p class="price">₹ 1099 /-</p>
+                        </div>
+
+                        <div class="product-buttons">
+                            <button class="buyOrcancel">Buy Again</button>
+                            <p class="product-buttons-p">Rate Product
+                                <img src="{{url_for('static', filename='images/favorite.png')}}" alt="star" class="star">
+                                <img src="{{url_for('static', filename='images/favorite.png')}}" alt="star" class="star">
+                                <img src="{{url_for('static', filename='images/favorite.png')}}" alt="star" class="star">
+                                <img src="{{url_for('static', filename='images/favorite.png')}}" alt="star" class="star">
+                                <img src="{{url_for('static', filename='images/favorite.png')}}" alt="star" class="star">
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="alert-box" id="toggleBlock">
+
+        <div class="alert">
+            <img src="{{url_for('static', filename='images/check-removebg-preview.png')}}" alt="" class="alert-img">
+            <h2 class="alert-head">Cancel Order ?</h2>
+
+            <div class="alert-buttons">
+                <button class="alert-btn" onclick="toggleVisibility('toggleBlock')">Yes</button>
+                <button class="alert-btn" onclick="toggleVisibility('toggleBlock')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleVisibility(elementId) {
+            const element = document.getElementById(elementId);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
+            } else {
+                element.style.display = "none";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

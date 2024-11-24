@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dairy Farm Dashboard</title>
+  <link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/dairyOwner/dairyFarmerDetails.css')}}"
+  />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/commonFlashMessage.css')}}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+  {% include 'commonFlashMessages.html' %}
+  <div class="main">
+    <div id="sidebar">{% include '/dairyOwner/CommonSidebar.html' %}</div>
+    <!--sidebar ends here -->
+    
+    <!-- right side -->
+    <div class="right-side">
+      <div class="top-product">
+        <div class="top-product-div">
+          <h1 class="top-product-h1">Farmer Details</h1>
+        </div>
+        
+        <div class="top-product-div2">
+          <p class="product-p">
+            <img
+            src="{{url_for('static', filename='images/bell.png')}}"
+            alt="bell"
+            class=" bells"
+            />
+          </p>
+          
+          <p class="product-p" id="time"></p>
+          <p class="product-p" id="date"></p>
+          <!-- <button class="product-p product-p-btn"> <img src="./export.png" alt="" class="bell"> Export</button> -->
+          
+          
+          <div class="export" onclick="toggleVisibility('toggleBlock')">
+            <img
+            src="{{url_for('static', filename='images/export.png')}}"
+            alt=""
+            class="bells"
+            />
+            <p class="product-p-export">Export</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="right-side-box">
+        <div class="right-side-box-heading">
+          <h3>Farmer Details</h3>
+          
+          <!-- <div class="search"> -->
+            <!-- <form action="{{url_for('dairy_owner_dashboard.dairyFarmerDetails')}}" method="POST">
+              <input type="text" id="searchInput" class="searchbar" placeholder="Search" name="name" />
+              <button type="submit">🔍</button>
+            </form> -->
+          <!-- </div> -->
+          
+          <!-- Or -->
+          <!-- Yala backend shi connect kra aani input takle ki direct search zale pahije -->
+          <div class="searchForm">
+            <form class="search">
+              <img
+              src="{{url_for('static', filename='images/search.png')}}"
+              alt=""
+              class="img"
+              />
+              <input
+              type="text"
+              id="searchInput"
+              onchange="filterItems()"
+              class="searchbar"
+              placeholder="Search"
+              />
+            </form>
+          </div>
+          
+          <div class="buttons">
+            <button class="button">
+              <a href="{{url_for('past_farmer.viewPastFarmer')}}">
+                Past Members
+              </a>
+            </button>
+            
+            <button
+            class="button"
+            onclick="toggleVisibility2('toggleBlock2')"
+            >
+            <!-- <a href="{{url_for('add_farmer_to_dairy.AddFarmer')}}"> -->
+              <img
+              src="{{url_for('static', filename='images/plus.png')}}"
+              alt=""
+              class="plus"
+              />
+              Join Now
+            <!-- </a> -->
+          </button>
+          
+          <button class="button">
+            <a href="{{url_for('add_farmer_to_dairy.AddFarmer')}}">
+              <img
+              src="{{url_for('static', filename='images/plus.png')}}"
+              alt=""
+              class="plus"
+              />
+              Add Farmer
+            </a>
+          </button> 
+        </div>
+      </div>
+      
+      <div class="table-box" id="farmerList">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Id</th>
+              <th>Phone No.</th>
+              <th>Location</th>
+              <th>Milk Entry</th>
+              <th>Delete</th>
+              <th>Edit</th>
+              <th>View Details</th>
+            </tr>
+          </thead>
+          <tbody id="farmerTableBody">
+            {% for farmer in farmers %}
+            <tr>
+              <td>
+                <div class="profile">
+                  <img
+                  src="{{ farmer.farmer_image_url }}"
+                  class="profile-img"
+                  alt=""
+                  />
+                  <span id="item"
+                  >{{farmer.farmer_name}}</span
+                  >
+                </div>
+              </td>
+              
+              <td>{{farmer.farmer_id}}</td>
+              <td>{{farmer.farmer_mobile_number}}</td>
+              <td>{{farmer.farm_address}}</td>
+              <td style="width: 12%;" class="btns">
+                <a href="{{url_for('milk_entry_bp.milk_entry', farmer_id = farmer.farmer_id)}}"><button class="btn">Milk Entry</button></a>
+              </td>
+              <td style="width: 12%" class="btns">
+                <a href="{{url_for('delete_farmer.deleteFarmer', farmer_id = farmer.farmer_id)}}"><button class="btn">Delete</button></a>
+              </td>
+              <td style="width: 4%" class="btns">
+                <button class="btn" onclick="openEditModal(farmerId = '{{farmer.farmer_id}}')">Edit</button>
+              </td>
+              
+              <td style="width: 12%" class="btns">
+                <a href="/dairyOwner/view/farmer/{{farmer.farmer_id}}"
+                ><button class="btn">View Details</button></a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="background" id="toggleBlock" style="display: none">
+    <div class="box">
+      <div>
+        <div class="export2">
+          <img
+            src="{{url_for('static', filename='images/export.png')}}"
+            alt=""
+            class="bells"
+          />
+          <p class="product-p-export">Export</p> 
+        </div>
+        <form action="" id="exportFarmerData" method='POST' class="container2">
+
+          <select name="data_type" id="">
+            <option value="">Select Data</option>
+            <option value="farmer">Farmer Data</option>
+            <option value="muster">Muster Data</option>
+            <option value="cattle">Cattle Data</option>
+            <option value="bankdetails">Farmer Bank Data</option>
+          </select>
+
+          <select name="timeframe" id="">
+            <option value="">Select TimeFrame</option>
+            <option value="today">Today</option>
+            <option value="10days">Last 10 Days</option>
+            <option value="month">Last 1 Month</option>
+            <option value="year">Last 1 Year</option>
+          </select>
+
+          <input type="radio" name="choice" id="" value="csv"/>csv<br />
+          <input type="radio" name="choice" id="" value="excel"/>Excel XML<br />
+          <input type="radio" name="choice" id="" value="pdf"/>pdf
+
+          <div>
+            <button class="ex-btn" type='reset' onclick="toggleVisibility('toggleBlock')">
+              Cancel
+            </button>
+            <button class="ex-btn" id="export-submit" type="submit">Export</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal (hidden by default) -->
+<div class="modal" id="editFarmerModal" tabindex="-1" aria-labelledby="editFarmerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editFarmerModalLabel">Edit Farmer Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Modal Form -->
+        <form id="editFarmerForm">
+          <div class="mb-3">
+            <label for="farmer_name" class="form-label">Farmer Name</label>
+            <input type="text" class="form-control" id="farmer_name" name="farmer_name" required>
+          </div>
+          <div class="mb-3">
+            <label for="mobile_number" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile_number" name="mobile_number" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="aadhar_no" class="form-label">Aadhar No.</label>
+            <input type="text" class="form-control" id="aadhar_no" name="aadhar_no">
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+          </div>
+          <!-- Add other fields as needed -->
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- If Click on Join now -->
+  <div class="background2" id="toggleBlock2" style="display: none">
+    <div class="box2">
+      <h1>Join New Farmer</h1>
+      <h5>Enter the UID</h5>
+      <form action="{{url_for('join_new_farmer.joinFarmer')}}" method="POST">
+        <input type="text" class="idInput" name="farmer_uid" placeholder="Enter UID" /> <br />
+        <input type="submit" value="Send" class="idSub" />
+      </form>
+    </div>
+  </div>
+
+    
+
+    <script>
+      function toggleVisibility(elementId) {
+        const element = document.getElementById(elementId);
+        if (element.style.display === "none" || element.style.display === "") {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      }
+
+      function toggleVisibility2(elementId) {
+        const element = document.getElementById(elementId);
+        if (element.style.display === "none" || element.style.display === "") {
+          element.style.display = "block";
+        } else {
+          element.style.display = "none";
+        }
+      }
+
+      const searchInput = document.getElementById("searchInput");
+      const itemList = document.getElementById("item");
+
+      function filterItems() {
+        const searchTerm = searchInput.value.toLowerCase();
+        for (let i = 0; i < itemList.length; i++) {
+          const item = itemList[i].textContent.toLowerCase();
+          if (item.indexOf(searchTerm) > -1) {
+            itemList[i].style.display = "";
+          } else {
+            itemList[i].style.display = "none";
+          }
+        }
+      }
+
+      searchInput.addEventListener("keyup", filterItems);
+      function updateDateTime() {
+        const now = new Date();
+
+        // Extract the current date
+        const currentDate = now.toLocaleDateString(); // Get local date
+
+        // Extract the current time
+        const currentTime = now.toLocaleTimeString(); // Get local time
+
+        // Update the HTML elements with the current date and time
+        document.getElementById("date").textContent = currentDate;
+        document.getElementById("time").textContent = currentTime;
+      }
+
+      // Update the date and time when the page loads
+      window.onload = updateDateTime;
+
+      // Optionally, keep the time updated every second (for real-time display)
+      setInterval(updateDateTime, 1000); // Updates every second
+
+      document.getElementById('searchInput').addEventListener('input', function () {
+            const query = this.value;
+            fetch(`/search_farmer_details?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const farmerTableBody = document.getElementById('farmerTableBody');
+                    farmerTableBody.innerHTML = '';  // Clear previous results
+
+                    data.forEach(farmer => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${farmer.farmer_name}</td>
+                            <td>${farmer.farmer_id}</td>
+                            <td>${farmer.farmer_mobile_number}</td>
+                            <td>${farmer.farm_address}</td>
+                            <td><button class="btn">Milk Entry</button></td>
+                            <td><button class="btn">Delete</button></td>
+                            <td><button class="btn">Edit</button></td>
+                            <td><button class="btn">View Details</button></td>
+                        `;
+                        farmerTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching farmers:', error));
+        });
+        var flashMessages = JSON.parse('{{ get_flashed_messages(with_categories=true) | tojson | safe }}');
+    if (flashMessages.length > 0) {
+        flashMessages.forEach(function(message) {
+           
+            var messageType = message[0]; 
+            var messageText = message[1];  
+            
+            showFlashMessage(messageText)
+            // flashDiv.innerText = messageText;
+            // flashDiv.classList.add(messageType, 'show');
+            
+         
+            setTimeout(function() {
+                flashDiv.classList.remove('show');
+            }, 5000);
+        });
+    }
+      // Modal functions
+      function openEditModal(farmerId) {
+        // Fetch the farmer details from the server using AJAX
+        $.ajax({
+          url: `/dairyOwner/EditFarmer/${farmerId}`,
+          method: "GET",
+          success: function (data) {
+            // Populate the modal with the farmer data
+            $("#editFarmerModal #farmer_name").val(data.farmer_name);
+            $("#editFarmerModal #mobile_number").val(data.mobile_number);
+            $("#editFarmerModal #email").val(data.email);
+            $("#editFarmerModal #aadhar_no").val(data.aadhar_no);
+            $("#editFarmerModal #address").val(data.address);
+            $("#editFarmerModal #state").val(data.state);
+            $("#editFarmerModal #district").val(data.district);
+            $("#editFarmerModal #taluka").val(data.taluka);
+            $("#editFarmerModal #village").val(data.village);
+            $("#editFarmerModal #pincode").val(data.pincode);
+            $("#editFarmerModal #bank_name").val(data.bank_name);
+            $("#editFarmerModal #account_no").val(data.account_no);
+            $("#editFarmerModal #branch_name").val(data.branch_name);
+            $("#editFarmerModal #ifsc_code").val(data.ifsc_code);
+
+            // Open the modal
+            $("#editFarmerModal").modal("show");
+          },
+          error: function () {
+            alert("Error fetching farmer details.");
+          },
+        });
+      }
+   
+  $("#exportFarmerData").on('submit', function(event)
+{
+  event.preventDefault();
+  const formElement = this;
+  const formData = new FormData(formElement);
+  console.log(formData);
+  const data_type = formData.get('data_type');
+  const timeframe = formData.get('timeframe');
+  const choice = formData.get('choice');
+  
+  if(!data_type || !timeframe || !choice)
+{
+  alert("Please select all options before exporting");
+  return;
+}
+  const url = `/dairyOwner/export/${data_type}/${timeframe}/${choice}`;
+  window.location.href = url;
+});
+
+
+
+
+  // Handle the form submission
+  $('#editFarmerForm').on('submit', function(event) {
+    event.preventDefault();
+    
+    // Collect form data
+    const formData = $(this).serialize();
+    
+    // Send the data via AJAX to save the changes
+    $.ajax({
+      url: `/dairyOwner/EditFarmer/${farmerId}`,  // Make sure to send the correct farmer ID
+      method: 'POST',
+      data: formData,
+      success: function(response) {
+        // Close the modal
+        $('#editFarmerModal').modal('hide');
+        
+        // Optionally update the UI with the new data
+        alert("Farmer details updated successfully.");
+        location.reload();  // Reload to reflect changes
+      },
+      error: function(xhr, status, error) {
+        alert("Error saving farmer details: " + error);
+      }
+    });
+  });
+  
+  function closeEditModal() {
+    document.getElementById('editFarmerModal').style.display = 'none';
+  }
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    if (event.target === document.getElementById('editFarmerModal')) {
+      closeEditModal();
+    }
+  };
+
+  // Function to update the current time and date
+  function updateDateTime() {
+    const now = new Date();
+    
+    // Get the current time (HH:mm:ss format)
+    const time = now.toLocaleTimeString();
+
+    // Get the current date (MM/DD/YYYY format)
+    const date = now.toLocaleDateString();
+
+    // Set the time and date to the respective HTML elements
+    document.getElementById('time').textContent = time;
+    document.getElementById('date').textContent = date;
+  }
+
+  // Call the function immediately to set the initial date and time
+  updateDateTime();
+
+  // Update the time every second
+  setInterval(updateDateTime, 1000);
+
+</script>
+</body>
+</html>

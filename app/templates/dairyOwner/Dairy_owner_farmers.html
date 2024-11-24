@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer list</title>
+    <!-- CSS reference from dairyOwner remains unchanged -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/Dairy_owner_farmers.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            {% include 'commonFlashMessages.html'%}
+            <div class="logo">
+                <span>DAIRY</span><span class="highlight">FARM</span>
+            </div>
+            <nav>
+                <!-- <ul>
+                    <li><a href="#" class="active">HOME</a></li>
+                    <li><a href="#">DASHBOARD</a></li>
+                    <li><a href="#">SCHEME</a></li>
+                    <li><a href="#">CONTACT US</a></li>
+                </ul> -->
+            </nav>
+            <!-- <button class="back-button">&lt; Back</button> -->
+            <!-- Dynamic time and date display -->
+            
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Farmer List</h2>
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <!-- <button class="search-btn">🔍</button> -->
+                    </div>
+                    <div class="notification-date-time">
+                        <div class="notification">
+                            <img src="{{url_for('static', filename='images/notification@3x-1.png')}}" alt="Notification" class="notification-icon">
+                        </div>
+                        <div class="time-date">
+                            <span class="time" id="time"></span>
+                            <span class="date" id="date"></span>
+                        </div>
+                    </div>
+                </div>
+                <table class="farmer-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Id</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Milk Entry</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic farmer data -->
+                        {% for farmer in farmers %}
+                        <tr>
+                            <td><img src="{{ url_for('static', filename='images/pro.png') }}" alt="avatar" class="user-icon"></td>
+                            <td>{{ farmer.farmer_name}}</td>
+                            <td>{{ farmer.farmer_id }}</td>
+                            <td>{{ farmer.farmer_mobile_number }}</td>
+                            <td>{{ farmer.farmer_district}} {{farmer.farmer_taluka}} {{farmer.farmer_village}} </td>
+                            <td>
+                                <button class="select-button">
+                                    <a href="{{ url_for('milk_entry_bp.milk_entry', farmer_id=farmer.farmer_id) }}" style="text-decoration: none; color: inherit;">Select</a>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <!-- Footer section with the milk splash image -->
+        <footer class="footer">
+            <div class="milk-splash"></div>
+        </footer>
+    </div>
+
+    <!-- JavaScript for real-time updating of date and time -->
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const currentDate = now.toLocaleDateString();
+            const currentTime = now.toLocaleTimeString();
+            document.getElementById('date').textContent = currentDate;
+            document.getElementById('time').textContent = currentTime;
+        }
+
+        // Update time and date every second
+        window.onload = updateDateTime;
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>

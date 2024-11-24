@@ -1,0 +1,280 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #79C6C4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.navbar {
+    background-color: #79C6C4;
+    padding: 15px 20px;
+    
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #44c767;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
+
+.notification.error {
+    background-color: #ff5b5b;
+}
+
+.notification.success {
+    background-color: #44c767;
+}
+
+.notification.show {
+    display: block;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+.logo span {
+    color: #90EE90;
+}
+.nav {
+    display: flex;
+    background-color: #CEF8E1;
+    padding: 1%;
+    border-radius: 1rem;
+    margin-left:10rem
+}
+.nav a {
+    color: #79C6C4;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+    color: #4CAF50;
+}
+.nav a:hover {
+    text-decoration: underline;
+}
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* To account for the fixed navbar */
+    width: 100%;
+}
+.login-container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    max-width: 1000px;
+    width: 100%;
+}
+.login-form {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 20px;
+}
+.login-image {
+    flex: 1;
+    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milk-splash-NRXzxnJzIBBXprZF8N3wfIBBT8Xxm3.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 20px 20px 0;
+}
+h2 {
+    color: #8FBC8F;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: normal;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #8FBC8F;
+}
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+}
+.submit-btn {
+    background-color: #90EE90;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.submit-btn:hover {
+    background-color: #4CAF50;
+}
+.toggle-container {
+    display: inline-flex;
+    background-color: #E0FFFF;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.toggle-btn {
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: transparent;
+}
+.toggle-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.links {
+    margin-top: 20px;
+    font-size: 14px;
+}
+.links a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+.links a:hover {
+    text-decoration: underline;
+}
+.milk-splash {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/milk-splash-bottom-4HwzTGJIWdyPuIxI9c3k8kFzXMxpVH.png');
+    background-size: cover;
+    background-position: center top;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+/* Modal Container */
+.modal-content {
+    width: 50%;
+    height: 30%;
+    background-color: #f6f8f9;
+    padding: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+.modal-content form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Header */
+.modal-content h2 {
+    font-size: 22px;
+    color: #000000;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Form Labels */
+.modal-content label {
+    display: block;
+    font-size: 16px;
+    color: #4a7a8c;
+    text-align: left;
+    margin: 5px 0 5px 0;
+}
+
+/* Input Fields */
+.modal-content input[type="text"] {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d1dce5;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Focus on Input Fields */
+.modal-content input[type="text"]:focus {
+    border: 1px solid #4a7a8c;
+    box-shadow: 0px 0px 8px rgba(74, 122, 140, 0.3);
+}
+
+/* Button */
+.modal-content button {
+    align-self: center;
+    width: 25%;
+    padding: 10px 20px;
+    background-color: #91E0C3;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+.modal-content button:hover {
+    background-color: #479d7c;
+}
+
+/* Message Container */
+#otpMessageContainer {
+    margin-top: 20px;
+    color: #d9534f; /* Red for error messages */
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* General Modal Styling */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}

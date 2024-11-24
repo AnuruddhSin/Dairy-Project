@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/jinjaHeaderStatic.css')}}">
+    <h1>DAIRY <span style="color: #5cb85c;">FARM</span></h1>
+    <nav>
+        <a href="{{ url_for('guest.guestLanding') }}">Home</a>
+        <a href="{{ url_for('guest.guestPricingandPlans') }}">Scheme</a>
+        <a href="{{ url_for('dairy_owner_dashboard.dairyDashboard') }}">Dashboard</a> 
+        <a href="{{ url_for('guest.contact_us') }}">Contact Us</a> <!--  contact us ch route takun deshil -->
+        <!-- <a href="{{ url_for('guest.Logout') }}">Logout</a> -->
+    </nav>

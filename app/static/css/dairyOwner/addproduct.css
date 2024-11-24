@@ -1,0 +1,417 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #b3c7c7;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: rgba(121, 198, 196, 1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.sidebar img.logo {
+    width: 100%;
+    height: 200px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+    color: #292929;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin-bottom: 1vh;
+}
+
+nav ul li.active {
+    background-color: rgba(145, 224, 195, 1);
+    font-weight: bold;
+}
+
+/* Profile section */
+.sidebar .profile-section {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    color: #292929;
+    margin-top: 50px;
+}
+
+.sidebar-link {
+    color: black;
+    text-decoration: none;
+    display: block;
+  }
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+.date-time {
+    text-align: right;
+}
+
+.time, .date {
+    background-color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #292929;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.a1{
+    display: flex;
+    justify-content: space-between;
+
+}
+.a2{
+    display: flex;
+    justify-content: space-between;
+}
+.a3{
+    display: flex;
+}
+
+h2{
+    margin-left:  500px;;
+    margin-top: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-left h1 {
+    font-size: 1.8em;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #4a4a4a;
+}
+
+.add-product-form {
+    background-color: #d8e3e3;
+    padding: 10px;
+    border-radius: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  
+  height: 800px;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: auto;
+
+}
+
+.form-row {
+    margin-bottom: 20px;
+width: 100%;
+display: flex;
+flex-direction: column;
+margin-right: 10px;
+ 
+}
+
+.form-row label {
+    display: column;
+    font-weight: bold;
+    color: #4a4a4a;
+   
+    height: 40px;
+
+}
+
+.form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+    background-color: #d8e3e3;
+  
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.upload-row {
+    display: flex;
+    align-items: center;
+    background-color: #d8e3e3;
+    border: 1px dashed #c1c1c1;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+   
+  
+}
+
+.upload-row img {
+    width: 10%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.upload-row p {
+    color: #4a4a4a;
+    font-size: 0.99em;
+
+   justify-content: center;
+   margin-top: 20px;
+    font-weight: bold;
+   
+
+}
+
+.upload-row span {
+    color: #8a8a8a;
+}
+
+.submit-btn {
+    width: 20%;
+    padding: 12px;
+    background-color: #2e8b57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+   margin-left: 40%;
+ 
+}
+
+.submit-btn:hover {
+    background-color: #256b47;
+}
+
+
+/* Sidebar toggle button styling */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color:rgba(121, 198, 196, 1);
+    color:black;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 10px;
+    z-index: 2000;
+    width:40px;
+    height: 40px;
+}
+
+/* Responsive Design */
+
+
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+   
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebar {
+    
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .sidebar-toggle {
+        display: block;
+    }
+    .main-content {
+        width: auto;
+        margin-left: -40px;
+       margin-right: -40px;
+    }
+  .add-product-form{
+   height: fit-content;
+  }
+
+
+}
+
+
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70%;
+        overflow-y: auto;
+    }
+    .sidebar-toggle {
+        font-size: 18px;
+        padding: 6px;
+    }
+    .submit-btn {
+        margin-left: 100%;
+            margin: auto;
+         }
+         .back-btn{
+            display: none;
+           }
+
+                 
+
+.header-left{
+    display: none;
+}
+.date-time {
+    display: flex;
+    gap: 5px; 
+    align-items: center;
+}
+.header-right{
+    width: auto;
+justify-content: right;
+}
+
+
+.main-content {
+    width: auto;
+    margin-left: -40px;
+   margin-right: -40px;
+}
+.upload-row{
+    height: auto;
+}
+}
+
+
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 80%;
+        overflow-y: auto;
+    }
+    .sidebar-toggle {
+        font-size: 16px;
+        padding: 5px;
+    }
+   .back-btn{
+    display: none;
+   }
+h2{
+    margin-left: 115px;
+    
+}
+.upload-row{
+height: 100px;
+display: flex;
+}
+.upload-text{
+    flex-direction: column;
+}
+ 
+    .date-time {
+        display: flex;
+        gap: 5px; 
+        align-items: center;
+    }
+    .submit-btn {
+   margin-left: 100%;
+       margin: auto;
+    }
+    .main-content {
+        width: auto;
+        margin-left: -40px;
+       margin-right: -40px;
+      height: auto;
+    }
+
+    .header-left{
+        display: none;
+    }
+    .date-time{
+        display: flex;
+    }
+    .header-right{
+        width: auto;
+  margin-left: 40%;
+    }
+   
+    .a1{
+        flex-direction: column;
+    }
+    .a2{
+        flex-direction: column;
+    }
+    .upload-row{
+        height: 100px;
+    }
+}
+
+

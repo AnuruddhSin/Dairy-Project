@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/farmers/farmer_register.css') }}"> 
+     
+     <!-- <link rel="stylesheet" href="./../Style/reg.css"> -->
+    <script>
+        
+        // Function to check if a field (mobile number or email) exists in the system
+        async function checkIfExists(field, value) {
+            const response = await fetch(`/check_exists_dairy_owner?field=${field}&value=${value}`);
+            const data = await response.json();
+
+            // Show notification if it exists
+            if (data.exists) {
+                
+                const flashDiv = document.getElementById('flash-message');
+                message = `${field.charAt(0).toUpperCase() + field.slice(1)} already exists.`;
+                flashDiv.classList.add('error', 'show');
+                showFlashMessage(message, "error")
+                // Hide notification after 5 seconds
+                setTimeout(() => {
+                    flashDiv.classList.remove('show');
+                }, 15000);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileInput = document.querySelector('input[name="mobile_number"]');
+            const emailInput = document.querySelector('input[name="email"]');
+
+            // Trigger check when mobile number or email is input
+            mobileInput.addEventListener('input', () => {
+                checkIfExists('mobile_number', mobileInput.value);
+            });
+
+            emailInput.addEventListener('input', () => {
+                checkIfExists('email', emailInput.value);
+            });
+        });
+        function previewAvatar(event) {
+        const avatarInput = event.target;
+        const preview = document.getElementById('profile-preview');
+
+        if (avatarInput.files && avatarInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Set the image source to the file's data URL
+                preview.style.display = "block"; // Make the preview visible
+            };
+
+            reader.readAsDataURL(avatarInput.files[0]);
+        }
+    }
+    </script>
+    <style>
+        .flash-message {
+            display: none;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: red;
+        }
+
+        .flash-message.show {
+            display: block;
+        }
+    </style>
+</head>
+ 
+<body>
+
+    <div class="main">
+        <div class="heading">
+            <a href="/" style="text-decoration: none;"><h1 class="h1"><span>Dairy</span> Farm</h1></a>
+            {% include 'commonFlashMessages.html' %}
+            <h1 class="account">Create Account</h1>
+        </div>
+
+        <!-- Flash message div -->
+        <div class="alert alert-success d-flex align-items-center" id="flash-message" role="alert" style="display: none;">
+            <div class="flash-message-text"></div>
+            <progress id="flash-progress" value="100" max="100" style="width: 100%; height: 5px; margin-top: 10px;"></progress>
+        </div>
+
+        <div class="alert alert-error d-flex align-items-center" id="flash-message" role="alert" style="display: none;">
+            <div class="flash-message-text"></div>
+            <progress id="flash-progress" value="100" max="100" style="width: 100%; height: 5px; margin-top: 10px;"></progress>
+        </div>
+        <form class="form-box" enctype="multipart/form-data"> <!-- Remove action and method attributes -->
+            <div class="buttons">
+                <a href="/farmer/register"><h3 class="toggle-btn">Farmer</h3></a>
+                <a href="/dairyOwner/register"><h3 class="active ">Dairy Owner</h3></a>
+            </div>
+            <div class="field1">
+                <fieldset class="fieldset1">
+                    <legend>Basic Information</legend>
+
+                    <div class="input-field">
+                        <label for="fullname">Full Name</label><br>
+                        <input type="text" name="fullname" required placeholder="Enter Full Name">
+                    </div>
+                    <div class="input-field">
+                        <label for="mobileno">Mobile No.</label><br>
+                        <input type="number" name="mobile_number" id="mobileNumber" oninput="validateMobileNumber()" required>
+                        <span id="mobileError" style="color: red;display: none; transition: all;">Mobile Number should be exactly 10 digits</span>
+                    </div>
+                    <div class="input-field">
+                        <label for="email">Email</label><br>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="dob">Date of Birth</label><br>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="food-license">Food License no.</label><br>
+                        <input type="number" name="food-license" required>
+                    </div>
+                    <!-- <div class="input-field">
+                        <label for="village">Village</label><br>
+                        <input type="text" name="village" required placeholder="Enter Village Name">
+                    </div>
+                    <div class="input-field">
+                        <label for="district">District</label><br>
+                        <input type="text" name="district" required placeholder="Enter District Name">
+                    </div>
+                    <div class="input-field">
+                        <label for="taluka">Taluka</label><br>
+                        <input type="text" name="taluka" required placeholder="Enter Taluka Name">
+                    </div>
+                    <div class="input-field">
+                        <label for="state">State</label><br>
+                        <input type="text" name="state" required placeholder="Enter State Name">
+                    </div> -->
+                    <div class="input-field">
+                        <label for="password">Password</label><br>
+                        <input type="password" name="password" id="password" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="confirm_password">Confirm Password</label><br>
+                        <input type="password" name="confirm_password" id="confirm_password" required oninput="checkPasswordMatch">
+                        <div id="password-error" style="color: red; display: none; margin-top: 30px;">Password Do not Match</div>
+                        <div id="password-success" style="color: green; display: none; margin-top: 30px;">Password Matched</div>
+                    </div>
+
+                </fieldset>
+                <div class="profile-section">
+                    <div class="profile-box">
+                        <!-- <div class="profile-box-img"> -->
+                            <div class="profile-preview-frame">
+                                <img id="profile-preview" src="../../static/images/Frame 1171275858.jpg" alt="profile Preview">
+                            </div>
+                        
+                        <!-- <input type="file" class="profile_input" name='profile_image' accept="image/*" required> -->
+                        <input type="file" id="profile" name="profile_image" accept="image/*" class="profile_input" onchange="previewAvatar(event)" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field2">
+                <fieldset class="fieldset2">
+                    <legend>Dairy Information</legend>
+
+                    <div class="input-field">
+                        <label for="dairy-name">Dairy Name</label><br>
+                        <input type="text" name="dairy-name" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="no_of_cattle">Number of Cattles</label><br>
+                        <input type="number" name="no_of_cattle" required oninput="generateCattleFields()">
+                    </div>
+
+                    <div class="input-field">
+                        <label for="milk-storage">Milk storage capacity</label><br>
+                        <input type="number" name="milk_storage" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="address">Location/Address</label><br>
+                        <input type="text" name="address" required class="address">
+                    </div>
+
+                    <div id="cattle-fields" class="cattle-fields"></div> <!-- Cattle UID fields will be generated here -->
+
+                </fieldset>
+            </div>
+
+            <div class="field3">
+                <fieldset class="fieldset3">
+                    <legend>Account Information</legend>
+
+                    <div class="input-field">
+                        <label for="bank_name">Bank Name</label><br>
+                        <input type="text" name="bank_name" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="account_no">Account Number</label><br>
+                        <input type="text" name="account_no" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="branch_name">Branch Name</label><br>
+                        <input type="text" name="branch_name" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="ifsc_code">IFSC Code</label><br>
+                        <input type="text" name="ifsc_code" required>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+            <div id="messageContainer"></div>
+            <!-- Message container for registration response -->
+        
+        <button id="registerBtn" class='submit-button'>Submit</button> 
+        
+    </div>
+
+    
+
+    <!-- Use url_for to reference JS file -->
+</body>
+
+<script>
+    const password = document.getElementById('password');
+const confirm_password = document.getElementById('confirm_password');
+const error_div = document.getElementById('password-error');
+const password_success = document.getElementById('password-success');
+function checkPasswordMatch()
+{
+
+if(password.value !== confirm_password.value)
+{
+    console.log('Password Does not match');
+    error_div.style.display = 'flex';
+    password_success.style.display = 'none';
+}
+else
+{
+    console.log("Password Matches")
+    error_div.style.display = 'none';
+    confirm_password.style.border = '2px solid green';
+    password.style.border = '2px solid green';
+    password_success.style.display = 'flex';
+}
+
+}
+
+password.addEventListener('input', checkPasswordMatch);
+confirm_password.addEventListener('input', checkPasswordMatch);
+</script>
+
+<script src="{{ url_for('static', filename='js/dairyOwner/DairyOwnerRegister.js') }}"></script>
+</html>

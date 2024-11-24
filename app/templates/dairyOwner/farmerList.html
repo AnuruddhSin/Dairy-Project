@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer List - DAIRY FARM</title>
+    <link rel="stylesheet" href="../../static/css/dairyOwner/Dairy_owner_farmers.css">
+</head>
+<body>
+    <div class="header">DAIRY FARM
+        {% include 'commonFlashMessages.html' %}
+    </div>
+
+    <div class="farmer-list">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>ID</th>
+                <th>Action</th>
+            </tr>
+            {% for farmer in farmers %}
+            <tr>
+                <td>{{ farmer.name }}</td>
+                <td>{{ farmer.id }}</td>
+                <td><a href="{{ url_for('milk_entry', farmer_id=farmer.id) }}">Select</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

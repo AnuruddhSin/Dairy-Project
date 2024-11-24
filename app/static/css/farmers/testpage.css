@@ -1,0 +1,309 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #79C6C4;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    /* border: 1px solid red; */
+    background: url("./../images/milkflow.png") no-repeat;
+    background-position: bottom;
+    background-size: 100vw 25vh;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    background-color: #44c767;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    z-index: 1000;
+}
+
+.notification.error {
+    background-color: #ff5b5b;
+}
+
+.notification.success {
+    background-color: #44c767;
+}
+
+.notification.show {
+    display: block;
+}
+.btn {
+    background-color: #4caf8c;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #3b8a6c;
+}
+.modal-content {
+    width: 50%;
+    background-color: #f6f8f9;
+    padding: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header */
+.modal-content h2 {
+    font-size: 22px;
+    color: #000000;
+    margin-bottom: 5px;
+}
+
+/* Form Labels */
+.modal-content label {
+    display: block;
+    font-size: 16px;
+    color: #4a7a8c;
+    text-align: left;
+    margin: 5px 0 5px 0;
+}
+
+/* Input Fields */
+.modal-content input[type="text"] {
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #d1dce5;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Focus on Input Fields */
+.modal-content input[type="text"]:focus {
+    border: 1px solid #4a7a8c;
+    box-shadow: 0px 0px 8px rgba(74, 122, 140, 0.3);
+}
+
+/* Button */
+.modal-content button {
+    align-self: center;
+    width: 25%;
+    padding: 10px 20px;
+    background-color: #91E0C3;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Button Hover Effect */
+.modal-content button:hover {
+    background-color: #479d7c;
+}
+
+/* Message Container */
+#otpMessageContainer {
+    margin-top: 20px;
+    color: #d9534f; /* Red for error messages */
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* General Modal Styling */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+.heading {
+    /* border: 1px solid black; */
+    height: 60px;
+    width: 55vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 60px;
+}
+
+
+.account {
+    font-size: 42px;
+    line-height: 48px;
+    font-weight: 400;
+    color: #8E9E5B;
+}
+
+
+.form-box {
+    border: 1px solid black;
+    width: 70vw;
+    height: 68vh;
+    margin: auto;
+    margin-top: 70px !important;
+    border-radius: 54px;
+    padding: 0 2.5vw;
+    background-color: #E6F3F2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    width: 12vw;
+    margin: auto;
+    border-radius: 27px;
+    height: 32px;
+    align-items: center;
+    padding:5px 8px;
+    margin-top: -25px;
+}
+
+.buttons h3 {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 20px;
+    border-radius: 27px;
+}
+
+.buttons h3:hover {
+    background-color: #349C4B;
+}
+
+.field1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+
+
+
+.fieldset1 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    width: 50vw;
+    border: none;
+}
+
+input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: rgba(0, 255, 255, 0);
+    width: 15vw;
+    margin-right: 20px;
+}
+
+.profile-box {
+    height: 20vh;
+    width: 14vw;
+    /* border: 1px solid black; */
+    align-items: end;
+}
+
+.profile-input {
+    width: 10vw;
+    margin: 0;
+}
+
+.fieldset2 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    height: 25vh;
+    border: none;
+}
+
+.fieldset3 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    height: 10vh;
+    border: none;
+}
+
+
+
+.address {
+    width: 48vw;
+}
+
+
+legend {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.78px;
+    letter-spacing: 9%;
+}
+
+
+label {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.58px;
+    letter-spacing: 9%;
+    color: #000000;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.79px;
+    color: #00000057;
+}
+
+
+button {
+    background-color: #91E0C3;
+    height: 50px;
+    color: #875E5E;
+    font-size: 28px;
+    padding: 5px 25px;
+    display: block;
+    margin: 50px auto;
+    font-weight: 700;
+    border: none;
+    line-height: 40px;
+    border-radius: 13px;
+    box-shadow: 10px 6px 13px 0px #1D0303CC;
+}
+
+.toggle-btn {
+    border: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: transparent;
+}
+.toggle-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}

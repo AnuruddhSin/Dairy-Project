@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.add-products-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-products-btn:hover {
+    background-color: #218838;
+}
+
+.supply-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.supply-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.new-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-container img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.icon {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.trash-icon {
+    margin-right: 10px;
+}
+
+.supply-details {
+    margin-top: 15px;
+}
+
+.price-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.current-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: red;
+    margin-right: 10px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.rating {
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: orange;
+}
+
+.reviews {
+    font-size: 0.9em;
+    color: gray;
+}
+
+.buy-now-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-now-btn:hover {
+    background-color: #218838;
+}

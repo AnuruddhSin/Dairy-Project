@@ -1,0 +1,372 @@
+setting.css
+
+/* General resets */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #9acbcb; /* Soft background */
+    color: #333;
+}
+
+/* Main container for the settings page */
+.settings-holder {
+    margin: 40px auto;
+    background-color: #bfe7e4;
+    border-radius: 12px;
+    min-height: 700px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 100%;
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.settings-section h3 {
+    font-size: 36px;
+    color: #3571a8;
+    margin-bottom: 20px;
+}
+
+.settings-section hr {
+    width: 80%;
+    margin: 20px auto;
+    border: 2px solid #98d5e7;
+    border-radius: 5px;
+}
+
+.settings-section table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.settings-section td {
+    border-bottom: 1px solid #98d5e7;
+    padding: 12px;
+    height: 60px;
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+}
+
+.settings-section td i {
+    font-size: 24px;
+    color: #3571a8;
+}
+
+.settings-section td .clickable {
+    color: #3571a8;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.settings-section td .clickable:hover {
+    color: #296a8d;
+}
+
+/* Custom Select */
+.custom-select {
+    appearance: none;
+    background-color: #f4f7f7;
+    border: 1px solid #ccd8d8;
+    font-size: 16px;
+    color: #333;
+    padding: 8px 30px 8px 12px;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.custom-select:focus {
+    border-color: #3571a8;
+}
+
+.custom-select option {
+    background-color: #fff;
+    color: #555;
+}
+
+/* Notification Toggle */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    background-color: #e6f1f5;
+    border-radius: 20px;
+    padding: 8px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.label {
+    font-size: 18px;
+    color: #333;
+}
+
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Edit Profile Button */
+.clickable {
+    cursor: pointer;
+    color: #3571a8;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.clickable:hover {
+    color: #296a8d;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .settings-holder {
+        padding: 30px;
+    }
+
+    .settings-section h3 {
+        font-size: 28px;
+    }
+
+    .settings-section table {
+        width: 90%;
+    }
+
+    .settings-section td {
+        padding: 10px;
+    }
+}
+
+/* For smaller screens (mobile-first) */
+@media (max-width: 768px) {
+    .settings-holder {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .settings-section h3 {
+        font-size: 24px;
+    }
+
+    .settings-section hr {
+        width: 90%;
+    }
+
+    .settings-section table {
+        width: 100%;
+    }
+
+    .settings-section td {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+
+    .custom-select {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .toggle-container {
+        width: 100%;
+        justify-content: space-between;
+        padding: 10px 15px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 500px) {
+    .settings-holder {
+        padding: 15px;
+    }
+
+    .settings-section h3 {
+        font-size: 20px;
+    }
+
+    .settings-section hr {
+        width: 100%;
+    }
+
+    .settings-section table {
+        width: 100%;
+    }
+
+    .settings-section td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .toggle-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 12px;
+    }
+
+    .icon {
+        margin-bottom: 5px;
+    }
+}
+
+/* Dialog content styles */
+.dialog-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px 30px;
+    border-radius: 15px;
+    background-color: #edf7f7;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-content h2, .dialog-content h3 {
+    font-size: 22px;
+    margin: 20px 0 10px;
+    color: #404040;
+    font-weight: bold;
+}
+
+.dialog-content label {
+    display: inline-block;
+    width: 200px;
+    font-size: 14px;
+    color: #5a5a5a;
+    vertical-align: middle;
+}
+
+.dialog-content input[type="text"],
+.dialog-content input[type="email"],
+.dialog-content input[type="date"],
+.dialog-content input[type="file"] {
+    width: calc(100% - 220px);
+    border: none;
+    border-bottom: 1px solid #c4c4c4;
+    background: none;
+    font-size: 14px;
+    color: #333;
+    padding: 5px 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.dialog-content input[type="text"]:focus,
+.dialog-content input[type="email"]:focus,
+.dialog-content input[type="date"]:focus {
+    border-color: #5bc0be;
+}
+
+.dialog-content img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+/* Button styling */
+button {
+    display: block;
+    width: 150px;
+    padding: 10px 15px;
+    margin: 20px auto 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #8ed1be;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    background-color: #72b49f;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional styling for profile editing */
+.dialog-content > h3 {
+    margin-top: 30px;
+}
+
+.dialog-content > div {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dialog-content > div > label {
+    flex: 1 0 220px;
+}
+
+.dialog-content > div > input {
+    flex: 1 0 calc(100% - 240px);
+}
+
+.dialog-content > div:last-child {
+    flex-wrap: nowrap;
+}
+
+/* Horizontal line between sections */
+h3 + div {
+    margin-top: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #d6d6d6;
+}

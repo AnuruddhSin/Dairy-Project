@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./../../static/css/farmers/farmer_login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <a href="/" style="text-decoration: none;"><div class="logo">Dairy <span>Farm</span></div> </a>
+      <div class="back_button">  <a href="/" style="text-decoration: none;color: black;"><i class="fa-solid fa-caret-left"></i> back </a> </div>
+    </header>
+    <div id="card_container">
+      <div class="navigations_container">
+        <div class="navigation">
+          <div class="navone"> <a href="/" style="text-decoration: none;">Farmer </a></div>
+          <div class="navtwo"> <a href="/dairyOwner/login" style="text-decoration: none;">Owner  </a></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="partone">
+          
+          <div class="login_text"> Farmer Login </div>
+          
+          <form action="{{url_for('farmer_login_control.farmerLogin')}}" method="POST">   <!--form tag is here -->
+            
+            <div class="uid_container">
+              <div class="text">   <i class="fa-solid fa-clipboard"></i> UID / EMAIL</div>
+              <input type="text" placeholder="UID/EMAIL" name="emailoruid">
+            </div>
+            <div class="password_container">
+              <div class="text">   <i class="fa-solid fa-key"></i> Password </div>
+              <input type="password" placeholder="Enter your password " name="password">
+            </div>
+            <div class="submit_container">
+              <input type="submit">
+            </div>
+            <div class="new_container">
+              <div class="newuser">New user ??  <a href="/farmer/register" style="text-decoration: none;">Register </a> here </div>
+              <div class="forget_password"> <a href="/farmer_request_reset" style="text-decoration: none;color: black;">Forget password </a></div>
+            </div> <!--new_container ends hre -->
+          </form>
+        </div> <!--partone ends here -->
+        <div class="parttwo"></div> <!--partwo ends here -->
+      </div>
+    </div> <!--card_contaiener ends here -->
+    <div class="bottomimage"></div>
+  </div><!--main ends here -->
+  {% include 'commonFlashMessages.html' %}
+</body>
+</html>

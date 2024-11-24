@@ -1,0 +1,138 @@
+body {
+    background: rgba(193, 236, 231, 0.42);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: rgba(0, 6, 6, 1);
+}
+
+a {
+    text-decoration: none;
+    color: rgba(0, 6, 6, 1);
+    font-weight: 600;
+    font-size: 24px;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s;
+}
+
+a:hover {
+    background: rgba(219, 70, 70, 0.8);
+    color: white;
+}
+
+.main {
+    min-height: 50vh;
+    width: 90%;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.34);
+    padding: 30px;
+    padding-bottom: 43px !important;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+/* .main:hover {
+    transform: scale(1.02);
+} */
+
+h1 {
+    text-align: center;
+    color: rgba(219, 70, 70, 1);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.profile-box {
+    margin-top: 20px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s;
+}
+
+.profile-box:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-pic {
+    border: 3px solid rgba(219, 70, 70, 0.6);
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20px auto;
+    transition: transform 0.3s;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+}
+
+.profile-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.profile-info-p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 12px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+    max-width: 400px;
+    transition: transform 0.3s;
+}
+
+.profile-info-p:hover {
+    transform: translateY(-5px);
+}
+
+.profile-info-span {
+    font-weight: bold;
+    color: rgba(219, 70, 70, 1);
+}
+
+@media screen and (max-width: 768px) {
+    .profile-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-info-p {
+        font-size: 16px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .profile-info-p {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    a {
+        font-size: 20px;
+    }
+
+    .profile-info-p {
+       
+        max-width: 300px !important;
+    }
+}

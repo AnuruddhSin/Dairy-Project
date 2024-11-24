@@ -1,0 +1,81 @@
+{% extends "dairyOwner/basepage.html" %}
+
+{% block title %}Setting{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/settings.css') }}">
+{% endblock %}
+
+{% block header %}Setting{% endblock %}
+
+{% block content %}
+	<div class="settings-holder">
+		<div class="settings-section">
+			<h3>Settings</h3>
+			<hr>
+			<table>
+				<tr>
+					<td><i class="fas fa-bell"></i></td>
+					<td colspan=2>
+						<div class="toggle-container">
+							Notification
+							<label class="switch">
+								<input type="checkbox" id="notification-toggle" onchange="toggleNotification()" checked>
+								<span class="slider"></span>
+							</label>
+						</div>
+					</td>
+				</tr>
+
+
+                <!-- NOTE: dark theme toggle temporary removed  -->
+				<!-- <tr>
+					<td><i class="fa-solid fa-sun"></i></td>
+					<td> 
+						<label for="theme-select">Theme:</label>
+					</td>
+					<td>
+						<select id="theme-select" onchange="toggleTheme()" class="custom-select">
+							<option value="light">light <i class="fas fa-caret-down"></i></option>
+							<option value="dark">Dark <i class="fas fa-caret-down"></i></option>
+						</select>
+					</td>
+				</tr> -->
+
+				<tr>
+					<td><i class="fa-regular fa-file"></i></td>
+					<td>
+						<span>Language</span>
+					</td>
+					<td>
+						<select class="custom-select">
+							<option>Eng <i class="fas fa-caret-down"></i></option>
+							<option>Mar <i class="fas fa-caret-down"></i></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fa-regular fa-user"></i></td>
+					<td onclick="showEditProfileDialog()" class="clickable">
+						<span>Edit Profile</span>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>
+					<td><i class="fas fa-lock"></i></td>
+					<td class="clickable">
+						<span>Privacy Policy</span>
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><i class="fa-regular fa-file"></i></td>
+					<td class="clickable">
+						<span>Terms and Conditions</span>
+					</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>

@@ -1,0 +1,113 @@
+{% extends "dairyOwner/basepage.html" %}
+
+{% block title %}Milk Entry{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/MilkEntry.css') }}">
+{% endblock %}
+
+{% block header %}Milk Entry{% endblock %}
+
+{% block button_name %}Milk Entry{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <div class="form-container">
+            <h2>Milk Entry</h2>
+            <form action="{{ url_for('milk_entry_bp.milk_entry', farmer_id=farmer.farmer_id) }}" method="POST" id="milkEntryForm" class="form">
+                <div class="form-row-row">
+					<div class="form-row-0">
+						<div class="form-row-col">
+							<label>Farmer Name:</label>
+							<label>Farmer ID:</label>
+                        </div>
+                        <div class="form-row-col">
+                            <input type="text" value="{{ farmer.farmer_name }}" readonly><br>
+                            <input type="text" value="{{ farmer.farmer_id }}" readonly><br>
+                        </div>
+					</div>
+                    <div class="form-image">
+                            <img src="{{ farmer.photo_url }}" alt="No Image Available" width="150" height="150">
+                    </div>
+                </div>
+                <div class="form-row-row">
+                    <div class="form-col">
+                        <label>Date of collection</label>
+                        <input type="date" name="collection_date"><br>
+                    </div>
+                    <div class="form-col">
+                        <label>Time of collection</label>
+                        <input type="time" name="collection_time"><br>
+                    </div>
+                </div>
+                <div class="form-section-col">
+                    <div class="section-header-row">Milk Details:</div>
+                    <div class="form-row-3">
+                        <div class="form-col">
+                            <label>Quantity of milk (L)</label>
+                            <input type="number" name="quantity_milk" step="0.01"><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Milk type</label>
+                            <select name="milk_type">
+                                <option value="cow">Cow</option>
+                                <option value="buffalo">Buffalo</option>
+                            </select><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Fat content</label>
+                            <input type="number" name="fat_content" step="0.01"><br>
+                        </div>
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-col">
+                            <label>SNF %</label>
+                            <input type="number" name="snf_content" step="0.01"><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Density</label>
+                            <input type="number" name="density" step="0.01"><br>
+                        </div>
+						<div class="form-col"></div>
+                    </div>
+                </div>
+                <div class="form-section-col">
+                    <div class="section-header-row">Payment Details:</div>
+                    <div class="form-row-3">
+                        <div class="form-col">
+                            <label>Rate per L</label>
+                            <input type="number" name="rate_per_l" step="0.01"><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Total amount</label>
+                            <input type="number" name="total_amount" step="0.01"><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Payment status</label>
+                            <select name="payment_status">
+                                <option value="paid">Paid</option>
+                                <option value="pending">Pending</option>
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-col">
+                            <label>Payment method</label>
+                            <select name="payment_method">
+                                <option value="cash">Cash</option>
+                                <option value="bank">Bank Transfer</option>
+                            </select><br>
+                        </div>
+                        <div class="form-col">
+                            <label>Collected By</label>
+                            <input type="text" name="collected_by"><br>
+                        </div>
+						<div class="form-col"></div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    <button type="submit" onclick="document.getElementById('milkEntryForm').submit();" class="submit-btn">Submit</button>
+    </div>
+{% endblock %}

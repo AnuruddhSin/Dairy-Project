@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="./../../../static/css/farmers/Products/YourCart.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/commonFlashMessage.css')}}">
+    <style>
+        /* Default styling for address box */
+.address-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect */
+.address-box:hover {
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Selected state */
+.address-box.selected {
+    background-color: #d1e7dd;
+    border-color: #0f5132;
+    box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.2);
+}
+
+    </style>
+</head>
+
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-messages">
+                {% for category, message in messages %}
+                <div class="alert alert-success d-flex align-items-center" id="flash-message" role="alert" style="opacity: 0; visibility: hidden;">
+                    <div class="flash-message-text">{{message[0]}}</div>
+                    <progress id="flash-progress" value="100" max="100" style="width: 100%; height: 5px; margin-top: 10px;"></progress>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    {% include 'commonFlashMessages.html' %}
+    <div class="main">
+
+        <div class="sidebar-box">
+            {% include "farmer/Sidebar/FarmerSidebar.html" %}
+        </div>
+
+
+        <div class="main-content">
+            <div class="top-product">
+                <div class="top-product-div">
+                    <h1 class="top-product-h1">Products</h1>
+                </div>
+
+
+                <div class="top-product-div2">
+                    <img src="{{url_for('static', filename='images/bell.png')}}" alt="" class="bell">
+                    <p class="product-p">10.40 AM</p>
+                    <p class="product-p">21/12/2024</p>
+                    <!-- <button class="product-p product-p-btn"> <img src="./export.png" alt="" class="bell"> Export</button> -->
+                    <div class="export">
+                        <img src="{{url_for('static', filename='images/export.png')}}" alt="" class="bell">
+                        <p class="product-p-export">Export</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right-side-box">
+                <div class="right-side-box-heading">
+
+
+                    <p class="back"> <a href="#">&nbsp;&nbsp;&nbsp;
+                            < Back</a>
+                    </p>
+
+
+
+                    <div class="head-box">
+                        <p class="head">Your Cart</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="{{url_for('static', filename='images/shopping-cart.png')}}" alt="cart" class="cart">
+                    </div>
+
+                </div>
+
+
+                <div class="cart-box">
+
+                    <div class="tablebox">
+                        <table>
+                            <tr>
+                                <thead>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>price</th>
+                                </thead>
+                            </tr>
+                            {% for item in items %}
+                            <tr data-product-id="{{ item.product_id }}">
+                                
+                                <td>{{item.product_name}}</td>
+                                <td>
+                                    <a href="{{url_for('view_cart.decreaseProductQuantity', product_id = item.product_id)}}" style="display: inline;"><button class="math minus" >-</button></a>
+
+                                    <span class="quantity" id="quantity" value="1">{{ item.quantity }}</span>
+
+                                    <a href="{{url_for('view_cart.increaseProductQuantity', product_id = item.product_id)}}" style="display: inline;"><button class="math plus"  value="1">+</button></a>
+                                </td>
+                                <td class="product-price">&#8377 <span id="product-price">{{item.price}}</span></td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+
+                    <div class="all-price">
+                        <p class="total-price">Total Price: &nbsp;&nbsp;&nbsp;&nbsp; <span
+                                class="total-price-span"> &#8377 {{total_amount}}</span></p>
+                        <p class="gst-price">GST Price: &nbsp;&nbsp;&nbsp;&nbsp; &#8377 {{gst}}</p>
+                        <p class="delivery-price">Delivery Charges: &nbsp;&nbsp;&nbsp;&nbsp; &#8377 40</p>
+                    </div>
+
+                    <div class="total-amount">
+                        <p class="total-amount-p">Total Amount Payable: &nbsp;&nbsp;&nbsp;&nbsp; <span
+                                class="total-amount-span"> &#8377 {{  math.ceil(total_payable_amt) }}</span></p>
+                    </div>
+
+
+                    <div class="address-head-box">
+                        <p class="address-head-box-p">Select Address:</p>
+                        <a href="{{url_for('add_delivery_address.addAddress')}}"><button class="add">Add +</button></a>
+                    </div>
+                    {% for item in addresses %}
+                        <div class="address-box" data-address-id="{{ item.id }}">
+                            <div class="farmer-address">
+                                <img src="{{ url_for('static', filename='images/map.png') }}" alt="map" class="location">
+                                <div class="farmer-info">
+                                    <span class="farmer-name">{{ item.name }}</span><br>
+                                    <span class="mobile-no">{{ item.mobile_no }}</span><br>
+                                    <span class="address">
+                                        {{ item.landmark }} {{ item.village }}, {{ item.taluka }}, {{ item.district }}, {{ item.state }}, {{ item.pincode }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                </div>
+
+
+                <button class="next" id="nextButton" type="button">Next</button>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let selectedAddressId = null; // To store the selected address ID
+    
+        // Attach click event listener to all address boxes
+        document.querySelectorAll('.address-box').forEach(box => {
+            box.addEventListener('click', function () {
+                // Remove 'selected' class from any previously selected box
+                document.querySelectorAll('.address-box').forEach(b => b.classList.remove('selected'));
+    
+                // Add 'selected' class to the clicked box
+                this.classList.add('selected');
+    
+                // Update the selected address ID
+                selectedAddressId = this.dataset.addressId;
+            });
+        });
+    
+        // Handle "Next" button click
+        document.getElementById('nextButton').addEventListener('click', function () {
+            if (!selectedAddressId) {
+                alert('Please select an address before proceeding.');
+                return;
+            }
+        
+            // Construct the URL with query parameters
+            const url = new URL('{{ url_for("view_cart.productGateway") }}', window.location.origin);
+            url.searchParams.append('address_id', selectedAddressId);
+            url.searchParams.append('total_payable_amt', {{ total_payable_amt | tojson }});
+            url.searchParams.append('total_amount', {{ total_amount | tojson }});
+            url.searchParams.append('gst', {{ gst | tojson }});
+        
+            // Redirect the user to the payment gateway page
+            window.location.href = url;
+        });
+        
+        
+    });
+    
+</script>
+</html>

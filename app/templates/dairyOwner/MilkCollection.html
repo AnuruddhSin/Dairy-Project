@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilkCollection</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/MilkCollection.css')}}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+</head>
+<body>
+    <div id="main">
+      {% include 'commonFlashMessages.html' %}
+        <!-- <div id="sidebar"> -->
+            {% include '/dairyOwner/CommonSidebar.html' %}
+        <!-- </div> sidebar ends here  -->
+         
+
+        <section id="dashboard_container">
+          
+            <div class="header">
+              <div class="partone">MilK Collection</div>
+              <div class="parttwo">
+                <div class="header_notification"> <i class='bx bx-bell'></i></div>
+                <div class="header_time"> 10:40 pm </div>
+                <div class="header_date">29/10/2024</div>
+              </div>
+            </div>  <!--header ends here -->
+
+
+            <div class="chart_container">
+                
+                <button id="updateData">Update Data</button>
+                <canvas id="myChart"></canvas>
+
+                <div class="total_milk"> <div class="total_milk_text">Total Milk </div>     <div class="total_milk_value">60 L</div></div>
+
+               
+            
+
+
+            </div> <!--chart container ends here -->
+
+            <div class="date_container">
+                <div class="select_box">
+                    <select>
+                        <option value="daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+            </div>
+
+        
+
+
+        </section> <!--dashboard container ends here-->
+
+         
+        
+  
+
+    </div>
+
+
+
+    <div class="calendar">
+        <div class="month">
+          <button onclick="prevMonth()">❮</button>
+          <div id="monthYear"></div>
+          <button onclick="nextMonth()">❯</button>
+        </div>
+      
+        <div class="weekdays">
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
+          <div>Sun</div>
+        </div>
+      
+        <div class="days" id="days"></div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{url_for('static', filename='js/dairyOwner/MilkCollection.js')}}"></script>
+</body>
+</html>

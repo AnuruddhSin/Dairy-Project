@@ -1,0 +1,215 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #8FD2D6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    max-width:615px;
+    width: 90%;
+    text-align: center;
+ 
+}
+
+/* Back button styling */
+.back-button {
+    position: absolute;
+    top: 20px;
+   right: 20px;
+    font-size: 25px;
+    color: #000;
+    text-decoration: none;
+  width: 138px;
+height: 25.69px;
+
+
+
+}
+
+/* Card styling */
+.card {
+    background-color: #E6F4F1;
+    border-radius: 
+    54px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 630px;
+    width: 
+    615px;
+
+
+}
+
+/* Success icon styling */
+.success-icon {
+    background-color:rgba(73, 214, 99, 1);
+    border-radius: 50%;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 159px;
+height: 159px;
+top: 293px;
+left: 794px;
+gap: 0px;
+opacity: 0px;
+
+}
+
+.success-icon img {
+    width: 30px; /* Adjust as needed */
+}
+
+/* Title styling */
+.card h1 {
+    font-size: 35px;
+    color: #000;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 40px;
+
+
+
+}
+
+/* Product number styling */
+.product-number {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+/* Done button styling */
+.done-button {
+    background-color: rgba(112, 190, 161, 1);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 13px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+margin-top: 25px;
+
+    width: 165px;
+height: 57px;
+
+
+
+}
+
+.done-button:hover {
+    background-color:rgba(112, 190, 161, 1);
+}
+
+/* View product link styling */
+.view-product {
+    font-size: 17px;
+    color: #666;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.view-product:hover {
+    text-decoration: underline;
+}
+
+/* Milk splash image styling */
+.milk-splash {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    overflow: hidden;
+}
+
+.milk-splash img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: auto;
+      
+    }
+    
+   .card{
+    width: auto;
+   }
+    
+    .success-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .success-icon img {
+        width: 50px;
+    }
+
+    .card h1 {
+        font-size: 18px;
+    }
+
+    .product-number {
+        font-size: 13px;
+    }
+
+    .done-button {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 576px){
+    .container {
+       width: auto;
+    
+    }
+    
+    .card{
+        width: auto;
+        height: 500px;
+       }
+    
+    .success-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .success-icon img {
+        width: 50px;
+    }
+
+    .card h1 {
+        font-size: 20px;
+    }
+
+    .product-number {
+        font-size: 13px;
+    }
+
+    .done-button {
+        font-size: 20px;
+    }
+}

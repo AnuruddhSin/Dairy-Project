@@ -1,0 +1,32 @@
+<span>Product history</span>
+<table class="transactions-table">
+    <thead>
+        <tr class="table-header">
+            <th class="header-cell">Customer Name</th>
+            <th class="header-cell">Order ID</th>
+            <th class="header-cell">Date</th>
+            <th class="header-cell">Quantity</th>
+            <th class="header-cell">Amount</th>
+            <th class="header-cell">Product Name</th>
+        </tr>
+    </thead>
+    <tbody class="transactions-body">
+        {% for sale in product_sales %}
+        <tr class="transaction-row">
+            <td class="transaction-cell">{{ sale.customer_name }}</td>
+            <td class="transaction-cell">{{ sale.order_id }}</td>
+            <td class="transaction-cell">{{ sale.date }}</td>
+            <td class="transaction-cell">{{ sale.quantity }}</td>
+            <td class="transaction-cell">{{ sale.amount }}</td>
+            <td class="transaction-cell">
+                <div class="avatar-name">
+                    <div class="name-details">
+                        <div>{{ sale.product_name }}</div>
+                    </div>
+                    <img src="{{ url_for('static', filename='images/pro.png') }}" alt="Product" class="avatar">
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Farmer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./../../static/css/dairyOwner/addfarmer.css" />
+  </head>
+
+  <body>
+    <!-- Sidebar toggle button for mobile screens -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div class="container2">
+      <div id="sidebar">{% include '/dairyOwner/CommonSidebar.html' %}</div>
+      <!--sidebar ends here -->
+
+      <div class="main-contents">
+        <div class="header">
+          <h1>Add New Farmer</h1>
+          <div class="date-time">
+            <span class="time" id="time"></span>
+            <span class="date" id="date"></span>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form class="form-box" enctype="multipart/form-data">
+            <!-- Remove action and method attributes -->
+
+            <div class="field1">
+              <fieldset class="fieldset1">
+                <legend>Basic Information</legend>
+
+                <div class="input-field">
+                  <label for="fullname">Full Name</label><br />
+                  <input
+                    type="text"
+                    name="fullname"
+                    required
+                    placeholder="Enter Full Name"
+                    class="farmer-input"
+                  />
+                </div>
+                <div class="input-field">
+                  <label for="mobileno">Mobile No.</label><br />
+                  <input
+                    type="number"
+                    name="mobile_number"
+                    id="mobileNumber"
+                    oninput="validateMobileNumber()"
+                    class="farmer-input"
+                    placeholder="Enter Mobile Number"
+                    required
+                  />
+                  <span
+                    id="mobileError"
+                    style="color: red; display: none; transition: all"
+                    >Mobile Number should be exactly 10 digits</span
+                  >
+                </div>
+                <div class="input-field">
+                  <label for="email">Email</label><br />
+                  <input type="email" name="email" class="farmer-input" placeholder="abc@xyz.com" required />
+                </div>
+                <div class="input-field">
+                  <label for="dob">Date of Birth</label><br />
+                  <input type="date" name="dob"class="farmer-input" required />
+                </div>
+                <div class="input-field">
+                  <label for="farmer-uid">Farmer UID</label><br />
+                  <input type="number" name="farmer-uid" class="farmer-input" required />
+                </div>
+                <div class="input-field">
+                  <label for="adhar-no">Aadhar Number</label><br />
+                  <input type="number" name="adhar-no" class="farmer-input" placeholder="Enter Aadhar Number" required />
+                </div>
+                <div class="input-field">
+                  <label for="state">State</label><br />
+                  <input
+                    type="text"
+                    name="state"
+                    required 
+                    placeholder="Enter State Name"
+                    class="farmer-input"
+                  />
+                </div>
+                <div class="input-field">
+                  <label for="district">District</label><br />
+                  <input
+                    type="text"
+                    name="district"
+                    required
+                    placeholder="Enter District Name"
+                    class="farmer-input"
+                  />
+                </div>
+                <div class="input-field">
+                  <label for="taluka">Taluka</label><br />
+                  <input
+                    type="text"
+                    name="taluka"
+                    required
+                    placeholder="Enter Taluka  Name"
+                    class="farmer-input"
+                  />
+                </div>
+                <div class="input-field">
+                  <label for="village">Village</label><br />
+                  <input
+                    type="text"
+                    name="village"
+                    required
+                    placeholder="Enter Village Name"
+                    class="farmer-input"
+                  />
+                </div>
+                <div class="input-field">
+                  <label for="pincode">Pin Code</label><br />
+                  <input
+                    type="number"
+                    name="pincode"
+                    required
+                    placeholder="Enter Pin Code"
+                    class="farmer-input"
+                  />
+                </div>
+              </fieldset>
+              <div class="profile-section">
+                <div class="profile-box">
+                  <!-- <div class="profile-box-img"> -->
+                  <div class="profile-preview-frame">
+                    <img
+                      id="profile-preview"
+                      src="../../static/images/Frame 1171275858.jpg"
+                      alt="profile Preview"
+                    />
+                  </div>
+
+                  <!-- <input type="file" class="profile_input" name='profile_image' accept="image/*" required> -->
+                  <input
+                    type="file"
+                    id="profile"
+                    name="profile_image"
+                    accept="image/*"
+                    class="profile_input farmer-input"
+                    onchange="previewAvatar(event)"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="field2">
+              <fieldset class="fieldset2">
+                <legend>Farm Information</legend>
+
+                <div class="input-field">
+                  <label for="farm-name">Farm Name</label><br />
+                  <input type="text" name="farm-name" class="farmer-input"placeholder="Name of your Farm" required />
+                </div>
+
+                <div class="input-field">
+                  <label for="address">Location/Address</label><br />
+                  <input type="text" name="address" required placeholder="Enter Full address" class="address farmer-input" />
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="field3">
+              <fieldset class="fieldset3">
+                <legend>Account Information</legend>
+
+                <div class="input-field">
+                  <label for="bank_name">Bank Name</label><br />
+                  <input type="text" name="bank_name" class="farmer-input" placeholder="Enter Bank Name" required />
+                </div>
+                <div class="input-field">
+                  <label for="account_no">Account Number</label><br />
+                  <input type="text" name="account_no" class="farmer-input" placeholder="Enter Account No" required />
+                </div>
+                <div class="input-field">
+                  <label for="branch_name">Branch Name</label><br />
+                  <input type="text" name="branch_name" class="farmer-input" placeholder="Enter Branch Name" required />
+                </div>
+                <div class="input-field">
+                  <label for="ifsc_code">IFSC Code</label><br />
+                  <input type="text" name="ifsc_code" class="farmer-input" placeholder="Enter IFSC code" required />
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="field4">
+              <fieldset class="fieldset4">
+                <legend>Dairy Information</legend>
+
+                <div class="input-field">
+                  <label for="dairy-id">Dairy Id</label><br />
+                  <input type="text" name="dairy-id" class="farmer-input" placeholder="Enter Dairy ID" required />
+                </div>
+
+                <div class="input-field">
+                  <label for="preferred-dairy-name">Preferred Dairy Name</label
+                  ><br />
+                  <input type="text" name="preferred-dairy-name" class="farmer-input" placeholder="Enter Dairy Name" required />
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="input-field">
+              <button id="registerBtn" class="submit-button">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector(".sidebar");
+        sidebar.classList.toggle("active");
+      }
+      function updateDateTime() {
+        const now = new Date();
+
+        // Extract the current date
+        const currentDate = now.toLocaleDateString(); // Get local date
+
+        // Extract the current time
+        const currentTime = now.toLocaleTimeString(); // Get local time
+
+        // Update the HTML elements with the current date and time
+        document.getElementById("date").textContent = currentDate;
+        document.getElementById("time").textContent = currentTime;
+      }
+
+      // Update the date and time when the page loads
+      window.onload = updateDateTime;
+
+      // Optionally, keep the time updated every second (for real-time display)
+      setInterval(updateDateTime, 1000); // Updates every second
+
+      function previewAvatar(event) {
+        const avatarInput = event.target;
+        const preview = document.getElementById("profile-preview");
+
+        if (avatarInput.files && avatarInput.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function (e) {
+            preview.src = e.target.result; // Set the image source to the file's data URL
+            preview.style.display = "block"; // Make the preview visible
+          };
+
+          reader.readAsDataURL(avatarInput.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="./../static/css/jinja_footer.css">
+</head>
+
+<footer>
+         <div id="row1">
+            <div class="quicklinks">
+                <div class="text">Quicklinks</div>
+                <ol>
+                            
+                    <li> <i class="fa-solid fa-house"></i>Home</li>
+                    <li> <i class="fa-solid fa-gear"></i> Features</li>
+                    <li> <i class="fa-solid fa-money-check-dollar"></i> Pricing</li>
+                    <li> <i class="fa-solid fa-phone"></i> Contact us </li>
+                    <li> <i class="fa-solid fa-headset"></i> Support</li>
+                </ol>
+                
+            </div> <!--quicklinks ends here -->
+            <div class="legals">
+                <div class="text">Legals</div>
+                <ol>
+                            
+                    <li> <i class="fa-solid fa-gavel"></i> Terms & Conditions</li>
+                    <li> <i class="fa-solid fa-lock"></i> Privacy Policy</li>
+                    
+                </ol>
+            </div>
+         </div>
+         <div id="row2">
+            <div class="contactus">
+                <div class="text">Contact us </div>
+                <ol class=".contact">
+                    <li> <i class="fa-solid fa-phone"></i> 4567832423</li>
+                    <li> <i class="fa-solid fa-envelope"></i> arohi@gmail</li>
+                    <li> <i class="fa-solid fa-location-pin"></i>  pune, Maharashtra , India 
+                    </li>
+                </ol>
+            </div>
+            <div class="followus">
+                <div class="text">Follow us</div>
+                <ol>
+                    <li> <i class="fa-brands fa-instagram"></i> Instagram</li>
+                    <li> <i class="fa-brands fa-linkedin"></i> Linkdin</li>
+                    <li> <i class="fa-brands fa-twitter"></i> X(Twitter)</li>
+                </ol>
+            </div>
+         </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    gsap.from("footer li",{
+        y:100,
+        duration:0.2,
+        stagger:0.2,
+        opacity:0
+        
+    })
+</script>

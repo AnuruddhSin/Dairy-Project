@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Muster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dairyOwner/Muster.css') }}">
+    <style>
+        
+        
+    </style>
+</head>
+<body>
+    <a href="#" class="back">
+        <img src="{{ url_for('static', filename='images/left.png') }}" alt="Back" class="img-left"> Back
+    </a>
+    <div class="main">
+        {% include 'commonFlashMessages.html' %}
+        <div class="main-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time Period</th>
+                        <th>Milk Collection</th>
+                        <th>Avg Fat</th>
+                        <th>Avg Rate</th>
+                        <th>Amount</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in muster_data %}
+                    <tr>
+                        <td>{{ group.start_date }} - {{ group.end_date }}</td>
+                        <td>{{ "%.1f"|format(group.total_milk) }}L</td>
+                        <td>{{ "%.1f"|format(group.avg_fat) }}</td>
+                        <td>{{ "%.2f"|format(group.avg_rate) }}</td>
+                        <td>{{ "%.2f"|format(group.total_amount) }}</td>
+                        <td class="arrow" onclick="toggleDropdown('{{ loop.index }}')">
+                            <img id="arrow-{{ loop.index }}" src="{{ url_for('static', filename='images/down.png') }}" alt="Expand" class="img">
+                        </td>
+                        <td><a href="/dairyOwner/ViewBill"></a><button onclick="viewBill('{{ group.start_date }}', '{{ group.end_date }}')">View Bill</button></td>
+                    </tr>
+                    <tr id="details-{{ loop.index }}" class="details">
+                        <td colspan="7">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Time/Date</th>
+                                        <th>Milk</th>
+                                        <th>Fat</th>
+                                        <th>Rate</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for entry in group.entries %}
+                                    <tr>
+                                        <td>#{{ entry.id }}</td>
+                                        <td>
+                                            <span class="time">{{ entry.time }}</span><br>
+                                            <span class="date">{{ entry.date }}</span>
+                                        </td>
+                                        <td>{{ "%.1f"|format(entry.milk) }}</td>
+                                        <td>{{ "%.1f"|format(entry.fat) }}</td>
+                                        <td>{{ "%.2f"|format(entry.rate) }}</td>
+                                        <td>{{ "%.2f"|format(entry.amount) }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(index) {
+            var detailsRow = document.getElementById('details-' + index);
+            var arrowImg = document.getElementById('arrow-' + index);
+            if (detailsRow.style.display === 'none' || detailsRow.style.display === '') {
+                detailsRow.style.display = 'table-row';
+                arrowImg.src = "{{ url_for('static', filename='images/arrow-up.png') }}";
+            } else {
+                detailsRow.style.display = 'none';
+                arrowImg.src = "{{ url_for('static', filename='images/down.png') }}";
+            }
+        }
+
+        function viewBill(startDate, endDate) {
+            // Implement bill viewing functionality
+            console.log('Viewing bill for ' + startDate + ' to ' + endDate);
+        }
+    </script>
+</body>
+</html>

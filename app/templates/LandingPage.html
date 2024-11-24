@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Farm</title>
+    <link rel="stylesheet" href="./../static/css/landingpage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    
+    <div id="main">
+
+      
+        
+        
+        <div id="page1">
+            
+            <nav class="navbar">
+                <div class="nav-item"> <a href="/farmer/Dashboard" style="color: black;text-decoration: none;"><i class="fas fa-home"></i> Home </a> </div>
+                <div class="nav-item"> <a href="#"></a><i class="fa-solid fa-book"></i> <span class="desktop_service">Service</span></div>
+                <div class="nav-item"> <a href="/pricing" style="color: black;text-decoration: none;"><i class="fa-solid fa-indian-rupee-sign"></i> Pricing </a></div>
+                <div class="nav-item"><i class="fas fa-envelope"></i> <a href="{{ url_for('guest.contact_us') }}" style="color: black;text-decoration: none;">Contact Us </a></div>
+                <div class="login_outer">
+                    <a href="/farmer/login" class="login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                </div>
+                <div class="register_outer">
+                    <a href="/farmer/register" class="register"><i class="fas fa-user-plus"></i> Register</a>
+                </div>
+            </nav>
+            
+            <div class="home"></div> <!-- home ends here -->
+            
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <div class="mobile-menu">
+                <div class="mobile-nav-item"><i class="fas fa-home"></i> Home</div>
+                <div class="mobile-nav-item"><i class="fas fa-concierge-bell"></i>  Service </div>
+                <div class="mobile-nav-item"><i class="fas fa-gift"></i> <a href="/pricing">Scheme</a></div>
+                <div class="mobile-nav-item"><i class="fas fa-envelope"></i> <a href="{{ url_for('guest.contact_us') }}">Contact Us</a></div>
+                <div class="mobile-nav-item"><div class="login"><a href="/farmer/login"><i class="fas fa-sign-in-alt"></i> Login </a></div></div>
+                <div class="mobile-nav-item"><div class="register"><i class="fas fa-user-plus"></i> Register</div></div>
+            </div>
+            
+            
+            
+            <div class="content1">
+                <div class="text1">Dairy <span>Farm</span></div>
+            </div> <!--content1 ends here-->
+            
+            <div class="content2">
+                <div class="text2"><p>Transform your dairy operations with our innovative <span>SaaS platform </span>, designed 
+                    specifically for seamless transactions between farmers and dairy owners. Our solution provides 
+                    a comprehensive suite of powerful features that streamline every aspect of 
+                    dairy management, ensuring efficiency and transparency.</p></div>
+                </div> <!--content2 ends here-->
+                
+                <div class="knowmore">
+                    <button class="knowmorebutton">
+                        KNOW MORE <i class="fas fa-chevron-right"></i> 
+                    </button>
+                    
+                </div> <!--knowmore ends here-->
+                
+                <div id="dashboard"></div>
+                
+            </div><!--page1-->
+            
+            
+            
+            
+            <div id="quotesection">
+                <div class="quotetext">Milk is the only thing which is considered as food and medicine as the same time </div>
+                <div class="milkdrop_img"><img src="./../static/images/milkdrop.png" alt=""></div>
+                
+            </div>
+            
+            <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
+            
+            <div id="keyfeatures">
+                <div class="keyfeaturetext_container">Key Features ____________</div>
+
+                <div class="keyfeature_imgbox_container">
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="./../static/images/glass_resized.jpeg" class="card-img-top" alt="..." style="height: 300px;">
+                        <div class="card-body">
+                          <p class="card-text"><h6>Efforless milk sales Tracking</h6> Farmer can track daily milk sales with real time updates and transparent records of  earnings</p>
+                        </div>
+                      </div>
+
+                      <div class="card" style="width: 18rem;">
+                        <img src="./../static/images/virtualwallet.jpeg" class="card-img-top" alt="..." style="height: 300px;">
+                        <div class="card-body">
+                          <p class="card-text"><h6>Virtual Wallet</h6> Access Earning and use them to purchase farm supply or withdraw funds securely </p>
+                        </div>
+                      </div>
+
+                      <div class="card" style="width: 18rem;">
+                        <img src="./../static/images/inventory_management.jpeg" class="card-img-top" alt="..." style="height: 300px;">
+                        <div class="card-body">
+                          <p class="card-text"> <h6>Simplified Inventory Management</h6>Dairy owners can track and manage stock of farm supplies ensuring timely restocking and sales  </p>
+                        </div>
+                      </div>
+
+                </div> <!--keyfeatures imagbox container ends here  -->
+ 
+            </div> <!--keyfeatures ends here -->
+            
+            <!-- FAq qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq -->
+            
+            
+            <div id="faqmain">
+                <div class="faqtitle"> Dairy  FAQ's   ______</div>
+                <div class="faqimg_container">
+                    <div class="imgfaqdiv"><img src="./../static//images/faqimage.png" alt=""></div>
+                </div>
+            </div>  <!--faqmain div ends here-->
+            
+            
+            <!-- what we provide eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee -->
+            
+            
+            <div id="provide">
+                <div class="provide_title">What we Provide ?  _______________</div>
+                
+                <div class="farmercontainer">
+                    <div class="farmer">
+                        <div class="farmer_info">
+                            <div class="farmer_text">Farmer</div>
+                            <div class="childtext"><span>.</span> Track Milk Sales Easily</div>
+                            <div class="childtext"><span>.</span> Use earning for farm supply</div>
+                            <div class="childtext"><span>.</span> Access Transcation History</div>
+                        </div>
+                        <div class="farmer_image">
+                            <div class="farmerimage_container_inner"> </div>   <!--farmerimage_inner ends here-->
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="dairyowner_container">
+                    <div class="dairyowner">
+                        <div id="dairyowner_part_one" class="dairyownerchild">
+                           <div class="dairyowner_img"></div> <!--dariyowner img ends here-->
+                        </div> <!--dairyowner_part_one ends here -->
+                        <div id="dairyowner_info" class="dairyownerchild">
+                            <span>Dairy Owner</span>
+                            <ul>
+                                <li>Manage Inventory and Sales </li>
+                                <li>Transparnent record keeping</li>
+                                <li>Secure payments and report  </li>
+                            </ul>
+                        </div>
+                        <div id="dairyowner_milkjar" class="dairyownerchild">
+                            <div class="imgholder">
+                                <img src="./../static/images/milkjar.png" alt="">
+                            </div>
+                        </div>
+                        
+                    </div> <!--dairy owner ends here-->
+                </div>  <!--dairyowner_container ends here-->
+                
+                
+            </div> <!--provide div end here -->
+            
+            <!-- Footer rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr -->
+            
+            
+            
+            <div id="Footer">
+                <div class="footertitle">Dairy  <span>Farm</span> </div>   <!--footer title div ends here -->
+               
+                <div class="footer_info_container">
+                    
+                    
+                    <div class="quicklinks">
+                        <div id="quicklinkstitle" class="footer_inner_title">Quick links</div>
+                        <ol>
+                            
+                            <li class="homefooter"> <i class="fa-solid fa-house"></i>Home</li>
+                            <li> <i class="fa-solid fa-gear"></i> Features</li>
+                            <li> <i class="fa-solid fa-money-check-dollar"></i> <a href="/pricing" style="color: black;text-decoration: none;"> Pricing </a></li>
+                            <li> <i class="fa-solid fa-phone"></i> <a href="{{ url_for('guest.contact_us') }}" style="color: black;text-decoration: none;">Contact us </a> </li>
+                            <li> <i class="fa-solid fa-headset"></i>  <a href="/support" style="color: black;text-decoration: none;">Support </a></li>
+                        </ol>
+                    </div> <!--quicklinks ends here -->
+                    
+                    <div class="legal">
+                        <div id="legaltitle" class="footer_inner_title">Legals</div>
+                        <ol>
+                            
+                            <li > <i class="fa-solid fa-gavel"></i> <a href="/termsandconditions" style="text-decoration: none;color: black;"> Terms & Conditions </a></li>
+                            <li> <i class="fa-solid fa-lock"></i>  <a href="/privacypolicy" style="text-decoration: none;color: black;"> Privacy Policy </a></li>
+                            
+                        </ol>
+                    </div> <!--legal ends here -->
+                    
+                    <div class="contactus">
+                        <div id="contactustitle" class="footer_inner_title"> <a href="{{ url_for('guest.contact_us') }}" style="color: black;text-decoration: none;">Contact US </a></div>
+                        <ol>
+                            <li> <i class="fa-solid fa-phone"></i> Mobile:4567832423454</li>
+                            <li> <i class="fa-solid fa-envelope"></i> Email:arohaisoftware@gmail.com</li>
+                            <li> <i class="fa-solid fa-location-pin"></i> Address: Laxmi Nagar pune, Maharashtra , India 
+                            </li>
+                        </ol>
+                    </div>  <!--contact us ends here -->
+                    
+                    
+                    
+                    <div class="followus">
+                        <div id="followus" class="footer_inner_title">Follow Us</div>
+                        <ol>
+                            <li> <i class="fa-brands fa-instagram"></i> Instagram</li>
+                            <li> <i class="fa-brands fa-linkedin"></i> Linkdin</li>
+                            <li> <i class="fa-brands fa-twitter"></i> X(Twitter)</li>
+                        </ol>
+                    </div> <!--follow us ends here -->
+                </div> 
+            </div> <!--footer ends here -->
+
+           
+            
+        </div> <!-- main div ends here -->
+        
+        
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="./../static/js/landingpage.js"></script>
+    </body>
+    </html>
+    

@@ -1,0 +1,104 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: #7FDFD0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #7FDFD0;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav {
+    background-color: rgba(206, 248, 225, 1);
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgba(80, 85, 61, 1);
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.09em;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: #000;
+}
+
+.content {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 400px;
+}
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    background-color: #2ECC71;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.checkmark::after {
+    content: '\2714';
+    font-size: 50px;
+    color: white;
+}
+
+h2 {
+    margin: 0;
+    color: #333;
+}
+
+p {
+    color: #666;
+    margin: 10px 0 20px;
+}
+
+a {
+    color: #2ECC71;
+    text-decoration: none;
+}
+
+.button {
+    background-color: #7FDFD0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}

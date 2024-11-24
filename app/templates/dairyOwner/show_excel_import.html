@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel File Upload</title>
+    <link rel="stylesheet" href="./../../static/css/dairyOwner/show_excel_import.css">
+</head>
+<body>
+    <div class="main">
+        <div id="sidebar">
+            {% include '/dairyOwner/CommonSidebar.html' %}
+        </div>
+        
+        <div id="content">
+            <h2>Excel File</h2>
+
+            <div class="table-content">
+                <a href="/dairyOwner/excel-import" class="back-button">← Back</a>
+                
+                {% if data %}
+                    <table class="excel-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Animal ID</th>
+                                <th>Farmer Name</th>
+                                <th>Cow Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in data %}
+                                <tr>
+                                    <td class="No">{{ loop.index0 }}</td>
+                                    <td>{{ entry.uid }}</td>
+                                    <td>{{ entry.name }}</td>
+                                    <td>{{ entry.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No data available to display.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

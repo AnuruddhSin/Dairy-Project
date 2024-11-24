@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/dairyOwner/commonConfirmPage.css')}}">
+<div class="commonConfirmPage container">
+  <div class="commonConfirmPage transaction-box">
+    <div class="commonConfirmPage status-icon">
+      <img src="{{url_for('static', filename='images/check-removebg-preview.png')}}" alt="Status Icon" />
+    </div>
+
+    <h2>Confirm Add Farmer?</h2>
+    <h3 style="text-align: center;">Farmer Name: {{farmer.farmer_name}} <br> Farmer ID: {{farmer.farmer_id}}</h3>
+    <p>Upon confirming, {{farmer.farmer_name}} will be associated with your dairy.</p>
+
+    <div class="buttons">
+      <a href="{{url_for('dairy_owner_notification.acceptFarmer', farmer_id=farmer.farmer_id)}}">
+        <button class="btn yes">Yes</button>
+      </a>
+      <a href="{{url_for('dairy_owner_notification.rejectFarmer', farmer_id=farmer.farmer_id)}}">
+        <button class="btn no">No</button>
+      </a>
+    </div>
+  </div>
+</div>

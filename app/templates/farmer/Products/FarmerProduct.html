@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard</title>
+    <link rel="stylesheet" href="./../../../static/css/farmers/Products/FarmerProduct.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="sidebar-box">
+            {% include "farmer/Sidebar/FarmerSidebar.html" %}
+        </div>
+
+        {% include 'commonFlashMessages.html' %}
+        <div class="main-content">
+            <div class="top-product">
+                <div class="top-product-div">
+                    <h1 class="top-product-h1">Products</h1>
+                </div>
+
+
+                <div class="top-product-div2">
+                    <img src="{{url_for('static', filename='images/bell.png')}}" alt="" class="bell">
+                    <p class="product-p">10.40 AM</p>
+                    <p class="product-p">21/12/2024</p>
+                    <!-- <button class="product-p product-p-btn"> <img src="./export.png" alt="" class="bell"> Export</button> -->
+                    <div class="export" onclick="toggleVisibility('toggleBlock')">
+                        <img src="{{url_for('static', filename='images/export.png')}}" alt="" class="bell">
+                        <p class="product-p-export">Export</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right-side-box">
+                <div class="right-side-box-heading">
+
+                    <div class="search">
+                        <img src="{{url_for('static', filename='images/search.png')}}" alt="" class="img">
+                        <input type="text" id="searchInput" onchange="filterItems()" class="searchbar"
+                            placeholder="Search">
+                    </div>
+
+                    <div>
+                        <a href="#"><img src="{{url_for('static', filename='images/shopping-bag.png')}}" alt=""
+                                class="bag"> View Order</a>
+                        <a href="{{url_for('view_cart.viewCart')}}"><button class="cart-btn"> 
+                            <img src="{{url_for('static', filename='images/shopping-cart.png')}}"
+                                alt="" class="cart"></button></a>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    {% for product in products %}
+                    <div class="product">
+                          <div class="product_id" hidden> {{ product.product_id }}</div>
+                            {% if product.image_url%}
+                                <img src="{{ product.image_url and product.image_url.strip()}}" class="product-pic">
+                                {% else %}
+                                    <img src="{{url_for('static', filename='images/Quemark.png')}}" alt="" class="product-pic">
+                            {% endif%}
+                        
+                        
+                            <a href="{{url_for('view_cart.addToCart', product_id = product.product_id)}}"><button class="add-product">Add To Cart</button></a>
+
+                        <!-- product name -->
+                        <p class="product-head">>{{ product.product_name }}</p>
+
+                        <!-- product price -->
+                        <p class="product-price">₹{{ product.product_price }}
+                            {% if product.percent_discount %}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="product-span">
+                                ₹{{ product.product_price * (1 - (product.percent_discount / 100)) | round(2) }}
+                            </span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+   
+
+
+</script>
+
+</html>
